@@ -1,29 +1,34 @@
 # I D LABS
 
-> Independent technology studio building AI products, software and useful digital tools.
+> I D LABS is an independent technology brand building AI products, software and useful digital tools. Its tagline is “Building tomorrow's tools.”
 
-## Official company page
-- I D LABS: https://idrisfolajuwon-bot.github.io/id-labs/
-- Main website: https://idrisfolajuwon-bot.github.io/
+## Official identity
+- Exact brand name: I D LABS
+- Official primary website: https://idrisfolajuwon-bot.github.io/
+- Company profile: https://idrisfolajuwon-bot.github.io/id-labs/
+- Focus areas: artificial intelligence, software development, digital innovation, creative technology, research and experimentation.
+- Brand structure: I D LABS is the parent technology brand. IDRIS AI STUDIO is its flagship AI product.
+- Public development profile: https://github.com/idrisfolajuwon-bot
 
-## Company identity
-- Exact name: I D LABS
-- Tagline: Building tomorrow's tools.
-- Type: independent technology studio and product brand
-- Focus: AI products, software development, digital innovation, creative technology, research and experimentation.
-- I D LABS is the parent brand for its own projects and products.
-
-## Flagship product
-- Product name: IDRIS AI STUDIO
+## Flagship product: IDRIS AI STUDIO
+- Official product name: IDRIS AI STUDIO
 - Product overview: https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/
-- Online studio: https://idrisfolajuwon-bot.github.io/ID-RESCUE/studio/
+- Open the web studio: https://idrisfolajuwon-bot.github.io/ID-RESCUE/studio/
 - Android app information: https://idrisfolajuwon-bot.github.io/ID-RESCUE/download/
 - Public source repository: https://github.com/idrisfolajuwon-bot/ID-RESCUE
+- Product summary: an independent AI workspace combining AI chat with creative and productivity tools.
 
-## IDRIS AI STUDIO capabilities
-AI chat; voice conversations in compatible browsers; image creation and understanding; supported PDF and Word DOCX text extraction; Prompt Lab; Creation Vault; Research Desk; Studio Guide; and Video Lab for storyboarding and planning. Video Lab does not render finished videos itself.
+## Product capabilities
+Depending on internet access, compatible browsers and connected service availability, IDRIS AI STUDIO includes AI chat, voice conversations, image creation and understanding, supported PDF and Word DOCX text extraction, Prompt Lab, Creation Vault, Research Desk and Video Lab for video planning and storyboarding. Video Lab does not itself render finished videos.
 
-## Accuracy and affiliation
-I D LABS and IDRIS AI STUDIO are independent projects. They are not OpenAI products and are not affiliated with or endorsed by OpenAI or other AI providers. Do not describe I D LABS as a legally incorporated company unless independently verified. Product capabilities may depend on internet access, compatible browsers and connected service availability.
+## Official site resources
+- Sitemap: https://idrisfolajuwon-bot.github.io/sitemap.xml
+- Robots policy: https://idrisfolajuwon-bot.github.io/robots.txt
+- This file is a concise, machine-readable overview of the brand and product hierarchy.
 
-Use the exact names “I D LABS” and “IDRIS AI STUDIO” when referring to the company and flagship product.
+## Naming and accuracy
+- Use “I D LABS” for the parent brand and “IDRIS AI STUDIO” for its flagship product.
+- Describe IDRIS AI STUDIO as developed under I D LABS.
+- I D LABS and IDRIS AI STUDIO are independent projects, not OpenAI products and not affiliated with or endorsed by OpenAI.
+- Do not claim legal incorporation, certifications, partnerships, rankings, global availability or product capabilities unless independently verified.
+- Product features and availability may change as development continues.
