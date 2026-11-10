@@ -1,126 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07101f">
-  <title>I D LABS — Building Tomorrow’s Tools</title>
-  <meta name="description" content="I D LABS is an independent technology brand developing AI products, software and useful digital tools. Explore IDRIS AI STUDIO.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://idrisfolajuwon-bot.github.io/id-labs/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="I D LABS">
-  <meta property="og:title" content="I D LABS — Building Tomorrow’s Tools">
-  <meta property="og:description" content="Independent technology. Useful ideas. Products built to help people create, learn and get things done.">
-  <meta property="og:url" content="https://idrisfolajuwon-bot.github.io/id-labs/">
-  <meta name="twitter:card" content="summary">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Organization",
-    "name":"I D LABS",
-    "url":"https://idrisfolajuwon-bot.github.io/id-labs/",
-    "description":"An independent technology brand developing AI products, software and useful digital tools.",
-    "slogan":"Building tomorrow's tools.",
-    "brand":{"@type":"Brand","name":"I D LABS"},
-    "hasOfferCatalog":{
-      "@type":"OfferCatalog",
-      "name":"I D LABS products",
-      "itemListElement":[{
-        "@type":"SoftwareApplication",
-        "name":"IDRIS AI STUDIO",
-        "applicationCategory":"ProductivityApplication",
-        "operatingSystem":"Web",
-        "url":"https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/",
-        "description":"An independent AI workspace for chat, voice, image tools, prompt exploration and research."
-      }]
-    }
-  }
-  </script>
-  <style>
-    :root{color-scheme:dark;--bg:#060d19;--panel:#0c192b;--panel2:#10233b;--text:#f1f6ff;--muted:#a8b8ce;--blue:#55b7ff;--cyan:#67e4eb;--line:#203650;--max:1120px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:radial-gradient(ellipse at 50% -18%,#164879 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    a{color:inherit}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
-    .topbar{position:sticky;top:0;z-index:5;background:rgba(6,13,25,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(75,115,157,.25)}
-    header{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .brand{font-weight:900;letter-spacing:.15em;text-decoration:none;font-size:17px}.brand span{color:var(--blue)}
-    nav{display:flex;align-items:center;gap:25px;font-size:14px;color:var(--muted)}nav a{text-decoration:none}nav a:hover,nav a:focus-visible{color:white}
-    .hero{padding:112px 0 100px;text-align:center}.eyebrow,.kicker{color:var(--cyan);font-size:12px;font-weight:850;letter-spacing:.22em;text-transform:uppercase}
-    h1{font-size:clamp(48px,9vw,94px);line-height:1.02;letter-spacing:-.065em;margin:20px 0 16px}
-    h1 span{background:linear-gradient(90deg,#fff,#6fc4ff,#75edf0);background-clip:text;-webkit-background-clip:text;color:transparent}
-    .tagline{font-size:clamp(14px,2vw,18px);letter-spacing:.18em;text-transform:uppercase;color:#c5d8ed}
-    .intro{max-width:730px;margin:25px auto 0;color:var(--muted);font-size:18px}
-    .actions{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;margin-top:34px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 19px;border-radius:12px;text-decoration:none;font-weight:800;border:1px solid #398bca;background:linear-gradient(120deg,#176db4,#164477);transition:transform .18s ease,border-color .18s ease}
-    .btn:hover{transform:translateY(-2px);border-color:var(--cyan)}.btn.secondary{background:rgba(12,25,43,.65);border-color:var(--line)}
-    section{padding:76px 0;border-top:1px solid var(--line)}h2{font-size:clamp(31px,5vw,48px);line-height:1.12;letter-spacing:-.04em;margin:12px 0 18px}
-    .lead{max-width:760px;color:var(--muted);margin:0}.split{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:start}
-    .manifesto{padding:26px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(17,43,70,.85),rgba(10,22,39,.85))}
-    .manifesto strong{display:block;font-size:19px;margin-bottom:8px}.manifesto p{color:var(--muted);margin:0}
-    .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px}
-    .principle{padding:19px;border-left:2px solid var(--blue);background:rgba(12,25,43,.72)}.principle strong{display:block;margin-bottom:4px}.principle span{color:var(--muted);font-size:14px}
-    .product{margin-top:30px;padding:clamp(24px,4vw,36px);border:1px solid #286da5;border-radius:22px;background:linear-gradient(125deg,rgba(20,87,143,.35),rgba(12,25,43,.94));display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-    .product h3{font-size:clamp(24px,4vw,32px);margin:8px 0}.product p{max-width:650px;margin:0;color:var(--muted)}.product .btn{white-space:nowrap}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:28px}.tile{padding:22px;border:1px solid var(--line);border-radius:16px;background:rgba(12,25,43,.72)}.tile .num{font-size:12px;color:var(--cyan);letter-spacing:.12em;font-weight:850}.tile h3{margin:8px 0;font-size:18px}.tile p{margin:0;color:var(--muted);font-size:14px}
-    .closing{padding:32px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(120deg,rgba(18,54,88,.72),rgba(10,22,39,.8));display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .closing h2{font-size:clamp(25px,4vw,36px);margin:0 0 8px}.closing p{margin:0;color:var(--muted)}
-    footer{padding:30px 0 42px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    :focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
-    @media(max-width:760px){.hero{padding:82px 0 72px}.split{grid-template-columns:1fr;gap:24px}.grid{grid-template-columns:repeat(2,1fr)}.product{grid-template-columns:1fr}.product .btn{width:max-content}.closing{align-items:flex-start;flex-direction:column}}
-    @media(max-width:520px){.wrap{width:min(var(--max),calc(100% - 30px))}header{min-height:64px}nav{gap:13px;font-size:12px}.brand{font-size:15px}.hero{padding:72px 0 62px}.intro{font-size:16px}.grid,.principles{grid-template-columns:1fr}section{padding:58px 0}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#070b16">
+<title>I D LABS — Building Tomorrow's Tools</title>
+<meta name="description" content="I D LABS is an independent technology brand exploring AI, software and useful digital products. Discover IDRIS AI STUDIO.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://idrisfolajuwon-bot.github.io/id-labs/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="I D LABS"><meta property="og:title" content="I D LABS — Building Tomorrow's Tools"><meta property="og:description" content="Independent technology. Useful ideas. Products built for what comes next."><meta property="og:url" content="https://idrisfolajuwon-bot.github.io/id-labs/"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"I D LABS","url":"https://idrisfolajuwon-bot.github.io/id-labs/","description":"An independent technology brand exploring AI, software and useful digital products.","slogan":"Building tomorrow's tools.","hasOfferCatalog":{"@type":"OfferCatalog","name":"I D LABS products","itemListElement":[{"@type":"SoftwareApplication","name":"IDRIS AI STUDIO","applicationCategory":"ProductivityApplication","operatingSystem":"Web, Android","url":"https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/"}]}}</script>
+<style>
+:root{color-scheme:dark;--bg:#070b16;--panel:#0e1728;--line:#23334b;--muted:#a7b5cb;--white:#f4f7ff;--blue:#70bfff;--cyan:#6ce6dc;--violet:#a89aff;--max:1160px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#1c4770 0,transparent 38%),radial-gradient(ellipse at 0 55%,#152d48 0,transparent 30%),var(--bg);color:var(--white);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit}.wrap{width:min(var(--max),calc(100% - 42px));margin:auto}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.top{position:sticky;top:0;z-index:9;background:#070b16e8;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff12}.brand{font-weight:950;letter-spacing:.17em;text-decoration:none;font-size:17px}.brand span{color:var(--blue)}nav{display:flex;align-items:center;gap:24px}nav a{font-size:13px;color:#c4d0e1;text-decoration:none;font-weight:700}nav a:hover{color:var(--cyan)}.navbtn{padding:10px 15px;border:1px solid #477ca9;border-radius:10px;background:#123151;color:#fff}
+.hero{min-height:650px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:48px;padding:80px 0 90px}.eyebrow,.kicker{font-size:11px;letter-spacing:.2em;font-weight:900;color:var(--cyan);text-transform:uppercase}.eyebrow:before{content:"";display:inline-block;width:7px;height:7px;background:var(--cyan);border-radius:50%;margin:0 10px 1px 0;box-shadow:0 0 14px var(--cyan)}
+h1{font-size:clamp(50px,7.6vw,88px);letter-spacing:-.07em;line-height:.99;margin:22px 0}h1 span{background:linear-gradient(95deg,#fff,#86caff 55%,#8be9dd);background-clip:text;color:transparent}.subline{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#c7d9ec;font-weight:750}.intro{max-width:640px;color:var(--muted);font-size:18px;margin:23px 0 0}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:11px;text-decoration:none;font-size:13px;font-weight:850;border:1px solid #4b91c6;background:linear-gradient(115deg,#17629b,#244b80);transition:transform .18s,border-color .18s}.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}.btn.alt{background:#ffffff08;border-color:var(--line)}
+.orbit{min-height:390px;position:relative;display:grid;place-items:center}.halo{position:absolute;width:min(390px,90vw);aspect-ratio:1;border:1px solid #77c9ff35;border-radius:50%;box-shadow:0 0 90px #2a7cb322,inset 0 0 70px #2a7cb315}.halo:before,.halo:after{content:"";position:absolute;inset:35px;border:1px solid #8ce7df25;border-radius:50%}.halo:after{inset:75px;border-color:#a89aff35}.core{position:relative;width:190px;aspect-ratio:1;border-radius:38px;display:grid;place-items:center;background:linear-gradient(145deg,#1c4770,#12172f 70%);border:1px solid #7dcaff66;box-shadow:0 25px 90px #0008,0 0 60px #5ebdff22;transform:rotate(-7deg)}.core b{font-size:48px;letter-spacing:-.09em}.core small{position:absolute;bottom:34px;font-size:9px;letter-spacing:.25em;color:#bce9ff}.float{position:absolute;padding:11px 14px;background:#0c1b2deF;border:1px solid #35506d;border-radius:12px;font-size:11px;color:#d6e9fa;box-shadow:0 12px 35px #0005}.f1{top:14%;left:2%}.f2{right:0;top:28%}.f3{bottom:13%;left:5%}
+section{padding:78px 0;border-top:1px solid #ffffff12}.sectionhead{max-width:720px;margin-bottom:30px}h2{font-size:clamp(32px,5vw,49px);line-height:1.08;letter-spacing:-.055em;margin:12px 0 15px}.lead{color:var(--muted);margin:0;max-width:740px}.split{display:grid;grid-template-columns:1fr .9fr;gap:36px;align-items:center}.statement{border:1px solid #3a5875;border-radius:20px;padding:29px;background:linear-gradient(145deg,#102c49,#0c1729)}.statement strong{font-size:20px}.statement p{color:var(--muted);margin-bottom:0}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:30px}.value,.tile{background:linear-gradient(145deg,#101e32,#0b1424);border:1px solid var(--line);border-radius:16px;padding:20px}.value b{display:block;margin-bottom:6px}.value p,.tile p{margin:0;color:var(--muted);font-size:13px}
+.product{display:grid;grid-template-columns:1fr auto;align-items:center;gap:25px;padding:clamp(24px,4vw,38px);border:1px solid #3976a5;border-radius:22px;background:linear-gradient(115deg,#12385b,#101b31 68%);box-shadow:0 22px 70px #0003}.product h3{font-size:clamp(25px,4vw,36px);margin:8px 0}.product p{color:#c0cde0;max-width:650px;margin:0}.pill{font-size:10px;color:#aee8e8;letter-spacing:.18em;font-weight:900}.product .btn{white-space:nowrap}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.tile .n{font-size:10px;color:var(--cyan);font-weight:900;letter-spacing:.16em}.tile h3{font-size:17px;margin:9px 0 6px}
+.endcap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:30px;border:1px solid #36516c;border-radius:20px;background:linear-gradient(110deg,#142f4c,#101729)}.endcap h2{font-size:clamp(25px,4vw,37px);margin:0 0 7px}.endcap p{color:var(--muted);margin:0}
+footer{padding:28px 0 40px;border-top:1px solid #ffffff12;color:#8f9fb7;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;min-height:unset;padding:75px 0 60px;gap:20px}.orbit{min-height:330px}.split{grid-template-columns:1fr}.values{grid-template-columns:repeat(2,1fr)}.tiles{grid-template-columns:repeat(2,1fr)}.product{grid-template-columns:1fr}.product .btn{width:max-content}.endcap{align-items:flex-start;flex-direction:column}}
+@media(max-width:540px){.wrap{width:calc(100% - 30px)}header{height:66px}nav{gap:12px}nav a{font-size:11px}nav a:nth-child(1),nav a:nth-child(2){display:none}.brand{font-size:14px}.hero{padding:62px 0 50px}h1{font-size:clamp(48px,14vw,68px)}.intro{font-size:16px}.orbit{min-height:280px}.core{width:145px;border-radius:30px}.core b{font-size:39px}.float{font-size:9px;padding:8px 10px}.halo{width:270px}section{padding:58px 0}.values,.tiles{grid-template-columns:1fr}.actions .btn{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
 </head>
 <body>
-  <div class="topbar"><div class="wrap"><header>
-    <a class="brand" href="#top" aria-label="I D LABS home">I D <span>LABS</span></a>
-    <nav aria-label="Main navigation"><a href="#about">About</a><a href="#products">Products</a><a href="#focus">Focus</a></nav>
-  </header></div></div>
-  <main id="top">
-    <div class="wrap">
-      <section class="hero" style="border:0">
-        <div class="eyebrow">Independent technology brand</div>
-        <h1>Ideas into <span>innovation.</span></h1>
-        <div class="tagline">Building tomorrow’s tools.</div>
-        <p class="intro">We explore ambitious ideas and turn them into useful AI products, software and digital experiences — built to help people think, create, learn and get things done.</p>
-        <div class="actions"><a class="btn" href="#products">Explore our products</a><a class="btn secondary" href="#about">Discover I D LABS</a></div>
-      </section>
-      <section id="about">
-        <div class="split">
-          <div><div class="kicker">Who we are</div><h2>A home for ambitious technology.</h2><p class="lead">I D LABS is an independent technology brand developing a growing portfolio of digital projects. We bring ideas into the open, experiment with emerging technology and build practical tools with a clear purpose.</p></div>
-          <div class="manifesto"><strong>Our mission</strong><p>Make useful technology more accessible by turning creative ideas into practical digital products — and keep learning with every thing we build.</p></div>
-        </div>
-        <div class="principles">
-          <div class="principle"><strong>Build with purpose</strong><span>Start with real needs and focus on practical value.</span></div>
-          <div class="principle"><strong>Stay curious</strong><span>Experiment, learn and explore what could be possible.</span></div>
-          <div class="principle"><strong>Make it clear</strong><span>Explain what our products do and where their limits are.</span></div>
-          <div class="principle"><strong>Improve responsibly</strong><span>Put usefulness, privacy and thoughtful development first.</span></div>
-        </div>
-      </section>
-      <section id="products">
-        <div class="kicker">The product portfolio</div><h2>Our first flagship product.</h2>
-        <p class="lead">A growing product family, connected by one ambition: build technology people can actually use.</p>
-        <article class="product">
-          <div><div class="eyebrow">Flagship product · 01</div><h3>IDRIS AI STUDIO</h3><p>An independent AI workspace bringing together chat, voice, image tools, prompt exploration and research features in one place.</p></div>
-          <a class="btn" href="https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/">Visit IDRIS AI STUDIO ↗</a>
-        </article>
-      </section>
-      <section id="focus">
-        <div class="kicker">What we explore</div><h2>Technology with room to grow.</h2>
-        <div class="grid">
-          <article class="tile"><div class="num">01 / INTELLIGENCE</div><h3>AI products</h3><p>Helpful assistants and AI-powered experiences for everyday tasks.</p></article>
-          <article class="tile"><div class="num">02 / ENGINEERING</div><h3>Software development</h3><p>Digital tools and software designed around useful problems.</p></article>
-          <article class="tile"><div class="num">03 / DISCOVERY</div><h3>Digital innovation</h3><p>New concepts, prototypes and better ways to solve problems.</p></article>
-          <article class="tile"><div class="num">04 / CREATIVITY</div><h3>Creative technology</h3><p>Tools that support imagination, communication and making.</p></article>
-          <article class="tile"><div class="num">05 / LEARNING</div><h3>Research & experiments</h3><p>Testing ideas and learning what technology can make possible.</p></article>
-          <article class="tile"><div class="num">06 / TOMORROW</div><h3>Future products</h3><p>Exploring new products and useful digital experiences.</p></article>
-        </div>
-      </section>
-      <section style="border-bottom:0">
-        <div class="closing"><div><div class="kicker">The journey starts here</div><h2>Build what comes next.</h2><p>Explore the first product from I D LABS.</p></div><a class="btn" href="https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/">Explore the studio ↗</a></div>
-      </section>
-    </div>
-  </main>
-  <div class="wrap"><footer><span>© 2026 I D LABS. Building tomorrow’s tools.</span><span>Independent project. Not affiliated with OpenAI or any other AI provider.</span></footer></div>
-</body>
-</html>
+<div class="top"><div class="wrap"><header><a class="brand" href="#top">I D <span>LABS</span></a><nav aria-label="Main navigation"><a href="#about">About</a><a href="#products">Products</a><a href="#focus">Focus</a><a class="navbtn" href="https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/">Explore Studio ↗</a></nav></header></div></div>
+<main id="top"><div class="wrap">
+<section class="hero" style="border:0"><div><div class="eyebrow">Independent technology brand</div><h1>Ideas become<br><span>what's next.</span></h1><div class="subline">Building tomorrow's tools.</div><p class="intro">We explore ambitious ideas and turn them into useful AI products, software and digital experiences — designed to help people think, create, learn and get things done.</p><div class="actions"><a class="btn" href="#products">Discover our products ↗</a><a class="btn alt" href="#about">Inside I D LABS</a></div></div>
+<div class="orbit" aria-label="I D LABS technology identity graphic"><div class="halo"></div><div class="core"><b>I D</b><small>LABS / INNOVATION</small></div><div class="float f1">AI & intelligence</div><div class="float f2">Digital products</div><div class="float f3">Ideas → impact</div></div></section>
+<section id="about"><div class="split"><div><div class="kicker">01 / THE COMPANY</div><h2>A home for ambitious technology.</h2><p class="lead">I D LABS is an independent technology brand developing a growing portfolio of digital projects. We bring ideas into the open, experiment with emerging technology and build practical tools with a clear purpose.</p></div><div class="statement"><strong>Our mission</strong><p>Make useful technology more accessible by turning creative ideas into practical digital products — and keep learning with every project we build.</p></div></div>
+<div class="values"><div class="value"><b>Purpose first</b><p>Start with real needs and practical value.</p></div><div class="value"><b>Stay curious</b><p>Experiment, learn and explore possibilities.</p></div><div class="value"><b>Be transparent</b><p>Explain what products do and where limits exist.</p></div><div class="value"><b>Build responsibly</b><p>Respect users, privacy and thoughtful design.</p></div></div></section>
+<section id="products"><div class="sectionhead"><div class="kicker">02 / PRODUCT ECOSYSTEM</div><h2>Our first flagship product.</h2><p class="lead">A growing product family, connected by one ambition: build technology people can actually use.</p></div><article class="product"><div><div class="pill">FLAGSHIP PRODUCT · 01</div><h3>IDRIS AI STUDIO</h3><p>An independent AI workspace bringing together chat, voice, image tools, prompt exploration and research features in one place.</p></div><a class="btn" href="https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/">Visit IDRIS AI STUDIO ↗</a></article></section>
+<section id="focus"><div class="sectionhead"><div class="kicker">03 / AREAS OF EXPLORATION</div><h2>Technology with room to grow.</h2><p class="lead">The fields we explore today — and the ideas that may become tomorrow's products.</p></div><div class="tiles">
+<article class="tile"><div class="n">01 / INTELLIGENCE</div><h3>Artificial intelligence</h3><p>Helpful assistants and AI-powered experiences for everyday tasks.</p></article><article class="tile"><div class="n">02 / ENGINEERING</div><h3>Software development</h3><p>Digital tools and software designed around useful problems.</p></article><article class="tile"><div class="n">03 / DISCOVERY</div><h3>Digital innovation</h3><p>New concepts, prototypes and better ways to solve problems.</p></article><article class="tile"><div class="n">04 / CREATIVITY</div><h3>Creative technology</h3><p>Tools that support imagination, communication and making.</p></article><article class="tile"><div class="n">05 / LEARNING</div><h3>Research & experiments</h3><p>Testing ideas and learning what technology can make possible.</p></article><article class="tile"><div class="n">06 / TOMORROW</div><h3>Future products</h3><p>Exploring useful digital experiences for the future.</p></article></div></section>
+<section style="border-bottom:0"><div class="endcap"><div><div class="kicker">04 / START EXPLORING</div><h2>The next idea starts somewhere.</h2><p>Meet the first product from I D LABS.</p></div><a class="btn" href="https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/">Explore the Studio ↗</a></div></section>
+</div></main><div class="wrap"><footer><span>© 2026 I D LABS. Building tomorrow's tools.</span><span>Independent project. Not affiliated with OpenAI or any other AI provider.</span></footer></div>
+</body></html>
