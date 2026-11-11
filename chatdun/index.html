@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075e54">
+<meta name="description" content="CHATDUN — private conversations, made simple.">
+<title>CHATDUN — Connect. Chat. Share.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--green:#075e54;--green2:#128c7e;--lime:#25d366;--ink:#172b27;--muted:#71817c;--paper:#f5f8f6;--line:#e7eeea;--white:#fff;--shadow:0 18px 55px rgba(12,55,45,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:linear-gradient(140deg,#e8f4ef,#f7faf8 55%,#e6f2ed);color:var(--ink);min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh;display:grid;place-items:center;padding:22px}
+.app{width:min(1100px,100%);height:min(760px,calc(100vh - 44px));min-height:570px;background:var(--white);border:1px solid rgba(7,94,84,.09);border-radius:26px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:350px 1fr;position:relative}
+.sidebar{border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0;background:#fff}.top{height:76px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.brand{display:flex;align-items:center;gap:11px}.mark{width:40px;height:40px;border-radius:14px;background:#fff;color:var(--green);display:grid;place-items:center;font-size:21px;font-weight:800}.brand b{font-size:19px;letter-spacing:1.1px}.brand small{display:block;font-size:10px;opacity:.8;letter-spacing:1.4px;margin-top:2px}.top button{background:rgba(255,255,255,.15);color:#fff;border-radius:12px;padding:10px 13px;font-weight:700}
+.search{padding:16px 16px 10px}.search input,.field input{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px 14px;outline:none;background:#f8faf9;color:var(--ink)}input:focus{border-color:#78b9aa;box-shadow:0 0 0 3px rgba(18,140,126,.1)}
+.section-label{padding:8px 20px;color:#8b9994;font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
+.chatlist{overflow:auto;flex:1}.chatrow{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid #f0f3f1;cursor:pointer}.chatrow:hover,.chatrow.active{background:#f0f8f5}.avatar{width:46px;height:46px;border-radius:50%;background:#d9eee6;color:var(--green);display:grid;place-items:center;font-weight:800;font-size:17px;flex:none}.chatmeta{min-width:0;flex:1}.chatmeta b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chatmeta small{display:block;color:var(--muted);font-size:12px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.main{display:flex;flex-direction:column;min-width:0;background:#f7faf8}.welcome{margin:auto;text-align:center;padding:30px;max-width:420px}.welcome .heroicon{margin:0 auto 18px;width:86px;height:86px;border-radius:28px;background:#e0f2eb;color:var(--green);display:grid;place-items:center;font-size:38px}.welcome h1{font-size:27px;margin:0 0 10px}.welcome p{color:var(--muted);line-height:1.65;margin:0}.chathead{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 22px}.chathead .details{flex:1}.chathead b{display:block}.chathead small{color:var(--muted)}.messages{flex:1;overflow:auto;padding:22px;display:flex;flex-direction:column;gap:9px;background-color:#f4f8f5;background-image:radial-gradient(#dfeae4 1px,transparent 1px);background-size:20px 20px}
+.bubble{max-width:min(78%,520px);padding:11px 13px 8px;border-radius:15px;background:#fff;box-shadow:0 2px 5px rgba(20,60,45,.05);align-self:flex-start;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:#d9fdd3}.bubble p{margin:0;font-size:14px;line-height:1.5;white-space:pre-wrap}.bubble time{display:block;text-align:right;color:#82918b;font-size:10px;margin-top:5px}
+.composer{display:flex;gap:10px;padding:15px;background:#fff;border-top:1px solid var(--line)}.composer input{flex:1;min-width:0;border:1px solid var(--line);border-radius:24px;padding:13px 17px;outline:none}.send{width:47px;height:47px;border-radius:50%;background:var(--green2);color:white;font-size:18px;font-weight:800}
+.authwrap{width:min(420px,100%);background:white;border-radius:25px;padding:30px;box-shadow:var(--shadow)}.authbrand{text-align:center;margin-bottom:24px}.authbrand .mark{margin:auto;width:58px;height:58px;font-size:27px;background:#e2f3ec}.authbrand h1{margin:12px 0 3px;letter-spacing:2px}.authbrand p{margin:0;color:var(--muted);font-size:13px}.tabs{display:flex;background:#f0f5f2;padding:4px;border-radius:13px;margin-bottom:20px}.tabs button{flex:1;padding:10px;border-radius:10px;background:transparent;color:var(--muted);font-weight:700}.tabs button.active{background:white;color:var(--green);box-shadow:0 2px 6px #dce8e1}
+.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:700;margin:0 0 7px 2px}.primary{width:100%;padding:14px;border-radius:13px;background:var(--green);color:white;font-weight:800;margin-top:8px}.primary:disabled,.send:disabled{opacity:.5;cursor:not-allowed}.note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:15px;text-align:center}.status{min-height:20px;font-size:12px;color:var(--green);margin-top:12px;text-align:center}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}.newchat{margin:0 16px 14px;padding:12px;border-radius:13px;background:#e8f5ef;color:var(--green);font-weight:800}
+.toolbar{display:flex;gap:8px}.iconbtn{background:#eef5f1;color:var(--green);padding:9px 11px;border-radius:11px;font-weight:700;font-size:12px}.hidden{display:none!important}.foot{padding:12px 18px;border-top:1px solid var(--line);font-size:11px;color:#899690;display:flex;justify-content:space-between}
+@media(max-width:720px){.shell{padding:0}.app{height:100dvh;min-height:0;border-radius:0;border:0;grid-template-columns:1fr}.sidebar{border:0}.main{display:none}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.top{height:68px}.chathead{height:68px}.messages{padding:14px}.composer{padding:10px}.back{display:block!important}.app:not(.chat-open) .main{display:none}}
+@media(min-width:721px){.back{display:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <section id="auth" class="authwrap">
+    <div class="authbrand"><div class="mark">✉</div><h1>CHATDUN</h1><p>Connect. Chat. Share.</p></div>
+    <div class="tabs"><button id="loginTab" class="active" type="button">Log in</button><button id="signupTab" type="button">Create account</button></div>
+    <form id="authForm">
+      <div id="nameField" class="field hidden"><label for="displayName">Your display name</label><input id="displayName" maxlength="40" autocomplete="name" placeholder="e.g. Alex"></div>
+      <div id="usernameField" class="field hidden"><label for="username">Choose a username</label><input id="username" maxlength="20" autocomplete="username" placeholder="e.g. alex_24"></div>
+      <div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="At least 8 characters"></div>
+      <button id="authSubmit" class="primary" type="submit">Log in</button>
+      <div id="authStatus" class="status" role="status"></div>
+    </form>
+    <p class="note">Use an email you can access. Never share your password or verification codes with anyone.</p>
+  </section>
+
+  <section id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="top"><div class="brand"><div class="mark">✉</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="profileBtn" type="button">Profile</button></div>
+      <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
+      <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button>
+      <div id="searchResults" class="hidden"></div>
+      <div class="section-label">Your conversations</div>
+      <div id="chatList" class="chatlist"><div class="empty">Your chats will appear here.</div></div>
+      <div class="foot"><span id="myHandle">@username</span><button id="logoutBtn" class="iconbtn" type="button">Log out</button></div>
+    </aside>
+    <main class="main">
+      <div id="welcome" class="welcome"><div class="heroicon">✉</div><h1>Your conversations start here.</h1><p>Find someone by username and start a private conversation. Your messages are stored in your account and delivered live.</p></div>
+      <div id="chatPanel" class="hidden" style="display:flex;flex-direction:column;min-height:0;flex:1">
+        <header class="chathead"><button id="backBtn" class="iconbtn back" type="button">←</button><div class="avatar" id="chatAvatar">C</div><div class="details"><b id="chatTitle">Chat</b><small id="chatSubtitle">Private conversation</small></div><div class="toolbar"><button id="reportBtn" class="iconbtn" type="button">Report</button></div></header>
+        <div id="messages" class="messages"><div class="empty">Loading messages…</div></div>
+        <form id="messageForm" class="composer"><input id="messageInput" maxlength="4000" autocomplete="off" placeholder="Write a message…" required><button id="sendBtn" class="send" type="submit" aria-label="Send message">➤</button></form>
+      </div>
+    </main>
+  </section>
+</div>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
+const SUPABASE_URL = 'https://fgkylbebokqcviqcbmoi.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
+let mode = 'login';
+
+function status(id,msg,error=false){$(id).textContent=msg;$(id).style.color=error?'#b42318':'#08745f'}
+function initials(s='C'){return s.trim().slice(0,1).toUpperCase()||'C'}
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setMode(next){mode=next;$('loginTab').classList.toggle('active',mode==='login');$('signupTab').classList.toggle('active',mode==='signup');$('nameField').classList.toggle('hidden',mode!=='signup');$('usernameField').classList.toggle('hidden',mode!=='signup');$('authSubmit').textContent=mode==='login'?'Log in':'Create account';$('password').autocomplete=mode==='login'?'current-password':'new-password';status('authStatus','')}
+$('loginTab').onclick=()=>setMode('login');$('signupTab').onclick=()=>setMode('signup');
+$('authForm').addEventListener('submit',async e=>{
+ e.preventDefault();const email=$('email').value.trim(),password=$('password').value;const btn=$('authSubmit');btn.disabled=true;status('authStatus',mode==='login'?'Signing in…':'Creating your account…');
+ try{
+  if(mode==='signup'){
+   const username=$('username').value.trim().toLowerCase(),display_name=$('displayName').value.trim();
+   if(!/^[a-z0-9_]{3,20}$/.test(username))throw new Error('Username must be 3–20 characters: letters, numbers or underscores.');
+   if(display_name.length<1)throw new Error('Enter a display name.');
+   const {data,error}=await supabase.auth.signUp({email,password,options:{data:{display_name,username}}});if(error)throw error;
+   if(!data.session){status('authStatus','Account created. Check your email to confirm it, then log in.');return}
+   user=data.user;await saveProfile(username,display_name);await enterApp();
+  }else{
+   const {data,error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;user=data.user;await ensureProfile();await enterApp();
+  }
+ }catch(err){status('authStatus',err.message||'Something went wrong.',true)}finally{btn.disabled=false}
+});
+async function saveProfile(username,display_name){const {error}=await supabase.from('chatdun_profiles').upsert({id:user.id,username,display_name},{onConflict:'id'});if(error)throw error}
+async function ensureProfile(){
+ const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();if(error)throw error;
+ if(data){profile=data;return}
+ const meta=user.user_metadata||{},username=(meta.username||('user_'+user.id.slice(0,8))).toLowerCase(),display_name=meta.display_name||'New user';
+ const {error:insertError}=await supabase.from('chatdun_profiles').insert({id:user.id,username,display_name});if(insertError)throw insertError;
+ const {data:created,error:readError}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).single();if(readError)throw readError;profile=created;
+}
+async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('myHandle').textContent='@'+profile.username;await loadConversations()}
+async function loadConversations(){
+ const {data:mine,error}=await supabase.from('chatdun_members').select('conversation_id').eq('user_id',user.id);if(error)throw error;
+ const ids=[...new Set((mine||[]).map(x=>x.conversation_id))];if(!ids.length){conversations=[];renderConversations();return}
+ const {data:cs,error:ce}=await supabase.from('chatdun_conversations').select('*').in('id',ids).order('created_at',{ascending:false});if(ce)throw ce;
+ const {data:members,error:me}=await supabase.from('chatdun_members').select('conversation_id,user_id').in('conversation_id',ids);if(me)throw me;
+ const userIds=[...new Set((members||[]).map(m=>m.user_id))];const {data:profiles,error:pe}=await supabase.from('chatdun_profiles').select('id,username,display_name').in('id',userIds);if(pe)throw pe;
+ conversations=(cs||[]).map(c=>{const ms=(members||[]).filter(m=>m.conversation_id===c.id);const others=ms.filter(m=>m.user_id!==user.id).map(m=>profiles.find(p=>p.id===m.user_id)).filter(Boolean);return {...c,others,label:c.is_group?(c.title||'Group chat'):(others[0]?.display_name||others[0]?.username||'New chat'),handle:others[0]?.username||''}});
+ renderConversations();
+}
+function renderConversations(){
+ const root=$('chatList');if(!conversations.length){root.innerHTML='<div class="empty">No conversations yet.<br>Start one with a username.</div>';return}
+ root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'"><div class="avatar">'+escapeHtml(initials(c.label))+'</div><div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
+ root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
+}
+$('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'}
+let searchTimer;
+$('peopleSearch').addEventListener('input',()=>{clearTimeout(searchTimer);const q=$('peopleSearch').value.trim().replace(/^@/,'').toLowerCase();if(q.length<2){$('searchResults').classList.add('hidden');return}searchTimer=setTimeout(()=>searchPeople(q),250)});
+async function searchPeople(q){
+ const {data,error}=await supabase.from('chatdun_profiles').select('id,username,display_name').ilike('username',q+'%').neq('id',user.id).limit(12);
+ const root=$('searchResults');root.classList.remove('hidden');if(error){root.innerHTML='<div class="empty">Could not search right now.</div>';return}
+ if(!data.length){root.innerHTML='<div class="empty">No matching usernames found.</div>';return}
+ root.innerHTML='<div class="section-label">People</div>'+data.map(p=>'<div class="chatrow" data-id="'+p.id+'"><div class="avatar">'+escapeHtml(initials(p.display_name))+'</div><div class="chatmeta"><b>'+escapeHtml(p.display_name)+'</b><small>@'+escapeHtml(p.username)+'</small></div><button class="iconbtn" type="button">Chat</button></div>').join('');
+ root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>startConversation(el.dataset.id));
+}
+async function startConversation(otherId){
+ try{
+  const {data:c,error}=await supabase.from('chatdun_conversations').insert({created_by:user.id,is_group:false}).select().single();if(error)throw error;
+  const {error:me}=await supabase.from('chatdun_members').insert([{conversation_id:c.id,user_id:user.id},{conversation_id:c.id,user_id:otherId}]);if(me)throw me;
+  $('peopleSearch').value='';$('searchResults').classList.add('hidden');await loadConversations();await openConversation(c.id);
+ }catch(err){alert(err.message||'Could not start chat.')}
+}
+async function openConversation(id){
+ activeConversation=id;const c=conversations.find(x=>x.id===id);if(!c)return;
+ $('welcome').classList.add('hidden');$('chatPanel').classList.remove('hidden');$('app').classList.add('chat-open');$('chatTitle').textContent=c.label;$('chatSubtitle').textContent=c.is_group?'Group conversation':(c.handle?'@'+c.handle:'Private conversation');$('chatAvatar').textContent=initials(c.label);renderConversations();
+ if(activeChannel){await supabase.removeChannel(activeChannel);activeChannel=null}
+ await loadMessages();
+ activeChannel=supabase.channel('chatdun-'+id).on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_messages',filter:'conversation_id=eq.'+id},payload=>appendMessage(payload.new)).subscribe();
+}
+async function loadMessages(){
+ const root=$('messages');root.innerHTML='<div class="empty">Loading messages…</div>';
+ const {data,error}=await supabase.from('chatdun_messages').select('*').eq('conversation_id',activeConversation).order('created_at',{ascending:true}).limit(150);
+ if(error){root.innerHTML='<div class="empty">Could not load messages: '+escapeHtml(error.message)+'</div>';return}
+ root.innerHTML='';(data||[]).forEach(appendMessage);root.scrollTop=root.scrollHeight;
+}
+function appendMessage(m){
+ if(m.conversation_id!==activeConversation)return;const root=$('messages');if(root.querySelector('[data-message="'+m.id+'"]'))return;
+ const el=document.createElement('div');el.className='bubble '+(m.sender_id===user.id?'mine':'');el.dataset.message=m.id;
+ const p=document.createElement('p');p.textContent=m.body;const t=document.createElement('time');t.textContent=new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});el.append(p,t);root.append(el);root.scrollTop=root.scrollHeight;
+}
+$('messageForm').addEventListener('submit',async e=>{
+ e.preventDefault();const body=$('messageInput').value.trim();if(!body||!activeConversation)return;$('sendBtn').disabled=true;
+ const {error}=await supabase.from('chatdun_messages').insert({conversation_id:activeConversation,sender_id:user.id,body});
+ if(error)alert(error.message);else $('messageInput').value='';$('sendBtn').disabled=false;
+});
+$('backBtn').onclick=()=>{$('app').classList.remove('chat-open');activeConversation=null;if(activeChannel){supabase.removeChannel(activeChannel);activeChannel=null}};
+$('profileBtn').onclick=async()=>{const next=prompt('Your display name:',profile.display_name);if(next===null)return;const value=next.trim();if(!value||value.length>40)return alert('Name must be 1–40 characters.');const {error}=await supabase.from('chatdun_profiles').update({display_name:value}).eq('id',user.id);if(error)alert(error.message);else{profile.display_name=value;alert('Profile updated.')}};
+$('reportBtn').onclick=async()=>{const reason=prompt('Tell us why you are reporting this conversation (3–500 characters):');if(!reason)return;if(reason.trim().length<3||reason.trim().length>500)return alert('Please enter 3–500 characters.');const c=conversations.find(x=>x.id===activeConversation);const target=c?.others?.[0]?.id||null;const {error}=await supabase.from('chatdun_reports').insert({reporter_id:user.id,reported_user_id:target,conversation_id:activeConversation,reason:reason.trim()});if(error)alert('Could not send report: '+error.message);else alert('Report submitted. Thank you.');};
+$('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('password').value='';setMode('login')};
+const {data:{session}}=await supabase.auth.getSession();if(session){user=session.user;try{await enterApp()}catch(err){console.error(err);status('authStatus','Could not load your profile. Please log out and try again.',true)}}
+supabase.auth.onAuthStateChange(async(_event,session)=>{if(session&&!user){user=session.user;try{await enterApp()}catch(e){console.error(e)}}});
+</script>
+</body>
+</html>
