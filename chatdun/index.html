@@ -201,31 +201,34 @@ async function ensureProfile(){
  if(!data) throw new Error('Complete your CHATDUN profile first.');
  profile=data;
 }
-async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('myHandle').textContent='@'+profile.username;await loadConversations()}
+async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('myHandle').textContent='@'+profile.username;renderProfile();await loadConversations();await loadStatuses()}
 async function loadConversations(){
  const {data:mine,error}=await supabase.from('chatdun_members').select('conversation_id').eq('user_id',user.id);if(error)throw error;
  const ids=[...new Set((mine||[]).map(x=>x.conversation_id))];if(!ids.length){conversations=[];renderConversations();return}
  const {data:cs,error:ce}=await supabase.from('chatdun_conversations').select('*').in('id',ids).order('created_at',{ascending:false});if(ce)throw ce;
  const {data:members,error:me}=await supabase.from('chatdun_members').select('conversation_id,user_id').in('conversation_id',ids);if(me)throw me;
- const userIds=[...new Set((members||[]).map(m=>m.user_id))];const {data:profiles,error:pe}=await supabase.from('chatdun_profiles').select('id,username,display_name').in('id',userIds);if(pe)throw pe;
+ const userIds=[...new Set((members||[]).map(m=>m.user_id))];const {data:profiles,error:pe}=await supabase.from('chatdun_profiles').select('id,username,display_name,avatar_url').in('id',userIds);if(pe)throw pe;
  conversations=(cs||[]).map(c=>{const ms=(members||[]).filter(m=>m.conversation_id===c.id);const others=ms.filter(m=>m.user_id!==user.id).map(m=>profiles.find(p=>p.id===m.user_id)).filter(Boolean);return {...c,others,label:c.is_group?(c.title||'Group chat'):(others[0]?.display_name||others[0]?.username||'New chat'),handle:others[0]?.username||''}});
  renderConversations();
 }
-function renderConversations(){
+function avatarMarkup(name,url){return url?'<div class="avatar"><img src="'+escapeHtml(url)+'" alt="'+escapeHtml(name||'Profile photo')+'"></div>':'<div class="avatar">'+escapeHtml(initials(name))+'</div>'}\nfunction renderConversations(){
  const root=$('chatList');if(!conversations.length){root.innerHTML='<div class="empty">No conversations yet.<br>Start one with a username.</div>';return}
- root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'"><div class="avatar">'+escapeHtml(initials(c.label))+'</div><div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
+ root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'">'+avatarMarkup(c.label,c.others?.[0]?.avatar_url)+'<div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
 }
 let activeTab='chats';
 function switchTab(tab){
+  activeTab=tab;
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-  ['updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
+  ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
   if(tab==='chats'){const finder=$('contactsFinderHost').querySelector('.phonefinder');if(finder)$('sidebarFinderAnchor').before(finder)}
   if(tab==='contacts'){$('contactsFinderHost').appendChild(document.querySelector('.phonefinder'));$('app').classList.remove('chat-open')}
+  if(tab==='updates')loadStatuses();
 }
 document.querySelectorAll('.navitem').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
-$('newStatusBtn').onclick=()=>{$('statusComposer').classList.toggle('hidden');$('statusText').focus()};
-$('publishStatusBtn').onclick=()=>{const value=$('statusText').value.trim();if(!value)return alert('Write an update first.');const item=document.createElement('div');item.className='status-card';const stamp=document.createElement('small');stamp.style.color='var(--muted)';stamp.textContent='Just now · Only on this device';const body=document.createElement('div');body.textContent=value;item.append(stamp,body);$('statusList').prepend(item);$('statusText').value='';$('statusComposer').classList.add('hidden')};
+$('newStatusBtn').onclick=()=>{$('statusComposer').classList.toggle('hidden');$('statusPhotoInput').focus()};
+$('statusPhotoInput').addEventListener('change',()=>{const file=$('statusPhotoInput').files?.[0];if(!file){$('statusPreview').classList.add('hidden');return}if(!['image/jpeg','image/png','image/webp'].includes(file.type)){status('statusMessage','Choose a JPG, PNG or WebP photo.',true);return}const preview=URL.createObjectURL(file);$('statusPreview').src=preview;$('statusPreview').classList.remove('hidden')});
+$('publishStatusBtn').onclick=publishPhotoStatus;
 $('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'};
 $('inviteBtn').onclick=async()=>{
   if(!profile?.username){alert('Finish setting up your profile first.');return}
@@ -287,7 +290,7 @@ async function startConversation(otherId){
 }
 async function openConversation(id){
  activeConversation=id;const c=conversations.find(x=>x.id===id);if(!c)return;
- $('welcome').classList.add('hidden');$('chatPanel').classList.remove('hidden');$('app').classList.add('chat-open');$('chatTitle').textContent=c.label;$('chatSubtitle').textContent=c.is_group?'Group conversation':(c.handle?'@'+c.handle:'Private conversation');$('chatAvatar').textContent=initials(c.label);renderConversations();
+ $('welcome').classList.add('hidden');$('chatPanel').classList.remove('hidden');$('app').classList.add('chat-open');$('chatTitle').textContent=c.label;$('chatSubtitle').textContent=c.is_group?'Group conversation':(c.handle?'@'+c.handle:'Private conversation');$('chatAvatar').innerHTML=c.others?.[0]?.avatar_url?'<img src="'+escapeHtml(c.others[0].avatar_url)+'" alt="">':escapeHtml(initials(c.label));renderConversations();
  if(activeChannel){await supabase.removeChannel(activeChannel);activeChannel=null}
  await loadMessages();
  activeChannel=supabase.channel('chatdun-'+id).on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_messages',filter:'conversation_id=eq.'+id},payload=>appendMessage(payload.new)).subscribe();
@@ -309,7 +312,73 @@ $('messageForm').addEventListener('submit',async e=>{
  if(error)alert(error.message);else $('messageInput').value='';$('sendBtn').disabled=false;
 });
 $('backBtn').onclick=()=>{$('app').classList.remove('chat-open');activeConversation=null;if(activeChannel){supabase.removeChannel(activeChannel);activeChannel=null}};
-$('profileBtn').onclick=async()=>{const next=prompt('Your display name:',profile.display_name);if(next===null)return;const value=next.trim();if(!value||value.length>40)return alert('Name must be 1–40 characters.');const {error}=await supabase.from('chatdun_profiles').update({display_name:value}).eq('id',user.id);if(error)alert(error.message);else{profile.display_name=value;alert('Profile updated.')}};
+
+function renderProfile(){
+  if(!profile||!user)return;
+  $('topProfileAvatar').innerHTML=profile.avatar_url?'<img src="'+escapeHtml(profile.avatar_url)+'" alt="">':escapeHtml(initials(profile.display_name));
+  $('profilePhotoDisplay').innerHTML=profile.avatar_url?'<img src="'+escapeHtml(profile.avatar_url)+'" alt="Your profile photo">':escapeHtml(initials(profile.display_name));
+  $('profileDisplayName').textContent=profile.display_name||'Your name';
+  $('profileUsername').textContent='@'+(profile.username||'username');
+  $('profileUserId').textContent='CD-'+user.id.toUpperCase();
+  $('profilePhone').textContent=user.phone||'Not available on this account';
+  $('editDisplayName').value=profile.display_name||'';
+  $('editUsername').value=profile.username||'';
+}
+function openMyProfile(){switchTab('profile');$('profilePage').classList.remove('hidden');$('app').classList.remove('chat-open');renderProfile()}
+$('profileBtn').onclick=openMyProfile;
+$('profileBackBtn').onclick=()=>switchTab('chats');
+$('editProfileBtn').onclick=()=>$('profileEditPanel').classList.toggle('hidden');
+$('changeAvatarBtn').onclick=()=>$('profilePhotoInput').click();
+$('profilePhotoInput').addEventListener('change',uploadProfilePhoto);
+$('saveProfileBtn').onclick=async()=>{
+  const display_name=$('editDisplayName').value.trim(),username=$('editUsername').value.trim().toLowerCase();
+  if(!display_name||display_name.length>40)return status('profileEditStatus','Name must be 1–40 characters.',true);
+  if(!/^[a-z0-9_]{3,20}$/.test(username))return status('profileEditStatus','Username must be 3–20 letters, numbers or underscores.',true);
+  const btn=$('saveProfileBtn');btn.disabled=true;status('profileEditStatus','Saving…');
+  try{const {error}=await supabase.from('chatdun_profiles').update({display_name,username}).eq('id',user.id);if(error)throw error;profile={...profile,display_name,username};$('myHandle').textContent='@'+username;renderProfile();$('profileEditPanel').classList.add('hidden');await loadConversations();status('profileEditStatus','Profile saved.')}
+  catch(err){status('profileEditStatus',err.message||'Could not save profile.',true)}finally{btn.disabled=false}
+};
+async function uploadProfilePhoto(){
+  const file=$('profilePhotoInput').files?.[0];if(!file)return;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){alert('Choose a JPG, PNG or WebP image under 5 MB.');return}
+  $('changeAvatarBtn').disabled=true;
+  try{
+    const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
+    const path=user.id+'/'+crypto.randomUUID()+'.'+ext;
+    const {error:upErr}=await supabase.storage.from('chatdun-avatars').upload(path,file,{contentType:file.type,upsert:false});if(upErr)throw upErr;
+    const {data}=supabase.storage.from('chatdun-avatars').getPublicUrl(path);
+    const {error:dbErr}=await supabase.from('chatdun_profiles').update({avatar_url:data.publicUrl}).eq('id',user.id);if(dbErr)throw dbErr;
+    profile.avatar_url=data.publicUrl;renderProfile();await loadConversations();
+  }catch(err){alert(err.message||'Could not upload your photo.')}finally{$('changeAvatarBtn').disabled=false;$('profilePhotoInput').value=''}
+}
+async function publishPhotoStatus(){
+  const file=$('statusPhotoInput').files?.[0],caption=$('statusText').value.trim();
+  if(!file)return status('statusMessage','Choose a photo before posting.',true);
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024)return status('statusMessage','Choose a JPG, PNG or WebP photo under 10 MB.',true);
+  const btn=$('publishStatusBtn');btn.disabled=true;status('statusMessage','Uploading your status…');
+  const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg',path=user.id+'/'+crypto.randomUUID()+'.'+ext;
+  try{
+    const {error:upErr}=await supabase.storage.from('chatdun-status').upload(path,file,{contentType:file.type,upsert:false});if(upErr)throw upErr;
+    const {error:dbErr}=await supabase.from('chatdun_statuses').insert({user_id:user.id,image_path:path,caption});
+    if(dbErr){await supabase.storage.from('chatdun-status').remove([path]);throw dbErr}
+    $('statusPhotoInput').value='';$('statusText').value='';$('statusPreview').classList.add('hidden');$('statusComposer').classList.add('hidden');await loadStatuses();status('statusMessage','Your photo status is live for 24 hours.');
+  }catch(err){status('statusMessage',err.message||'Could not post your status.',true)}finally{btn.disabled=false}
+}
+async function loadStatuses(){
+  const root=$('statusList');root.innerHTML='<div class="empty">Loading photo statuses…</div>';
+  const {data:items,error}=await supabase.from('chatdun_statuses').select('id,user_id,image_path,caption,created_at,expires_at').gt('expires_at',new Date().toISOString()).order('created_at',{ascending:false}).limit(100);
+  if(error){root.innerHTML='<div class="tab-empty">Could not load statuses: '+escapeHtml(error.message)+'</div>';return}
+  if(!items?.length){root.innerHTML='<div class="tab-empty"><strong>No active statuses yet</strong>Share a photo. Statuses stay visible for 24 hours.</div>';return}
+  const ids=[...new Set(items.map(x=>x.user_id))];
+  const {data:people}=await supabase.from('chatdun_profiles').select('id,username,display_name').in('id',ids);
+  const cards=await Promise.all(items.map(async item=>{
+    const person=people?.find(p=>p.id===item.user_id);
+    const {data:img}=await supabase.storage.from('chatdun-status').createSignedUrl(item.image_path,3600);
+    return '<article class="status-card"><div class="status-byline"><b>'+escapeHtml(person?.display_name||'CHATDUN user')+' · @'+escapeHtml(person?.username||'user')+'</b><span>'+new Date(item.created_at).toLocaleString()+'</span></div>'+(img?.signedUrl?'<img class="status-image" src="'+escapeHtml(img.signedUrl)+'" alt="Status photo">':'<p>Photo unavailable</p>')+(item.caption?'<div class="status-caption">'+escapeHtml(item.caption)+'</div>':'')+'</article>';
+  }));
+  root.innerHTML=cards.join('');
+}
+
 $('reportBtn').onclick=async()=>{const reason=prompt('Tell us why you are reporting this conversation (3–500 characters):');if(!reason)return;if(reason.trim().length<3||reason.trim().length>500)return alert('Please enter 3–500 characters.');const c=conversations.find(x=>x.id===activeConversation);const target=c?.others?.[0]?.id||null;const {error}=await supabase.from('chatdun_reports').insert({reporter_id:user.id,reported_user_id:target,conversation_id:activeConversation,reason:reason.trim()});if(error)alert('Could not send report: '+error.message);else alert('Report submitted. Thank you.');};
 $('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('phone').value='';$('otp').value='';pendingPhone='';showAuthStep('phoneStep')};
 const {data:{session}}=await supabase.auth.getSession();
