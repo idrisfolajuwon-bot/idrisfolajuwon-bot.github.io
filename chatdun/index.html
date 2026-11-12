@@ -34,7 +34,8 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
   <section id="auth" class="authwrap">
     <div class="authbrand"><div class="mark">✉</div><h1>CHATDUN</h1><p>Connect. Chat. Share.</p></div>
 
-    <div id="inviteBanner" class="invitebanner hidden" role="status"></div>\n    <div id="phoneStep">
+    <div id="inviteBanner" class="invitebanner hidden" role="status"></div>
+    <div id="phoneStep">
       <form id="phoneForm">
         <div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+234 801 234 5678"></div>
         <button id="phoneSubmit" class="primary" type="submit">Continue</button>
@@ -69,7 +70,8 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
     <aside class="sidebar">
       <div class="top"><div class="brand"><div class="mark">✉</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="profileBtn" type="button">Profile</button></div>
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
-      <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button>\n      <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
+      <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button>
+      <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
       <div id="searchResults" class="hidden"></div>
       <div class="section-label">Your conversations</div>
       <div id="chatList" class="chatlist"><div class="empty">Your chats will appear here.</div></div>
@@ -92,7 +94,12 @@ const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'chatdun.auth.token' } });
 const $ = id => document.getElementById(id);
 let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
-let pendingPhone = '';\nconst inviteUsername = (new URLSearchParams(location.search).get('invite') || '').trim().replace(/^@/,'').toLowerCase();\nif (/^[a-z0-9_]{3,20}$/.test(inviteUsername)) {\n  $('inviteBanner').innerHTML = '<b>You\'ve been invited to CHATDUN!</b><br>@'+escapeHtml(inviteUsername)+' invites you to join CHATDUN by I D LABS.<br>Connect. Chat. Share.';\n  $('inviteBanner').classList.remove('hidden');\n}
+let pendingPhone = '';
+const inviteUsername = (new URLSearchParams(location.search).get('invite') || '').trim().replace(/^@/,'').toLowerCase();
+if (/^[a-z0-9_]{3,20}$/.test(inviteUsername)) {
+  $('inviteBanner').innerHTML = '<b>You\'ve been invited to CHATDUN!</b><br>@'+escapeHtml(inviteUsername)+' invites you to join CHATDUN by I D LABS.<br>Connect. Chat. Share.';
+  $('inviteBanner').classList.remove('hidden');
+}
 
 function status(id,msg,error=false){$(id).textContent=msg;$(id).style.color=error?'#b42318':'#08745f'}
 function initials(s='C'){return s.trim().slice(0,1).toUpperCase()||'C'}
@@ -179,7 +186,13 @@ function renderConversations(){
  root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'"><div class="avatar">'+escapeHtml(initials(c.label))+'</div><div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
 }
-$('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'};\n$('inviteBtn').onclick=async()=>{\n  if(!profile?.username){alert('Finish setting up your profile first.');return}\n  const link=location.origin+location.pathname+'?invite='+encodeURIComponent(profile.username);\n  const message='@'+profile.username+' invites you to join CHATDUN by I D LABS. Connect. Chat. Share. '+link;\n  try{if(navigator.share){await navigator.share({title:'Join CHATDUN',text:'You\'ve been invited to CHATDUN by @'+profile.username+'.',url:link})}else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(message);alert('Your CHATDUN invitation link has been copied. Share it with your friends!')}else{prompt('Copy your personal CHATDUN invitation link:',link)}}catch(err){if(err?.name!=='AbortError')alert('Could not share the link. Please try again.')}\n}
+$('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'};
+$('inviteBtn').onclick=async()=>{
+  if(!profile?.username){alert('Finish setting up your profile first.');return}
+  const link=location.origin+location.pathname+'?invite='+encodeURIComponent(profile.username);
+  const message='@'+profile.username+' invites you to join CHATDUN by I D LABS. Connect. Chat. Share. '+link;
+  try{if(navigator.share){await navigator.share({title:'Join CHATDUN',text:'You\'ve been invited to CHATDUN by @'+profile.username+'.',url:link})}else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(message);alert('Your CHATDUN invitation link has been copied. Share it with your friends!')}else{prompt('Copy your personal CHATDUN invitation link:',link)}}catch(err){if(err?.name!=='AbortError')alert('Could not share the link. Please try again.')}
+}
 let searchTimer;
 $('peopleSearch').addEventListener('input',()=>{clearTimeout(searchTimer);const q=$('peopleSearch').value.trim().replace(/^@/,'').toLowerCase();if(q.length<2){$('searchResults').classList.add('hidden');return}searchTimer=setTimeout(()=>searchPeople(q),250)});
 async function searchPeople(q){
