@@ -128,6 +128,7 @@ function normalizePhone(value){
   if(v.startsWith('234')) return '+'+v;
   return '+'+v;
 }
+function validPhone(phone){return phone.startsWith('+')&&phone.length>=9&&phone.length<=16&&!phone.slice(1).split('').some(ch=>ch<'0'||ch>'9')}
 async function routeAuthenticated(){
   if(!user) return;
   const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();
