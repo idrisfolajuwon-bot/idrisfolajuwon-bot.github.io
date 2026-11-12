@@ -211,7 +211,8 @@ async function loadConversations(){
  conversations=(cs||[]).map(c=>{const ms=(members||[]).filter(m=>m.conversation_id===c.id);const others=ms.filter(m=>m.user_id!==user.id).map(m=>profiles.find(p=>p.id===m.user_id)).filter(Boolean);return {...c,others,label:c.is_group?(c.title||'Group chat'):(others[0]?.display_name||others[0]?.username||'New chat'),handle:others[0]?.username||''}});
  renderConversations();
 }
-function avatarMarkup(name,url){return url?'<div class="avatar"><img src="'+escapeHtml(url)+'" alt="'+escapeHtml(name||'Profile photo')+'"></div>':'<div class="avatar">'+escapeHtml(initials(name))+'</div>'}\nfunction renderConversations(){
+function avatarMarkup(name,url){return url?'<div class="avatar"><img src="'+escapeHtml(url)+'" alt="'+escapeHtml(name||'Profile photo')+'"></div>':'<div class="avatar">'+escapeHtml(initials(name))+'</div>'}
+function renderConversations(){
  const root=$('chatList');if(!conversations.length){root.innerHTML='<div class="empty">No conversations yet.<br>Start one with a username.</div>';return}
  root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'">'+avatarMarkup(c.label,c.others?.[0]?.avatar_url)+'<div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
