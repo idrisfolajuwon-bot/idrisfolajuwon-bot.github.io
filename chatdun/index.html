@@ -33,16 +33,36 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
 <div class="shell">
   <section id="auth" class="authwrap">
     <div class="authbrand"><div class="mark">✉</div><h1>CHATDUN</h1><p>Connect. Chat. Share.</p></div>
-    <div class="tabs"><button id="loginTab" class="active" type="button">Log in</button><button id="signupTab" type="button">Create account</button></div>
-    <form id="authForm">
-      <div id="nameField" class="field hidden"><label for="displayName">Your display name</label><input id="displayName" maxlength="40" autocomplete="name" placeholder="e.g. Alex"></div>
-      <div id="usernameField" class="field hidden"><label for="username">Choose a username</label><input id="username" maxlength="20" autocomplete="username" placeholder="e.g. alex_24"></div>
-      <div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
-      <div class="field"><label for="password">Password</label><input id="password" type="password" minlength="8" autocomplete="current-password" required placeholder="At least 8 characters"></div>
-      <button id="authSubmit" class="primary" type="submit">Log in</button>
-      <div id="authStatus" class="status" role="status"></div>
-    </form>
-    <p class="note">Use an email you can access. Never share your password or verification codes with anyone.</p>
+
+    <div id="phoneStep">
+      <form id="phoneForm">
+        <div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+234 801 234 5678"></div>
+        <button id="phoneSubmit" class="primary" type="submit">Continue</button>
+        <div id="phoneStatus" class="status" role="status"></div>
+      </form>
+      <p class="note">We'll send a verification code to your phone number. Standard SMS charges may apply.</p>
+    </div>
+
+    <div id="otpStep" class="hidden">
+      <p class="note" style="margin-top:0">Enter the 6-digit code sent to <b id="otpPhone"></b>.</p>
+      <form id="otpForm">
+        <div class="field"><label for="otp">Verification code</label><input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required placeholder="123456"></div>
+        <button id="otpSubmit" class="primary" type="submit">Verify number</button>
+        <div id="otpStatus" class="status" role="status"></div>
+      </form>
+      <button id="changePhone" class="iconbtn" type="button" style="width:100%;margin-top:10px">Use a different number</button>
+    </div>
+
+    <div id="profileStep" class="hidden">
+      <p class="note" style="margin-top:0">Your number is verified. Set up your CHATDUN profile.</p>
+      <form id="profileForm">
+        <div class="field"><label for="displayName">Your name</label><input id="displayName" maxlength="40" autocomplete="name" required placeholder="e.g. Alex"></div>
+        <div class="field"><label for="username">Choose a CHATDUN username</label><input id="username" maxlength="20" autocomplete="username" required placeholder="e.g. alex_24"></div>
+        <button id="profileSubmit" class="primary" type="submit">Finish setup</button>
+        <div id="profileStatus" class="status" role="status"></div>
+      </form>
+    </div>
+    <p class="note">Never share your verification code with anyone.</p>
   </section>
 
   <section id="app" class="app hidden">
@@ -72,35 +92,77 @@ const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'chatdun.auth.token' } });
 const $ = id => document.getElementById(id);
 let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
-let mode = 'login';
+let pendingPhone = '';
 
 function status(id,msg,error=false){$(id).textContent=msg;$(id).style.color=error?'#b42318':'#08745f'}
 function initials(s='C'){return s.trim().slice(0,1).toUpperCase()||'C'}
 function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function setMode(next){mode=next;$('loginTab').classList.toggle('active',mode==='login');$('signupTab').classList.toggle('active',mode==='signup');$('nameField').classList.toggle('hidden',mode!=='signup');$('usernameField').classList.toggle('hidden',mode!=='signup');$('authSubmit').textContent=mode==='login'?'Log in':'Create account';$('password').autocomplete=mode==='login'?'current-password':'new-password';status('authStatus','')}
-$('loginTab').onclick=()=>setMode('login');$('signupTab').onclick=()=>setMode('signup');
-$('authForm').addEventListener('submit',async e=>{
- e.preventDefault();const email=$('email').value.trim(),password=$('password').value;const btn=$('authSubmit');btn.disabled=true;status('authStatus',mode==='login'?'Signing in…':'Creating your account…');
- try{
-  if(mode==='signup'){
-   const username=$('username').value.trim().toLowerCase(),display_name=$('displayName').value.trim();
-   if(!/^[a-z0-9_]{3,20}$/.test(username))throw new Error('Username must be 3–20 characters: letters, numbers or underscores.');
-   if(display_name.length<1)throw new Error('Enter a display name.');
-   const {data,error}=await supabase.auth.signUp({email,password,options:{data:{display_name,username}}});if(error)throw error;
-   if(!data.session){status('authStatus','Account created. Check your email to confirm it, then log in.');return}
-   user=data.user;await saveProfile(username,display_name);await enterApp();
-  }else{
-   const {data,error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;user=data.user;await ensureProfile();await enterApp();
-  }
- }catch(err){status('authStatus',err.message||'Something went wrong.',true)}finally{btn.disabled=false}
+function showAuthStep(step){
+  ['phoneStep','otpStep','profileStep'].forEach(id=>$(id).classList.toggle('hidden',id!==step));
+  ['phoneStatus','otpStatus','profileStatus'].forEach(id=>status(id,''));
+}
+function normalizePhone(value){
+  const v=value.trim().replace(/[\s()-]/g,'');
+  if(v.startsWith('00')) return '+'+v.slice(2);
+  if(v.startsWith('+')) return v;
+  if(v.startsWith('0')) return '+234'+v.slice(1);
+  if(v.startsWith('234')) return '+'+v;
+  return '+'+v;
+}
+async function routeAuthenticated(){
+  if(!user) return;
+  const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();
+  if(error) throw error;
+  if(data){profile=data;await enterApp();return}
+  showAuthStep('profileStep');
+}
+$('phoneForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const phone=normalizePhone($('phone').value);
+  if(!/^\+[1-9]\d{7,14}$/.test(phone)){status('phoneStatus','Enter a valid phone number with country code.',true);return}
+  const btn=$('phoneSubmit');btn.disabled=true;status('phoneStatus','Sending verification code…');
+  try{
+    const {error}=await supabase.auth.signInWithOtp({phone});
+    if(error) throw error;
+    pendingPhone=phone;$('otpPhone').textContent=phone;showAuthStep('otpStep');$('otp').focus();
+  }catch(err){status('phoneStatus',err.message||'Could not send the code.',true)}
+  finally{btn.disabled=false}
+});
+$('otpForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const token=$('otp').value.trim();
+  if(!/^\d{6}$/.test(token)){status('otpStatus','Enter the 6-digit code.',true);return}
+  const btn=$('otpSubmit');btn.disabled=true;status('otpStatus','Verifying…');
+  try{
+    const {data,error}=await supabase.auth.verifyOtp({phone:pendingPhone,token,type:'sms'});
+    if(error) throw error;
+    user=data.user||data.session?.user||null;
+    if(!user) throw new Error('Verification succeeded but no user session was returned.');
+    await routeAuthenticated();
+  }catch(err){status('otpStatus',err.message||'That code could not be verified.',true)}
+  finally{btn.disabled=false}
+});
+$('changePhone').onclick=()=>{pendingPhone='';$('otp').value='';showAuthStep('phoneStep');$('phone').focus()};
+$('profileForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const username=$('username').value.trim().toLowerCase(),display_name=$('displayName').value.trim();
+  if(!/^[a-z0-9_]{3,20}$/.test(username)){status('profileStatus','Username must be 3–20 characters: letters, numbers or underscores.',true);return}
+  if(!display_name){status('profileStatus','Enter your name.',true);return}
+  const btn=$('profileSubmit');btn.disabled=true;status('profileStatus','Creating your CHATDUN profile…');
+  try{
+    await saveProfile(username,display_name);
+    const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).single();
+    if(error) throw error;
+    profile=data;await enterApp();
+  }catch(err){status('profileStatus',err.message||'Could not create your profile.',true)}
+  finally{btn.disabled=false}
 });
 async function saveProfile(username,display_name){const {error}=await supabase.from('chatdun_profiles').upsert({id:user.id,username,display_name},{onConflict:'id'});if(error)throw error}
 async function ensureProfile(){
- const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();if(error)throw error;
- if(data){profile=data;return}
- const meta=user.user_metadata||{},username=(meta.username||('user_'+user.id.slice(0,8))).toLowerCase(),display_name=meta.display_name||'New user';
- const {error:insertError}=await supabase.from('chatdun_profiles').insert({id:user.id,username,display_name});if(insertError)throw insertError;
- const {data:created,error:readError}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).single();if(readError)throw readError;profile=created;
+ const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();
+ if(error)throw error;
+ if(!data) throw new Error('Complete your CHATDUN profile first.');
+ profile=data;
 }
 async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');$('myHandle').textContent='@'+profile.username;await loadConversations()}
 async function loadConversations(){
@@ -160,9 +222,13 @@ $('messageForm').addEventListener('submit',async e=>{
 $('backBtn').onclick=()=>{$('app').classList.remove('chat-open');activeConversation=null;if(activeChannel){supabase.removeChannel(activeChannel);activeChannel=null}};
 $('profileBtn').onclick=async()=>{const next=prompt('Your display name:',profile.display_name);if(next===null)return;const value=next.trim();if(!value||value.length>40)return alert('Name must be 1–40 characters.');const {error}=await supabase.from('chatdun_profiles').update({display_name:value}).eq('id',user.id);if(error)alert(error.message);else{profile.display_name=value;alert('Profile updated.')}};
 $('reportBtn').onclick=async()=>{const reason=prompt('Tell us why you are reporting this conversation (3–500 characters):');if(!reason)return;if(reason.trim().length<3||reason.trim().length>500)return alert('Please enter 3–500 characters.');const c=conversations.find(x=>x.id===activeConversation);const target=c?.others?.[0]?.id||null;const {error}=await supabase.from('chatdun_reports').insert({reporter_id:user.id,reported_user_id:target,conversation_id:activeConversation,reason:reason.trim()});if(error)alert('Could not send report: '+error.message);else alert('Report submitted. Thank you.');};
-$('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('password').value='';setMode('login')};
-const {data:{session}}=await supabase.auth.getSession();if(session){user=session.user;try{await enterApp()}catch(err){console.error(err);status('authStatus','Could not load your profile. Please log out and try again.',true)}}
-supabase.auth.onAuthStateChange(async(_event,session)=>{if(session&&!user){user=session.user;try{await enterApp()}catch(e){console.error(e)}}});
+$('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('phone').value='';$('otp').value='';pendingPhone='';showAuthStep('phoneStep')};
+const {data:{session}}=await supabase.auth.getSession();
+if(session){user=session.user;try{await routeAuthenticated()}catch(err){console.error(err);status('phoneStatus','Could not load your CHATDUN account.',true)}}
+supabase.auth.onAuthStateChange(async(event,session)=>{
+  if(event==='SIGNED_OUT') return;
+  if(session&&!user){user=session.user;try{await routeAuthenticated()}catch(e){console.error(e);status('phoneStatus','Could not load your CHATDUN account.',true)}}
+});
 </script>
 </body>
 </html>
