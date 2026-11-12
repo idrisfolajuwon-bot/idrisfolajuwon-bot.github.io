@@ -23,7 +23,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
 .bubble{max-width:min(78%,520px);padding:11px 13px 8px;border-radius:15px;background:#fff;box-shadow:0 2px 5px rgba(20,60,45,.05);align-self:flex-start;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:#d9fdd3}.bubble p{margin:0;font-size:14px;line-height:1.5;white-space:pre-wrap}.bubble time{display:block;text-align:right;color:#82918b;font-size:10px;margin-top:5px}
 .composer{display:flex;gap:10px;padding:15px;background:#fff;border-top:1px solid var(--line)}.composer input{flex:1;min-width:0;border:1px solid var(--line);border-radius:24px;padding:13px 17px;outline:none}.send{width:47px;height:47px;border-radius:50%;background:var(--green2);color:white;font-size:18px;font-weight:800}
 .authwrap{width:min(420px,100%);background:white;border-radius:25px;padding:30px;box-shadow:var(--shadow)}.authbrand{text-align:center;margin-bottom:24px}.authbrand .mark{margin:auto;width:58px;height:58px;font-size:27px;background:#e2f3ec}.authbrand h1{margin:12px 0 3px;letter-spacing:2px}.authbrand p{margin:0;color:var(--muted);font-size:13px}.tabs{display:flex;background:#f0f5f2;padding:4px;border-radius:13px;margin-bottom:20px}.tabs button{flex:1;padding:10px;border-radius:10px;background:transparent;color:var(--muted);font-weight:700}.tabs button.active{background:white;color:var(--green);box-shadow:0 2px 6px #dce8e1}
-.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:700;margin:0 0 7px 2px}.primary{width:100%;padding:14px;border-radius:13px;background:var(--green);color:white;font-weight:800;margin-top:8px}.primary:disabled,.send:disabled{opacity:.5;cursor:not-allowed}.note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:15px;text-align:center}.status{min-height:20px;font-size:12px;color:var(--green);margin-top:12px;text-align:center}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}.newchat{margin:0 16px 14px;padding:12px;border-radius:13px;background:#e8f5ef;color:var(--green);font-weight:800}
+.field{margin:13px 0}.field label{display:block;font-size:12px;font-weight:700;margin:0 0 7px 2px}.primary{width:100%;padding:14px;border-radius:13px;background:var(--green);color:white;font-weight:800;margin-top:8px}.primary:disabled,.send:disabled{opacity:.5;cursor:not-allowed}.note{font-size:12px;color:var(--muted);line-height:1.55;margin-top:15px;text-align:center}.status{min-height:20px;font-size:12px;color:var(--green);margin-top:12px;text-align:center}.empty{padding:24px;text-align:center;color:var(--muted);font-size:13px}.newchat{margin:0 16px 8px;padding:12px;border-radius:13px;background:#e8f5ef;color:var(--green);font-weight:800}.invitebtn{margin:0 16px 14px;padding:12px;border-radius:13px;background:#075e54;color:#fff;font-weight:800}.invitebanner{margin:0 0 18px;padding:13px 14px;border:1px solid #cce8dc;border-radius:14px;background:#f0faf5;color:#075e54;font-size:13px;line-height:1.5}.invitebanner b{font-weight:800}
 .toolbar{display:flex;gap:8px}.iconbtn{background:#eef5f1;color:var(--green);padding:9px 11px;border-radius:11px;font-weight:700;font-size:12px}.hidden{display:none!important}.foot{padding:12px 18px;border-top:1px solid var(--line);font-size:11px;color:#899690;display:flex;justify-content:space-between}
 @media(max-width:720px){.shell{padding:0}.app{height:100dvh;min-height:0;border-radius:0;border:0;grid-template-columns:1fr}.sidebar{border:0}.main{display:none}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.top{height:68px}.chathead{height:68px}.messages{padding:14px}.composer{padding:10px}.back{display:block!important}.app:not(.chat-open) .main{display:none}}
 @media(min-width:721px){.back{display:none!important}}
@@ -34,7 +34,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
   <section id="auth" class="authwrap">
     <div class="authbrand"><div class="mark">✉</div><h1>CHATDUN</h1><p>Connect. Chat. Share.</p></div>
 
-    <div id="phoneStep">
+    <div id="inviteBanner" class="invitebanner hidden" role="status"></div>\n    <div id="phoneStep">
       <form id="phoneForm">
         <div class="field"><label for="phone">Your phone number</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+234 801 234 5678"></div>
         <button id="phoneSubmit" class="primary" type="submit">Continue</button>
@@ -69,7 +69,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
     <aside class="sidebar">
       <div class="top"><div class="brand"><div class="mark">✉</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="profileBtn" type="button">Profile</button></div>
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
-      <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button>
+      <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button>\n      <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
       <div id="searchResults" class="hidden"></div>
       <div class="section-label">Your conversations</div>
       <div id="chatList" class="chatlist"><div class="empty">Your chats will appear here.</div></div>
@@ -92,7 +92,7 @@ const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'chatdun.auth.token' } });
 const $ = id => document.getElementById(id);
 let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
-let pendingPhone = '';
+let pendingPhone = '';\nconst inviteUsername = (new URLSearchParams(location.search).get('invite') || '').trim().replace(/^@/,'').toLowerCase();\nif (/^[a-z0-9_]{3,20}$/.test(inviteUsername)) {\n  $('inviteBanner').innerHTML = '<b>You\'ve been invited to CHATDUN!</b><br>@'+escapeHtml(inviteUsername)+' invites you to join CHATDUN by I D LABS.<br>Connect. Chat. Share.';\n  $('inviteBanner').classList.remove('hidden');\n}
 
 function status(id,msg,error=false){$(id).textContent=msg;$(id).style.color=error?'#b42318':'#08745f'}
 function initials(s='C'){return s.trim().slice(0,1).toUpperCase()||'C'}
@@ -179,7 +179,7 @@ function renderConversations(){
  root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'"><div class="avatar">'+escapeHtml(initials(c.label))+'</div><div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group conversation':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
 }
-$('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'}
+$('newChatBtn').onclick=()=>{$('peopleSearch').focus();$('peopleSearch').placeholder='Type a username to find someone…'};\n$('inviteBtn').onclick=async()=>{\n  if(!profile?.username){alert('Finish setting up your profile first.');return}\n  const link=location.origin+location.pathname+'?invite='+encodeURIComponent(profile.username);\n  const message='@'+profile.username+' invites you to join CHATDUN by I D LABS. Connect. Chat. Share. '+link;\n  try{if(navigator.share){await navigator.share({title:'Join CHATDUN',text:'You\'ve been invited to CHATDUN by @'+profile.username+'.',url:link})}else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(message);alert('Your CHATDUN invitation link has been copied. Share it with your friends!')}else{prompt('Copy your personal CHATDUN invitation link:',link)}}catch(err){if(err?.name!=='AbortError')alert('Could not share the link. Please try again.')}\n}
 let searchTimer;
 $('peopleSearch').addEventListener('input',()=>{clearTimeout(searchTimer);const q=$('peopleSearch').value.trim().replace(/^@/,'').toLowerCase();if(q.length<2){$('searchResults').classList.add('hidden');return}searchTimer=setTimeout(()=>searchPeople(q),250)});
 async function searchPeople(q){
