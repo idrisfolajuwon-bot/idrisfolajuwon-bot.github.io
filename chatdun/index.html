@@ -347,9 +347,10 @@ $('groupCreateForm').addEventListener('submit',async e=>{
   if(missing.length)throw new Error('Could not find: '+missing.map(x=>'@'+x).join(', '));
   const {data:groupId,error:createError}=await supabase.rpc('chatdun_create_group',{p_title:title,p_member_ids:people.map(p=>p.id)});
   if(createError)throw createError;
-  const photo=$('groupCreatePhoto').files?.[0];
-  if(photo)await uploadGroupPhoto(groupId,photo);
+  const photo=$('groupCreatePhoto').files?.[0];let photoIssue='';
+  if(photo){try{await uploadGroupPhoto(groupId,photo)}catch(photoError){photoIssue=photoError.message||'Photo upload failed'}}
   closeGroupModal('groupCreateModal');await loadConversations();await openConversation(groupId);
+  if(photoIssue)alert('Your group was created, but the photo could not be uploaded: '+photoIssue);
  }catch(err){status('groupCreateStatus',err.message||'Could not create group.',true)}
  finally{btn.disabled=false}
 });
@@ -533,7 +534,7 @@ async function appendMessage(m){
  messageCache.set(m.id,m);
  const mine=m.sender_id===user.id,el=document.createElement('div');el.className='bubble '+(mine?'mine':'');el.dataset.message=m.id;
  if(m.reply_to){let quoted=messageCache.get(m.reply_to);if(!quoted){const q=await supabase.from('chatdun_messages').select('id,body,message_type,deleted_for_everyone_at').eq('id',m.reply_to).maybeSingle();quoted=q.data;if(quoted)messageCache.set(quoted.id,quoted)}if(quoted){const quote=document.createElement('div');quote.className='reply-quote';quote.textContent='Replying to: '+(quoted.deleted_for_everyone_at?'Deleted message':quoted.message_type==='voice'?'Voice message':(quoted.body||'').slice(0,120));el.append(quote)}}
- if(!mine){const active=conversations.find(x=>x.id===activeConversation);if(active?.is_group){const sender=active.participants?.find(x=>x.user_id===m.sender_id)?.profile;const author=document.createElement('div');author.className='group-chat-author';author.textContent=sender?.display_name||sender?.username||'Group member';el.append(author)}}
+ const active=conversations.find(x=>x.id===activeConversation);if(active?.is_group){const sender=active.participants?.find(x=>x.user_id===m.sender_id)?.profile;const author=document.createElement('div');author.className='group-chat-author';author.textContent=mine?'You':(sender?.display_name||sender?.username||'Group member');el.append(author)}
  if(m.deleted_for_everyone_at){const p=document.createElement('p');p.textContent='This message was deleted';p.style.fontStyle='italic';p.style.opacity='.7';el.append(p)}
  else if(m.message_type==='voice'&&m.media_path){const audio=document.createElement('audio');audio.controls=true;audio.preload='none';const {data:media,error:mediaError}=await supabase.storage.from('chatdun-voice').createSignedUrl(m.media_path,3600);if(!mediaError&&media?.signedUrl)audio.src=media.signedUrl;else audio.title='Voice note unavailable';el.append(audio);const label=document.createElement('p');label.textContent='🎙 Voice message · '+(m.duration_seconds||0)+'s';el.append(label)}
  else{const p=document.createElement('p');p.textContent=m.body||'';el.append(p)}
