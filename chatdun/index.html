@@ -127,7 +127,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
       </div>
     </main>
     <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div>
-<div class="profile-details" style="margin-top:14px"><b>Account & safety</b><div class="profile-actions"><button id="privacyPolicyBtn" class="iconbtn" type="button">Privacy & safety</button><button id="deleteAccountBtn" class="iconbtn" type="button">Request account deletion</button></div><div id="deletionRequestStatus" class="status" role="status"></div></div>
+<div class="profile-details" style="margin-top:14px"><b>Account & safety</b><div class="profile-actions"><button id="privacyPolicyBtn" class="iconbtn" type="button">Privacy & safety</button><button id="deleteAccountBtn" class="iconbtn" type="button">Request account deletion</button></div><div id="deletionRequestStatus" class="status" role="status"></div><button id="myReportsBtn" class="iconbtn" type="button">My reports</button><div id="myReportsList" class="hidden"></div></div>
 <div id="privacyPolicyPanel" class="profile-details hidden" style="margin-top:12px;line-height:1.6"><b>CHATDUN privacy & safety</b>
 <p><b>Information collected:</b> your verified phone number for sign-in; your display name, username and optional profile photo; messages, voice notes, group membership, photo statuses and status-view records; notification settings; and reports you submit.</p>
 <p><b>How it is used:</b> to provide account access, messaging, groups, status sharing, notifications, abuse prevention and support. Your phone number is not displayed to other users. Phone search checks only the number entered and returns a matching CHATDUN profile, not the number.</p>
@@ -623,6 +623,16 @@ function renderProfile(){
 function openMyProfile(){switchTab('profile');$('profilePage').classList.remove('hidden');$('app').classList.remove('chat-open');renderProfile()}
 $('profileBtn').onclick=openMyProfile;
 
+
+$('myReportsBtn').onclick=async()=>{
+ const root=$('myReportsList');root.classList.toggle('hidden');
+ if(root.classList.contains('hidden'))return;
+ root.innerHTML='<div class="empty">Loading your reports…</div>';
+ const {data,error}=await supabase.from('chatdun_reports').select('id,reason,status,created_at,reviewed_at').eq('reporter_id',user.id).order('created_at',{ascending:false}).limit(25);
+ if(error){root.textContent='Could not load reports: '+error.message;return}
+ if(!data?.length){root.innerHTML='<div class="empty">You have not submitted any reports.</div>';return}
+ root.innerHTML=data.map(r=>'<article class="notification-row"><div class="notification-copy"><b>Report · '+escapeHtml(r.status.replace('_',' '))+'</b><p>'+escapeHtml(r.reason)+'</p><small>'+new Date(r.created_at).toLocaleString()+(r.reviewed_at?' · Reviewed':'')+'</small></div></article>').join('');
+};
 $('privacyPolicyBtn').onclick=()=>{$('privacyPolicyPanel').classList.toggle('hidden');$('deletionRequestPanel').classList.add('hidden')};
 $('deleteAccountBtn').onclick=async()=>{
  $('deletionRequestPanel').classList.toggle('hidden');$('privacyPolicyPanel').classList.add('hidden');
