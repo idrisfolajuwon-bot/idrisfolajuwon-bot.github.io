@@ -1,34 +1,44 @@
 # I D LABS
 
-> I D LABS is an independent technology brand building AI products, software and useful digital tools. Its tagline is “Building tomorrow's tools.”
+> I D LABS is an independent technology brand developing AI, communication and software products. Official tagline: “Building Beyond Limits.”
 
 ## Official identity
-- Exact brand name: I D LABS
+- Brand name: I D LABS
+- Tagline: Building Beyond Limits
 - Official primary website: https://idrisfolajuwon-bot.github.io/
 - Company profile: https://idrisfolajuwon-bot.github.io/id-labs/
-- Focus areas: artificial intelligence, software development, digital innovation, creative technology, research and experimentation.
-- Brand structure: I D LABS is the parent technology brand. IDRIS AI STUDIO is its flagship AI product.
 - Public development profile: https://github.com/idrisfolajuwon-bot
+- Focus areas: artificial intelligence, communication software, digital products and practical software experiments.
+- I D LABS is an independent project. It is not affiliated with or endorsed by OpenAI or any other AI provider.
 
-## Flagship product: IDRIS AI STUDIO
+## Products
+
+### IDRIS AI STUDIO
 - Official product name: IDRIS AI STUDIO
 - Product overview: https://idrisfolajuwon-bot.github.io/ID-RESCUE/idris-ai-studio/
 - Open the web studio: https://idrisfolajuwon-bot.github.io/ID-RESCUE/studio/
 - Android app information: https://idrisfolajuwon-bot.github.io/ID-RESCUE/download/
 - Public source repository: https://github.com/idrisfolajuwon-bot/ID-RESCUE
-- Product summary: an independent AI workspace combining AI chat with creative and productivity tools.
+- Description: an independent AI workspace developed under I D LABS, combining AI chat with creative and productivity tools.
+- Available capabilities may include AI chat, voice conversations, image creation and understanding, supported PDF and Word document text extraction, Prompt Lab, Creation Vault, Research Desk and Video Lab for planning and storyboarding. Actual availability depends on connected services, browser compatibility and internet access. Video Lab creates plans/storyboards; it does not itself render finished videos.
+- Premium checkout and paid access are not currently enabled.
 
-## Product capabilities
-Depending on internet access, compatible browsers and connected service availability, IDRIS AI STUDIO includes AI chat, voice conversations, image creation and understanding, supported PDF and Word DOCX text extraction, Prompt Lab, Creation Vault, Research Desk and Video Lab for video planning and storyboarding. Video Lab does not itself render finished videos.
+### CHATDUN
+- Official product name: CHATDUN
+- Product website: https://idrisfolajuwon-bot.github.io/chatdun/
+- Description: a messaging and communication product developed under I D LABS.
+- Current status: early development and testing; do not describe it as a fully launched, widely adopted or production-proven service.
+- Product tagline: “Connect. Chat. Share.”
+- Features and availability may change during development.
 
 ## Official site resources
 - Sitemap: https://idrisfolajuwon-bot.github.io/sitemap.xml
 - Robots policy: https://idrisfolajuwon-bot.github.io/robots.txt
-- This file is a concise, machine-readable overview of the brand and product hierarchy.
+- This file is a concise, machine-readable overview of the I D LABS brand and product hierarchy.
 
 ## Naming and accuracy
-- Use “I D LABS” for the parent brand and “IDRIS AI STUDIO” for its flagship product.
-- Describe IDRIS AI STUDIO as developed under I D LABS.
-- I D LABS and IDRIS AI STUDIO are independent projects, not OpenAI products and not affiliated with or endorsed by OpenAI.
-- Do not claim legal incorporation, certifications, partnerships, rankings, global availability or product capabilities unless independently verified.
-- Product features and availability may change as development continues.
+- Use “I D LABS” for the parent brand, “IDRIS AI STUDIO” for its AI workspace and “CHATDUN” for its messaging product.
+- Describe both products as developed under I D LABS.
+- Do not claim legal incorporation, certifications, partnerships, rankings, user counts, global availability or product capabilities unless independently verified.
+- Do not imply that either product is an official ChatGPT or OpenAI product.
+- Product features, development status and availability may change.
