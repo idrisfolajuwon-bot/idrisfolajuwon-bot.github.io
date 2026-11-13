@@ -39,7 +39,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
 .status-photo-input{display:block;width:100%;margin:10px 0;padding:12px;border:1px dashed #9bcbbb;border-radius:12px;background:#f4faf7}
 .status-preview,.status-image{width:100%;max-height:300px;object-fit:contain;border-radius:12px;background:#edf4f0;margin:8px 0}
 .status-byline{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
-.status-caption{font-size:14px;line-height:1.5;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}
+.status-caption{font-size:14px;line-height:1.5;margin-top:9px;white-space:pre-wrap;overflow-wrap:anywhere}.status-card{cursor:pointer;transition:transform .15s,box-shadow .15s}.status-card:active{transform:scale(.99)}.status-viewer{position:fixed;z-index:1000;inset:0;background:rgba(5,18,15,.96);display:grid;place-items:center;padding:14px}.status-viewer-panel{width:min(560px,100%);height:min(850px,calc(100dvh - 28px));background:#101b18;color:#fff;border-radius:20px;display:flex;flex-direction:column;overflow:hidden}.status-viewer-top{padding:14px 14px 8px}.status-progress{height:3px;background:#52615b;border-radius:8px;overflow:hidden;margin-bottom:13px}.status-progress span{display:block;width:100%;height:100%;background:#25d366}.status-viewer-head{display:flex;align-items:center;gap:10px}.status-viewer-head>div{flex:1;min-width:0}.status-viewer-head b,.status-viewer-head small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.status-viewer-head small{color:#b8c5bf;font-size:11px;margin-top:3px}.status-viewer-head button,.status-viewer-foot button{background:#263b34;color:#fff;border-radius:10px;padding:9px 12px;font-weight:700}.status-viewer-body{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px;overflow:auto}.status-viewer-body img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px}.status-viewer-body p{white-space:pre-wrap;overflow-wrap:anywhere;text-align:center;line-height:1.5}.status-viewer-foot{padding:12px 14px;border-top:1px solid #2a3b34}.status-viewers-list{max-height:150px;overflow:auto;padding-top:8px;color:#d9e5df;font-size:12px}.status-viewer-person{padding:7px 0;border-bottom:1px solid #2a3b34}
 .profile-edit,.status-compose-panel{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
 
 .toolbar{display:flex;gap:8px}.iconbtn{background:#eef5f1;color:var(--green);padding:9px 11px;border-radius:11px;font-weight:700;font-size:12px}.hidden{display:none!important}.foot{padding:12px 18px;border-top:1px solid var(--line);font-size:11px;color:#899690;display:flex;justify-content:space-between}
@@ -110,8 +110,8 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
         <form id="messageForm" class="composer"><input id="messageInput" maxlength="4000" autocomplete="off" placeholder="Write a message…" required><button id="sendBtn" class="send" type="submit" aria-label="Send message">➤</button></form>
       </div>
     </main>
-    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div></div></div></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head">Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
-    <section id="contactsPage" class="tab-screen hidden"><div class="tab-head">Add Contact</div><div class="tab-content"><p style="color:var(--muted);font-size:13px;line-height:1.5;margin-top:0">Find someone already using CHATDUN. Their phone number stays private.</p><div id="contactsFinderHost"></div></div></section>
+    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div></div></div></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head">Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
+    <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head">Add Contact</div><div class="tab-content"><p style="color:var(--muted);font-size:13px;line-height:1.5;margin-top:0">Find someone already using CHATDUN. Their phone number stays private.</p><div id="contactsFinderHost"></div></div></section>
     <section id="callsPage" class="tab-screen hidden"><div class="tab-head">Calls</div><div class="tab-content"><div class="tab-empty"><strong>Your calls</strong>Voice and video call history will appear here. Secure calling needs a real-time calling service that is not connected yet.</div></div></section>
     <nav class="bottomnav" aria-label="Main navigation"><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span></button><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span></button></nav>
   </section>
@@ -218,6 +218,8 @@ function renderConversations(){
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
 }
 let activeTab='chats';
+let statusViewerItems=[];
+let statusViewerIndex=0;
 function switchTab(tab){
   activeTab=tab;
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
@@ -362,28 +364,61 @@ async function publishPhotoStatus(){
   if(!file)return status('statusMessage','Choose a photo before posting.',true);
   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024)return status('statusMessage','Choose a JPG, PNG or WebP photo under 10 MB.',true);
   const btn=$('publishStatusBtn');btn.disabled=true;status('statusMessage','Uploading your status…');
-  const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg',path=user.id+'/'+crypto.randomUUID()+'.'+ext;
+  const ext=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg',path=user.id+'/'+crypto.randomUUID()+'.'+ext,visibility=$('statusVisibility').value;
   try{
     const {error:upErr}=await supabase.storage.from('chatdun-status').upload(path,file,{contentType:file.type,upsert:false});if(upErr)throw upErr;
-    const {error:dbErr}=await supabase.from('chatdun_statuses').insert({user_id:user.id,image_path:path,caption});
+    const {error:dbErr}=await supabase.from('chatdun_statuses').insert({user_id:user.id,image_path:path,caption,visibility});
     if(dbErr){await supabase.storage.from('chatdun-status').remove([path]);throw dbErr}
     $('statusPhotoInput').value='';$('statusText').value='';$('statusPreview').classList.add('hidden');$('statusComposer').classList.add('hidden');await loadStatuses();status('statusMessage','Your photo status is live for 24 hours.');
   }catch(err){status('statusMessage',err.message||'Could not post your status.',true)}finally{btn.disabled=false}
 }
 async function loadStatuses(){
   const root=$('statusList');root.innerHTML='<div class="empty">Loading photo statuses…</div>';
-  const {data:items,error}=await supabase.from('chatdun_statuses').select('id,user_id,image_path,caption,created_at,expires_at').gt('expires_at',new Date().toISOString()).order('created_at',{ascending:false}).limit(100);
+  const {data:items,error}=await supabase.from('chatdun_statuses').select('id,user_id,image_path,caption,visibility,created_at,expires_at').gt('expires_at',new Date().toISOString()).order('created_at',{ascending:false}).limit(100);
   if(error){root.innerHTML='<div class="tab-empty">Could not load statuses: '+escapeHtml(error.message)+'</div>';return}
-  if(!items?.length){root.innerHTML='<div class="tab-empty"><strong>No active statuses yet</strong>Share a photo. Statuses stay visible for 24 hours.</div>';return}
+  if(!items?.length){statusViewerItems=[];root.innerHTML='<div class="tab-empty"><strong>No active statuses yet</strong>Share a photo. Statuses stay visible for 24 hours.</div>';return}
   const ids=[...new Set(items.map(x=>x.user_id))];
   const {data:people}=await supabase.from('chatdun_profiles').select('id,username,display_name').in('id',ids);
-  const cards=await Promise.all(items.map(async item=>{
+  statusViewerItems=(await Promise.all(items.map(async item=>{
     const person=people?.find(p=>p.id===item.user_id);
-    const {data:img}=await supabase.storage.from('chatdun-status').createSignedUrl(item.image_path,3600);
-    return '<article class="status-card"><div class="status-byline"><b>'+escapeHtml(person?.display_name||'CHATDUN user')+' · @'+escapeHtml(person?.username||'user')+'</b><span>'+new Date(item.created_at).toLocaleString()+'</span></div>'+(img?.signedUrl?'<img class="status-image" src="'+escapeHtml(img.signedUrl)+'" alt="Status photo">':'<p>Photo unavailable</p>')+(item.caption?'<div class="status-caption">'+escapeHtml(item.caption)+'</div>':'')+'</article>';
-  }));
-  root.innerHTML=cards.join('');
+    const {data:img,error:imageError}=await supabase.storage.from('chatdun-status').createSignedUrl(item.image_path,3600);
+    return {...item,person,signedUrl:imageError?null:img?.signedUrl||null};
+  }))).filter(x=>x.signedUrl);
+  if(!statusViewerItems.length){root.innerHTML='<div class="tab-empty"><strong>Photos unavailable</strong>Try refreshing Updates.</div>';return}
+  root.innerHTML=statusViewerItems.map((item,index)=>'<article class="status-card" data-status-index="'+index+'"><div class="status-byline"><b>'+escapeHtml(item.person?.display_name||'CHATDUN user')+' · @'+escapeHtml(item.person?.username||'user')+'</b><span>'+new Date(item.created_at).toLocaleString()+'</span></div><img class="status-image" src="'+escapeHtml(item.signedUrl)+'" alt="Status photo">'+(item.caption?'<div class="status-caption">'+escapeHtml(item.caption)+'</div>':'')+'</article>').join('');
+  root.querySelectorAll('[data-status-index]').forEach(card=>card.addEventListener('click',()=>openStatusViewer(Number(card.dataset.statusIndex))));
 }
+async function openStatusViewer(index){
+  if(index<0||index>=statusViewerItems.length)return;
+  statusViewerIndex=index;
+  const item=statusViewerItems[index],mine=item.user_id===user.id;
+  $('statusViewerName').textContent=(item.person?.display_name||'CHATDUN user')+' · @'+(item.person?.username||'user');
+  $('statusViewerTime').textContent=new Date(item.created_at).toLocaleString();
+  $('statusViewerImage').src=item.signedUrl;
+  $('statusViewerCaption').textContent=item.caption||'';
+  $('statusViewer').classList.remove('hidden');
+  $('statusViewersToggle').classList.toggle('hidden',!mine);
+  $('statusViewersList').classList.add('hidden');
+  if(!mine){
+    const {error}=await supabase.from('chatdun_status_views').insert({status_id:item.id,viewer_id:user.id});
+    if(error&&error.code!=='23505')console.warn('Could not record status view:',error.message);
+  }else await refreshStatusViewerCount(item.id);
+}
+async function refreshStatusViewerCount(statusId){
+  const {data,error}=await supabase.from('chatdun_status_views').select('viewer_id,viewed_at').eq('status_id',statusId).order('viewed_at',{ascending:false});
+  if(error){$('statusViewersToggle').textContent='Viewers unavailable';return}
+  const views=data||[];$('statusViewersToggle').textContent='Seen by '+views.length;
+  const list=$('statusViewersList');
+  if(!views.length){list.innerHTML='<div>No views yet.</div>';return}
+  const ids=[...new Set(views.map(v=>v.viewer_id))];
+  const {data:people}=await supabase.from('chatdun_profiles').select('id,display_name,username').in('id',ids);
+  list.innerHTML=views.map(v=>{const p=people?.find(x=>x.id===v.viewer_id);return '<div class="status-viewer-person">'+escapeHtml(p?.display_name||'CHATDUN user')+' · @'+escapeHtml(p?.username||'user')+' <span style="opacity:.7">· '+new Date(v.viewed_at).toLocaleString()+'</span></div>'}).join('');
+}
+$('statusPrevBtn').onclick=()=>openStatusViewer(statusViewerIndex-1);
+$('statusNextBtn').onclick=()=>openStatusViewer(statusViewerIndex+1);
+$('statusViewerClose').onclick=()=>{$('statusViewer').classList.add('hidden');$('statusViewerImage').src=''};
+$('statusViewersToggle').onclick=()=>{$('statusViewersList').classList.toggle('hidden');const item=statusViewerItems[statusViewerIndex];if(item)refreshStatusViewerCount(item.id)};
+
 
 $('reportBtn').onclick=async()=>{const reason=prompt('Tell us why you are reporting this conversation (3–500 characters):');if(!reason)return;if(reason.trim().length<3||reason.trim().length>500)return alert('Please enter 3–500 characters.');const c=conversations.find(x=>x.id===activeConversation);const target=c?.others?.[0]?.id||null;const {error}=await supabase.from('chatdun_reports').insert({reporter_id:user.id,reported_user_id:target,conversation_id:activeConversation,reason:reason.trim()});if(error)alert('Could not send report: '+error.message);else alert('Report submitted. Thank you.');};
 $('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('phone').value='';$('otp').value='';pendingPhone='';showAuthStep('phoneStep')};
