@@ -296,23 +296,54 @@ async function openConversation(id){
  $('welcome').classList.add('hidden');$('chatPanel').classList.remove('hidden');$('app').classList.add('chat-open');$('chatTitle').textContent=c.label;$('chatSubtitle').textContent=c.is_group?'Group conversation':(c.handle?'@'+c.handle:'Private conversation');$('chatAvatar').innerHTML=c.others?.[0]?.avatar_url?'<img src="'+escapeHtml(c.others[0].avatar_url)+'" alt="">':escapeHtml(initials(c.label));renderConversations();
  if(activeChannel){await supabase.removeChannel(activeChannel);activeChannel=null}
  await loadMessages();
- activeChannel=supabase.channel('chatdun-'+id).on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_messages',filter:'conversation_id=eq.'+id},payload=>appendMessage(payload.new)).subscribe();
+ activeChannel=supabase.channel('chatdun-'+id,{config:{broadcast:{self:false}}})
+  .on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_messages',filter:'conversation_id=eq.'+id},payload=>appendMessage(payload.new))
+  .on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_message_receipts'},payload=>refreshMessageReceipt(payload.new.message_id))
+  .on('postgres_changes',{event:'UPDATE',schema:'public',table:'chatdun_message_receipts'},payload=>refreshMessageReceipt(payload.new.message_id))
+  .on('broadcast',{event:'typing'},payload=>{if(payload.payload?.user_id!==user.id)$('chatSubtitle').textContent=payload.payload?.typing?'typing…':(c.handle?'@'+c.handle:'Private conversation')})
+  .subscribe();
 }
 async function loadMessages(){
  const root=$('messages');root.innerHTML='<div class="empty">Loading messages…</div>';
  const {data,error}=await supabase.from('chatdun_messages').select('*').eq('conversation_id',activeConversation).order('created_at',{ascending:true}).limit(150);
  if(error){root.innerHTML='<div class="empty">Could not load messages: '+escapeHtml(error.message)+'</div>';return}
- root.innerHTML='';(data||[]).forEach(appendMessage);root.scrollTop=root.scrollHeight;
+ root.innerHTML='';messageCache.clear();(data||[]).forEach(m=>messageCache.set(m.id,m));(data||[]).forEach(appendMessage);root.scrollTop=root.scrollHeight;
 }
-function appendMessage(m){
+async function appendMessage(m){
  if(m.conversation_id!==activeConversation)return;const root=$('messages');if(root.querySelector('[data-message="'+m.id+'"]'))return;
- const el=document.createElement('div');el.className='bubble '+(m.sender_id===user.id?'mine':'');el.dataset.message=m.id;
- const p=document.createElement('p');p.textContent=m.body;const t=document.createElement('time');t.textContent=new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});el.append(p,t);root.append(el);root.scrollTop=root.scrollHeight;
+ messageCache.set(m.id,m);
+ const mine=m.sender_id===user.id,el=document.createElement('div');el.className='bubble '+(mine?'mine':'');el.dataset.message=m.id;
+ if(m.reply_to){let quoted=messageCache.get(m.reply_to);if(!quoted){const q=await supabase.from('chatdun_messages').select('id,body,message_type,deleted_for_everyone_at').eq('id',m.reply_to).maybeSingle();quoted=q.data;if(quoted)messageCache.set(quoted.id,quoted)}if(quoted){const quote=document.createElement('div');quote.className='reply-quote';quote.textContent='Replying to: '+(quoted.deleted_for_everyone_at?'Deleted message':quoted.message_type==='voice'?'Voice message':(quoted.body||'').slice(0,120));el.append(quote)}}
+ if(m.deleted_for_everyone_at){const p=document.createElement('p');p.textContent='This message was deleted';p.style.fontStyle='italic';p.style.opacity='.7';el.append(p)}
+ else if(m.message_type==='voice'&&m.media_path){const audio=document.createElement('audio');audio.controls=true;audio.preload='none';const {data:media,error:mediaError}=await supabase.storage.from('chatdun-voice').createSignedUrl(m.media_path,3600);if(!mediaError&&media?.signedUrl)audio.src=media.signedUrl;else audio.title='Voice note unavailable';el.append(audio);const label=document.createElement('p');label.textContent='🎙 Voice message · '+(m.duration_seconds||0)+'s';el.append(label)}
+ else{const p=document.createElement('p');p.textContent=m.body||'';el.append(p)}
+ const actions=document.createElement('div');actions.className='bubble-actions';const reply=document.createElement('button');reply.type='button';reply.textContent='Reply';reply.onclick=()=>setReplyTarget(m);actions.append(reply);
+ if(mine&&!m.deleted_for_everyone_at){const del=document.createElement('button');del.type='button';del.textContent='Delete for everyone';del.onclick=()=>deleteMessageForEveryone(m);actions.append(del)}
+ el.append(actions);const t=document.createElement('time');t.textContent=new Date(m.created_at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+ if(mine){const tick=document.createElement('span');tick.className='receipt';tick.dataset.receipt=m.id;tick.textContent=' ✓';t.append(tick)}
+ el.append(t);root.append(el);root.scrollTop=root.scrollHeight;
+ if(!mine&&document.visibilityState==='visible')markMessageRead(m.id);
+ if(mine)refreshMessageReceipt(m.id);
 }
+function setReplyTarget(m){replyTarget=m;$('replyComposerText').textContent='Replying to: '+(m.deleted_for_everyone_at?'Deleted message':m.message_type==='voice'?'Voice message':(m.body||'').slice(0,100));$('replyComposerPreview').classList.remove('hidden');$('messageInput').focus()}
+$('cancelReplyBtn').onclick=()=>{replyTarget=null;$('replyComposerPreview').classList.add('hidden')};
+async function markMessageRead(messageId){const now=new Date().toISOString();const {error}=await supabase.from('chatdun_message_receipts').upsert({message_id:messageId,user_id:user.id,delivered_at:now,read_at:now},{onConflict:'message_id,user_id'});if(error)console.warn('Message receipt could not be saved:',error.message)}
+async function refreshMessageReceipt(messageId){const el=$('messages').querySelector('[data-receipt="'+messageId+'"]');if(!el)return;const {data,error}=await supabase.from('chatdun_message_receipts').select('delivered_at,read_at').eq('message_id',messageId).limit(1);if(error||!data?.length)return;el.textContent=data[0].read_at?' ✓✓':' ✓';el.title=data[0].read_at?'Read':data[0].delivered_at?'Delivered':'Sent'}
+async function deleteMessageForEveryone(m){if(!confirm('Delete this message for everyone?'))return;const {error}=await supabase.from('chatdun_messages').update({body:'This message was deleted',deleted_for_everyone_at:new Date().toISOString(),media_path:null}).eq('id',m.id).eq('sender_id',user.id);if(error){alert('Could not delete message: '+error.message);return}if(m.media_path)await supabase.storage.from('chatdun-voice').remove([m.media_path]);const el=$('messages').querySelector('[data-message="'+m.id+'"]');if(el)el.innerHTML='<p style="font-style:italic;opacity:.7">This message was deleted</p>'}
+function sendTyping(typing){if(activeChannel)activeChannel.send({type:'broadcast',event:'typing',payload:{user_id:user.id,typing}})}
+let typingTimer=null;
+$('messageInput').addEventListener('input',()=>{sendTyping(true);clearTimeout(typingTimer);typingTimer=setTimeout(()=>sendTyping(false),1100)});
+async function uploadVoiceMessage(blob,duration){if(!activeConversation)return;const ext=blob.type.includes('mp4')?'mp4':blob.type.includes('ogg')?'ogg':'webm',path=user.id+'/'+crypto.randomUUID()+'.'+ext;$('voiceBtn').disabled=true;try{const {error:upErr}=await supabase.storage.from('chatdun-voice').upload(path,blob,{contentType:blob.type,upsert:false});if(upErr)throw upErr;const {error:dbErr}=await supabase.from('chatdun_messages').insert({conversation_id:activeConversation,sender_id:user.id,body:'Voice message',message_type:'voice',media_path:path,duration_seconds:duration,reply_to:replyTarget?.id||null});if(dbErr){await supabase.storage.from('chatdun-voice').remove([path]);throw dbErr}replyTarget=null;$('replyComposerPreview').classList.add('hidden')}catch(err){alert('Could not send voice message: '+(err.message||'Please try again.'))}finally{$('voiceBtn').disabled=false}}
+async function recordVoiceMessage(){
+ if(recorder&&recorder.state==='recording'){recorder.stop();$('voiceBtn').textContent='🎙';$('voiceBtn').title='Record voice message';return}
+ if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){alert('Voice recording is not supported in this browser. Try CHATDUN in Chrome.');return}
+ try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordChunks=[];const mime=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/ogg'].find(t=>MediaRecorder.isTypeSupported(t));recorder=mime?new MediaRecorder(stream,{mimeType:mime}):new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data)};recorder.onstop=async()=>{stream.getTracks().forEach(t=>t.stop());const duration=Math.max(1,Math.round((Date.now()-recordStartedAt)/1000));const blob=new Blob(recordChunks,{type:recorder.mimeType||'audio/webm'});await uploadVoiceMessage(blob,duration)};recordStartedAt=Date.now();recorder.start();$('voiceBtn').textContent='■';$('voiceBtn').title='Stop and send voice message'}catch(err){alert('Microphone permission is needed to record a voice message. '+(err.message||''))}
+}
+$('voiceBtn').onclick=recordVoiceMessage;
 $('messageForm').addEventListener('submit',async e=>{
  e.preventDefault();const body=$('messageInput').value.trim();if(!body||!activeConversation)return;$('sendBtn').disabled=true;
- const {error}=await supabase.from('chatdun_messages').insert({conversation_id:activeConversation,sender_id:user.id,body});
- if(error)alert(error.message);else $('messageInput').value='';$('sendBtn').disabled=false;
+ const {error}=await supabase.from('chatdun_messages').insert({conversation_id:activeConversation,sender_id:user.id,body,message_type:'text',reply_to:replyTarget?.id||null});
+ if(error)alert(error.message);else{$('messageInput').value='';replyTarget=null;$('replyComposerPreview').classList.add('hidden');sendTyping(false)}$('sendBtn').disabled=false;
 });
 $('backBtn').onclick=()=>{$('app').classList.remove('chat-open');activeConversation=null;if(activeChannel){supabase.removeChannel(activeChannel);activeChannel=null}};
 
