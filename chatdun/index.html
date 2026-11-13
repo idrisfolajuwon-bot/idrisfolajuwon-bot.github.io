@@ -285,7 +285,7 @@ $('enableBrowserNotificationsBtn').onclick=async()=>{
   if(!('Notification'in window)){status('notificationSettingsStatus','This browser does not support device notifications.',true);return}
   const permission=await Notification.requestPermission();
   if(permission==='granted')status('notificationSettingsStatus','Device notifications are enabled while CHATDUN is open in your browser.');
-  else status('notificationSettingsStatus,'Permission was not granted. You can still see alerts inside CHATDUN.',true);
+  else status('notificationSettingsStatus','Permission was not granted. You can still see alerts inside CHATDUN.',true);
 };
 $('markAllNotificationsReadBtn').onclick=async()=>{
   const {error}=await supabase.from('chatdun_notifications').update({read_at:new Date().toISOString()}).eq('recipient_id',user.id).is('read_at',null);
@@ -315,7 +315,7 @@ let statusViewerIndex=0;
 function switchTab(tab){
   activeTab=tab;
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-  ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
+  ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));$('notificationsPage').classList.add('hidden');
   if(tab==='chats'){const finder=$('contactsFinderHost').querySelector('.phonefinder');if(finder)$('sidebarFinderAnchor').before(finder)}
   if(tab==='contacts'){$('contactsFinderHost').appendChild(document.querySelector('.phonefinder'));$('app').classList.remove('chat-open')}
   if(tab==='updates')loadStatuses();
