@@ -126,7 +126,20 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
         <div id="replyComposerPreview" class="reply-preview hidden"><span id="replyComposerText"></span><button id="cancelReplyBtn" type="button" aria-label="Cancel reply">×</button></div><form id="messageForm" class="composer"><button id="voiceBtn" class="voice-btn" type="button" aria-label="Record voice message">🎙</button><input id="messageInput" maxlength="4000" autocomplete="off" placeholder="Write a message…"><button id="sendBtn" class="send" type="submit" aria-label="Send message">➤</button></form>
       </div>
     </main>
-    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div></div></div></div></section><section id="notificationsPage" class="tab-screen hidden"><div class="tab-head"><button id="notificationsBackBtn" class="iconbtn" type="button">←</button> Notifications</div><div class="tab-content"><div class="notification-panel"><div class="notification-settings"><b>Notification settings</b><label class="notification-setting"><span>Message and reply alerts</span><input id="notificationsEnabled" type="checkbox" checked></label><label class="notification-setting"><span>Browser alerts while CHATDUN is open</span><input id="browserNotificationsEnabled" type="checkbox" checked></label><button id="enableBrowserNotificationsBtn" class="iconbtn" type="button">Enable device notifications</button><div id="notificationSettingsStatus" class="status"></div></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b>Recent notifications</b><button id="markAllNotificationsReadBtn" class="iconbtn" type="button">Mark all read</button></div><div id="notificationList"><div class="empty">Loading notifications…</div></div></div></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head">Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
+    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div>
+<div class="profile-details" style="margin-top:14px"><b>Account & safety</b><div class="profile-actions"><button id="privacyPolicyBtn" class="iconbtn" type="button">Privacy & safety</button><button id="deleteAccountBtn" class="iconbtn" type="button">Request account deletion</button></div><div id="deletionRequestStatus" class="status" role="status"></div></div>
+<div id="privacyPolicyPanel" class="profile-details hidden" style="margin-top:12px;line-height:1.6"><b>CHATDUN privacy & safety</b>
+<p><b>Information collected:</b> your verified phone number for sign-in; your display name, username and optional profile photo; messages, voice notes, group membership, photo statuses and status-view records; notification settings; and reports you submit.</p>
+<p><b>How it is used:</b> to provide account access, messaging, groups, status sharing, notifications, abuse prevention and support. Your phone number is not displayed to other users. Phone search checks only the number entered and returns a matching CHATDUN profile, not the number.</p>
+<p><b>Storage and visibility:</b> messages and account records are stored by CHATDUN's Supabase backend. Conversation content is intended to be visible only to conversation members. Status visibility follows the selected audience and expires after 24 hours. Voice notes use restricted storage. Group profile photos currently use public image URLs, so do not upload private or sensitive pictures there.</p>
+<p><b>Safety:</b> block accounts and report conversations when needed. Reports are available to the service operator for review. Do not share passwords, verification codes, financial details or private information in chats.</p>
+<p><b>Retention:</b> active account data is retained while the account is in use. Reports may be retained for safety review. Account deletion requests are reviewed and processed separately; submitting a request does not instantly erase the account.</p>
+<p><b>Third-party services:</b> Supabase provides authentication, database, storage and realtime infrastructure. TextBee is used to deliver verification SMS.</p>
+<p><b>Contact:</b> I D LABS support contact details must be published before CHATDUN opens to the public.</p>
+<b>Terms & community rules</b>
+<p>Use CHATDUN respectfully and lawfully. Do not harass, threaten, impersonate, spam, share others' private information without permission, or upload content you do not have permission to share. Do not use the service to scam or harm people. I D LABS may review reports and restrict accounts that violate these rules. Features may change while CHATDUN is in testing.</p>
+<p><small>Last updated: 13 November 2026. This is an in-app product notice, not legal advice. A full jurisdiction-specific privacy and terms review is still required before public launch.</small></p></div>
+<div id="deletionRequestPanel" class="profile-details hidden" style="margin-top:12px"><b>Request account deletion</b><p>This sends a request to I D LABS for review. Your account will not be deleted immediately, and you can continue using CHATDUN while it is reviewed.</p><textarea id="deletionReason" maxlength="500" placeholder="Optional reason (up to 500 characters)" style="width:100%;min-height:72px"></textarea><button id="submitDeletionRequestBtn" class="iconbtn" type="button">Submit deletion request</button></div></div></div></section><section id="notificationsPage" class="tab-screen hidden"><div class="tab-head"><button id="notificationsBackBtn" class="iconbtn" type="button">←</button> Notifications</div><div class="tab-content"><div class="notification-panel"><div class="notification-settings"><b>Notification settings</b><label class="notification-setting"><span>Message and reply alerts</span><input id="notificationsEnabled" type="checkbox" checked></label><label class="notification-setting"><span>Browser alerts while CHATDUN is open</span><input id="browserNotificationsEnabled" type="checkbox" checked></label><button id="enableBrowserNotificationsBtn" class="iconbtn" type="button">Enable device notifications</button><div id="notificationSettingsStatus" class="status"></div></div><div class="notification-settings"><b>Group invitations</b><div id="groupInviteList"><div class="empty">Loading invitations…</div></div></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b>Recent notifications</b><button id="markAllNotificationsReadBtn" class="iconbtn" type="button">Mark all read</button></div><div id="notificationList"><div class="empty">Loading notifications…</div></div></div></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head">Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
     <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head">Add Contact</div><div class="tab-content"><p style="color:var(--muted);font-size:13px;line-height:1.5;margin-top:0">Find someone already using CHATDUN. Their phone number stays private.</p><div id="contactsFinderHost"></div></div></section>
     <section id="callsPage" class="tab-screen hidden"><div class="tab-head">Calls</div><div class="tab-content"><div class="tab-empty"><strong>Your calls</strong>Voice and video call history will appear here. Secure calling needs a real-time calling service that is not connected yet.</div></div></section>
     
@@ -227,14 +240,41 @@ async function initializeNotifications(){
   notificationPrefs={notifications_enabled:pref?.notifications_enabled??true,browser_enabled:pref?.browser_enabled??true};
   $('notificationsEnabled').checked=notificationPrefs.notifications_enabled;
   $('browserNotificationsEnabled').checked=notificationPrefs.browser_enabled;
-  await loadMutedConversations();await loadNotifications();
+  await loadMutedConversations();await loadNotifications();await loadGroupInvites();
   if(notificationChannel)await supabase.removeChannel(notificationChannel);
   notificationChannel=supabase.channel('chatdun-notifications-'+user.id)
     .on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_notifications',filter:'recipient_id=eq.'+user.id},async payload=>{
       await loadNotifications();await showBrowserNotification(payload.new);
-    }).subscribe();
+    })
+    .on('postgres_changes',{event:'*',schema:'public',table:'chatdun_group_invites',filter:'invitee_id=eq.'+user.id},async()=>{await loadGroupInvites()})
+    .subscribe();
   updateMuteButton();
 }
+
+async function loadGroupInvites(){
+ const root=$('groupInviteList');if(!root||!user)return;
+ const {data:items,error}=await supabase.from('chatdun_group_invites').select('id,conversation_id,inviter_id,status,created_at').eq('invitee_id',user.id).eq('status','pending').order('created_at',{ascending:false}).limit(30);
+ if(error){root.innerHTML='<div class="empty">Could not load invitations.</div>';return}
+ if(!items?.length){root.innerHTML='<div class="empty">No pending group invitations.</div>';return}
+ const groupIds=[...new Set(items.map(x=>x.conversation_id))],actorIds=[...new Set(items.map(x=>x.inviter_id))];
+ const [{data:groups},{data:people}]=await Promise.all([
+  supabase.from('chatdun_conversations').select('id,title').in('id',groupIds),
+  supabase.from('chatdun_profiles').select('id,display_name,username').in('id',actorIds)
+ ]);
+ root.innerHTML=items.map(inv=>{
+  const g=groups?.find(x=>x.id===inv.conversation_id),p=people?.find(x=>x.id===inv.inviter_id);
+  return '<article class="notification-row"><div class="notification-copy"><b>'+escapeHtml(p?.display_name||p?.username||'CHATDUN user')+' invited you to '+escapeHtml(g?.title||'a group')+'</b><small>'+new Date(inv.created_at).toLocaleString()+'</small><div class="profile-actions" style="margin-top:8px"><button class="iconbtn" type="button" data-accept-invite="'+inv.id+'">Accept</button><button class="iconbtn" type="button" data-decline-invite="'+inv.id+'">Decline</button></div></div></article>';
+ }).join('');
+ root.querySelectorAll('[data-accept-invite]').forEach(b=>b.onclick=()=>respondGroupInvite(b.dataset.acceptInvite,true));
+ root.querySelectorAll('[data-decline-invite]').forEach(b=>b.onclick=()=>respondGroupInvite(b.dataset.declineInvite,false));
+}
+async function respondGroupInvite(inviteId,accept){
+ const {error}=await supabase.rpc('chatdun_respond_group_invite',{p_invite_id:inviteId,p_accept:accept});
+ if(error){alert('Could not process invitation: '+error.message);return}
+ await loadGroupInvites();
+ if(accept){await loadConversations();alert('You joined the group.')}
+}
+
 async function saveNotificationPreferences(){
   notificationPrefs={notifications_enabled:$('notificationsEnabled').checked,browser_enabled:$('browserNotificationsEnabled').checked};
   const {error}=await supabase.from('chatdun_notification_preferences').upsert({user_id:user.id,...notificationPrefs,updated_at:new Date().toISOString()},{onConflict:'user_id'});
@@ -293,6 +333,7 @@ async function showBrowserNotification(n){
 }
 function openNotifications(){
   $('notificationsPage').classList.remove('hidden');
+  loadGroupInvites();
   ['profilePage','updatesPage','contactsPage','callsPage'].forEach(id=>$(id)?.classList.add('hidden'));
   $('app').classList.remove('chat-open');loadNotifications();
 }
@@ -350,6 +391,7 @@ $('groupCreateForm').addEventListener('submit',async e=>{
   const photo=$('groupCreatePhoto').files?.[0];let photoIssue='';
   if(photo){try{await uploadGroupPhoto(groupId,photo)}catch(photoError){photoIssue=photoError.message||'Photo upload failed'}}
   closeGroupModal('groupCreateModal');await loadConversations();await openConversation(groupId);
+  alert('Your group is ready. Invitations have been sent; people join only after accepting.');
   if(photoIssue)alert('Your group was created, but the photo could not be uploaded: '+photoIssue);
  }catch(err){status('groupCreateStatus',err.message||'Could not create group.',true)}
  finally{btn.disabled=false}
@@ -397,7 +439,7 @@ $('groupAddMemberBtn').onclick=async()=>{
  if(error||!p){status('groupManageStatus','CHATDUN account not found.',true);return}
  const {error:addError}=await supabase.rpc('chatdun_add_group_member',{p_conversation_id:activeConversation,p_user_id:p.id});
  if(addError){status('groupManageStatus',addError.message,true);return}
- $('groupAddUsername').value='';status('groupManageStatus','Member added.');await refreshGroupMembers();await loadConversations();
+ $('groupAddUsername').value='';status('groupManageStatus','Invitation sent. They must accept before joining.');await refreshGroupMembers();await loadConversations();
 };
 $('saveGroupNameBtn').onclick=async()=>{
  const title=$('groupRenameInput').value.trim();if(title.length<2||title.length>40)return status('groupManageStatus','Group name must be 2–40 characters.',true);
@@ -580,6 +622,26 @@ function renderProfile(){
 }
 function openMyProfile(){switchTab('profile');$('profilePage').classList.remove('hidden');$('app').classList.remove('chat-open');renderProfile()}
 $('profileBtn').onclick=openMyProfile;
+
+$('privacyPolicyBtn').onclick=()=>{$('privacyPolicyPanel').classList.toggle('hidden');$('deletionRequestPanel').classList.add('hidden')};
+$('deleteAccountBtn').onclick=async()=>{
+ $('deletionRequestPanel').classList.toggle('hidden');$('privacyPolicyPanel').classList.add('hidden');
+ const {data,error}=await supabase.from('chatdun_account_deletion_requests').select('status,created_at').eq('user_id',user.id).maybeSingle();
+ if(error){status('deletionRequestStatus','Could not check request status.',true);return}
+ if(data)status('deletionRequestStatus','Existing request: '+data.status+' · '+new Date(data.created_at).toLocaleString());
+};
+$('submitDeletionRequestBtn').onclick=async()=>{
+ if(!confirm('Send an account deletion request to I D LABS? Your account will not be deleted immediately.'))return;
+ const btn=$('submitDeletionRequestBtn');btn.disabled=true;
+ try{
+  const {data,error}=await supabase.rpc('chatdun_request_account_deletion',{p_reason:$('deletionReason').value.trim()||null});
+  if(error)throw error;
+  status('deletionRequestStatus','Your request was recorded. It still needs manual review and processing by I D LABS.');
+  $('deletionReason').value='';
+ }catch(err){status('deletionRequestStatus','Could not submit request: '+err.message,true)}
+ finally{btn.disabled=false}
+};
+
 $('profileBackBtn').onclick=()=>switchTab('chats');
 $('editProfileBtn').onclick=()=>$('profileEditPanel').classList.toggle('hidden');
 $('changeAvatarBtn').onclick=()=>$('profilePhotoInput').click();
