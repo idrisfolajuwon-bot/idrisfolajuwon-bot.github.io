@@ -221,6 +221,9 @@ body{background:#eaf1f5;color:var(--ink);font-family:'DM Sans',system-ui,sans-se
  .tab-screen .tab-head{height:82px}
 }
 
+
+/* Keep the Chats workspace conversation-only on every screen size. */
+@media(min-width:901px){.sidebar>.search,.sidebar>.newchat,.sidebar>.group-action,.sidebar>.invitebtn,.sidebar>.phonefinder,.sidebar>#searchResults{display:none!important}}
 </style>
 </head>
 <body>
