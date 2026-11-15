@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#075e54">
+<meta name="theme-color" content="#171a2b">
 <meta name="description" content="CHATDUN is a messaging product developed under I D LABS. Connect. Chat. Share. Currently in development and testing.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://idrisfolajuwon-bot.github.io/chatdun/">
@@ -449,6 +449,106 @@ body{background:#edf0f7}
  .sidebar-tools-host .search,.sidebar-tools-host .invitebtn{grid-column:1}
 }
 </style>
+
+<style id="chatdun-product-polish">
+/* CHATDUN signature system: ink, warm paper and signal coral. */
+:root{--green:#e56a52;--green2:#d95743;--lime:#a6e5cf;--ink:#202236;--muted:#85879a;--paper:#f7f6f3;--line:#eceaf0;--white:#fff;--shadow:0 24px 70px rgba(27,29,49,.12)}
+body{background:#f1f0f4;color:#202236}
+.shell{padding:26px}
+.app{border:1px solid #e7e5ed;box-shadow:0 28px 90px rgba(27,29,49,.13);border-radius:26px}
+.sidebar{background:#fff}
+.sidebar>.top{background:#171a2b!important;height:86px;padding:0 22px}
+.brand{gap:12px}.brand .mark{width:43px;height:43px;border-radius:15px;background:#f07b62;color:#171a2b;font-size:20px;letter-spacing:-1px}
+.brand b{font-size:17px;letter-spacing:1.8px}.brand small{font-size:9px;letter-spacing:1.8px;color:#c1c2d0}
+.notification-trigger,.profile-trigger{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.09)}
+.profile-trigger .avatar{background:#f4e9e4;color:#a84b3a}
+.inbox-heading{padding:27px 23px 17px}
+.inbox-kicker{color:#d66b56;letter-spacing:2.1px}
+.inbox-heading h2{font-size:30px;letter-spacing:-1.4px;color:#202236}
+.inbox-heading p{font-size:11px;color:#9292a2}
+.inbox-live{color:#77798d}
+.inbox-live i{background:#56b997;box-shadow:0 0 0 4px #e8f5f0}
+.sidebar-tools-host{border-bottom:1px solid #efedf2}
+.sidebar-tools-host .search input{background:#f7f6f8;border-color:#eceaf0;border-radius:12px;color:#202236}
+.sidebar-tools-host .newchat{background:#e56a52;color:white;box-shadow:0 5px 12px rgba(229,106,82,.15)}
+.sidebar-tools-host .group-action{background:#f5f1ff;color:#6555a8;border-color:#ebe5fa}
+.sidebar-tools-host .invitebtn{background:#eff8f4;color:#397e68;border-color:#e1f0e9}
+.chatlist-heading{color:#a0a0ad}
+.chatlist-heading span+span{background:#fff0ec;color:#d45f49}
+.sidebar .chatrow{border-radius:13px}
+.sidebar .chatrow:hover{background:#faf7f6;border-color:#f4e8e4}
+.sidebar .chatrow.active{background:#fff2ee;border-color:#f7ded7}
+.sidebar .chat-avatar-wrap .avatar{border-radius:15px;background:#f3e9e5;color:#b85d49}
+.sidebar .chatmeta b{color:#24253a;font-size:12px}
+.sidebar .chatmeta small{color:#9293a2}
+.chatrow-arrow{color:#c1bdc8}
+.sidebar .foot{background:#fff;border-color:#efedf2;color:#9695a3}
+.iconbtn{background:#f4f2f5;color:#595b70}
+.main{background:#f8f7f9}
+.welcome{max-width:760px;padding:clamp(28px,5vw,62px);text-align:left}
+.welcome-kicker{font-size:9px;letter-spacing:2.3px;font-weight:900;color:#d56550;margin-bottom:24px}
+.welcome .heroicon{width:64px;height:64px;margin:0 0 25px;border-radius:20px;background:#171a2b;color:#f38a70;font-size:23px;box-shadow:0 12px 26px rgba(23,26,43,.14)}
+.welcome h1{max-width:590px;font-size:clamp(30px,4.3vw,51px);line-height:1.04;letter-spacing:-2.3px;color:#202236;margin:0 0 17px}
+.welcome p{max-width:510px;font-size:13px;line-height:1.8;color:#77798b}
+.welcome:after{display:none}
+.welcome-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:34px;max-width:650px}
+.welcome-feature{min-height:104px;padding:14px 13px;background:#fff;border:1px solid #eeecf1;border-radius:15px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;box-shadow:0 6px 20px rgba(30,31,52,.035)}
+.welcome-feature span{font-size:9px;font-weight:900;color:#df715b;letter-spacing:1px}
+.welcome-feature b{font-size:12px;color:#292a3e}
+.welcome-feature small{font-size:10px;color:#9292a1;line-height:1.4}
+.welcome-foot{display:flex;align-items:center;gap:9px;margin-top:26px;font-size:9px;letter-spacing:1.5px;font-weight:900;color:#9694a4}
+.welcome-foot i{width:7px;height:7px;border-radius:50%;background:#5ab996;box-shadow:0 0 0 4px #e7f4ef}
+.chathead{background:#fff;border-color:#eeecf1}
+.chathead .avatar{background:#f4e9e5;color:#b85d49}
+.chathead b{font-size:14px;color:#25263a}
+.chathead small{font-size:11px;color:#9292a2}
+.messages{background-color:#f7f6f8;background-image:radial-gradient(#e9e5e9 .8px,transparent .8px);background-size:22px 22px;padding:25px}
+.bubble{border:1px solid #eeecf1;border-radius:17px 17px 17px 5px;box-shadow:0 4px 14px rgba(32,34,54,.045);padding:12px 14px 9px}
+.bubble.mine{background:#fff0eb;border-color:#f6e0da;border-radius:17px 17px 5px 17px}
+.bubble p{color:#333448;font-size:13px}
+.bubble time{color:#9b98a3}
+.bubble .reply-quote{border-left-color:#e56a52;background:#fff7f4;color:#716b76}
+.bubble-actions button{background:#f5eeeb;color:#b85d49}
+.composer{background:#fff;border-color:#eeecf1;padding:14px 18px}
+.composer input{background:#f8f7f9;border-color:#eeecf1;border-radius:15px;padding:14px 16px}
+.composer input:focus{border-color:#eaa092;box-shadow:0 0 0 3px rgba(229,106,82,.10)}
+.send{background:#e56a52;color:#fff;border-radius:14px;width:48px;height:46px;box-shadow:0 5px 12px rgba(229,106,82,.18)}
+.voice-btn{background:#f7eeeb;color:#bd5e4a}
+.reply-preview{background:#fff7f4;color:#b85d49;border-color:#f3e2dc}
+.bottomnav{background:#171a2b;border-color:#292b3b}
+.navitem{color:#a4a5b4}.navitem.active{color:#ff9a80;background:rgba(255,255,255,.09)}
+.tab-screen{background:#f7f6f8}
+.tab-head{background:#171a2b}
+.tab-empty,.profile-card,.profile-details,.notification-settings,.notification-row,.status-card{border-color:#eeecf1;box-shadow:0 5px 18px rgba(32,34,54,.035)}
+.primary{background:#e56a52}
+.modal-card{border:1px solid #eeecf1}
+.authwrap{box-shadow:0 30px 90px rgba(27,29,49,.16)}
+.auth-showcase{background:linear-gradient(145deg,#171a2b 0%,#302f54 58%,#8b4b55 100%)}
+.showcase-mark{color:#171a2b;background:linear-gradient(145deg,#fff,#ffd6c9)}
+.authwrap .primary{background:linear-gradient(110deg,#e56a52,#c94d61)}
+@media(max-width:900px){
+ .shell{padding:0}
+ .app{border-radius:0}
+ .sidebar>.top{height:74px;padding:0 17px}
+ .inbox-heading{padding:23px 19px 15px}
+ .welcome{padding:30px 24px 90px}
+ .welcome h1{font-size:34px;letter-spacing:-1.6px}
+ .welcome-features{gap:7px;margin-top:26px}
+ .welcome-feature{padding:11px 9px;min-height:100px}
+ .welcome-feature b{font-size:11px}
+ .welcome-feature small{font-size:9px}
+ .messages{padding:17px 12px 20px}
+ .bottomnav{background:#171a2b}
+}
+@media(max-width:380px){
+ .welcome{padding:24px 18px 88px}
+ .welcome h1{font-size:30px}
+ .welcome-features{grid-template-columns:1fr}
+ .welcome-feature{min-height:0;display:grid;grid-template-columns:25px 1fr;align-items:center;gap:3px 8px}
+ .welcome-feature span{grid-row:1 / span 2}
+ .welcome-feature small{grid-column:2}
+}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -494,7 +594,7 @@ body{background:#edf0f7}
 
   <section id="app" class="app hidden">
     <aside class="sidebar">
-      <div class="top"><div class="brand"><div class="mark">✉</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
+      <div class="top"><div class="brand"><div class="mark">C.</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
       <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button><button id="createGroupBtn" class="group-action" type="button">👥 Create a group</button>
       <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
@@ -513,7 +613,7 @@ body{background:#edf0f7}
       <div class="foot"><span id="myHandle">@username</span><button id="logoutBtn" class="iconbtn" type="button">Log out</button></div>
     </aside>
     <main class="main">
-      <div id="welcome" class="welcome"><div class="heroicon">✉</div><h1>Your conversations start here.</h1><p>Find someone by username and start a private conversation. Your messages are stored in your account and delivered live.</p></div>
+      <div id="welcome" class="welcome"><div class="welcome-kicker">THE CHATDUN EXPERIENCE</div><div class="heroicon">C.</div><h1>Good conversations deserve a space of their own.</h1><p>Bring your people closer with direct messages, group spaces and photo updates — all in one thoughtfully designed place.</p><div class="welcome-features"><div class="welcome-feature"><span>01</span><b>One-to-one</b><small>Private conversations</small></div><div class="welcome-feature"><span>02</span><b>Group spaces</b><small>Stay in the same loop</small></div><div class="welcome-feature"><span>03</span><b>Photo updates</b><small>Share little moments</small></div></div><div class="welcome-foot"><i></i> YOUR SPACE IS READY WHEN YOU ARE</div></div>
       <div id="chatPanel" class="hidden" style="display:flex;flex-direction:column;min-height:0;flex:1">
         <header class="chathead"><button id="backBtn" class="iconbtn back" type="button">←</button><div class="avatar" id="chatAvatar">C</div><div class="details"><b id="chatTitle">Chat</b><small id="chatSubtitle">Private conversation</small></div><div class="toolbar"><button id="groupInfoBtn" class="group-info-btn hidden" type="button">Group info</button><button id="muteChatBtn" class="iconbtn" type="button">Mute</button><button id="reportBtn" class="iconbtn" type="button">Report</button></div></header>
         <div id="messages" class="messages"><div class="empty">Loading messages…</div></div>
