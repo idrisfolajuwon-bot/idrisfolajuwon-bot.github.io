@@ -143,7 +143,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
         <div id="replyComposerPreview" class="reply-preview hidden"><span id="replyComposerText"></span><button id="cancelReplyBtn" type="button" aria-label="Cancel reply">×</button></div><form id="messageForm" class="composer"><button id="voiceBtn" class="voice-btn" type="button" aria-label="Record voice message">🎙</button><input id="messageInput" maxlength="4000" autocomplete="off" placeholder="Write a message…"><button id="sendBtn" class="send" type="submit" aria-label="Send message">➤</button></form>
       </div>
     </main>
-    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div>
+    <section id="profilePage" class="tab-screen hidden"><div class="tab-head"><button id="profileBackBtn" class="iconbtn" type="button">←</button> My Profile</div><div class="tab-content"><div class="profile-page-content"><div class="profile-card"><div id="profilePhotoDisplay" class="profile-photo">?</div><h2 id="profileDisplayName">Your name</h2><div id="profileUsername" class="handle">@username</div><div class="profile-actions"><button id="changeAvatarBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="cameraAvatarBtn" class="iconbtn" type="button">📷 Camera</button><button id="editProfileBtn" class="iconbtn" type="button">Edit profile</button></div><input id="profilePhotoInput" type="file" accept="image/*" class="hidden"><input id="profileCameraInput" type="file" accept="image/*" capture="environment" class="hidden"></div><div class="profile-details"><div class="profile-detail"><small>CHATDUN ID</small><b id="profileUserId"></b></div><div class="profile-detail"><small>PHONE NUMBER · ONLY YOU CAN SEE THIS</small><b id="profilePhone"></b></div></div><div id="linkPhonePanel" class="profile-details" style="margin-top:14px"><b>Make your account searchable by phone</b><p class="modal-help">Add a phone number and verify it with an SMS code. Your number stays private; other users only see your CHATDUN profile when they search it.</p><form id="linkPhoneForm"><div class="field"><label for="linkPhoneInput">Phone number</label><input id="linkPhoneInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="+234 801 234 5678" required></div><button id="linkPhoneSend" class="primary" type="submit">Send verification code</button></form><form id="linkPhoneOtpForm" class="hidden"><div class="field"><label for="linkPhoneOtp">6-digit SMS code</label><input id="linkPhoneOtp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required placeholder="123456"></div><button id="linkPhoneVerify" class="primary" type="submit">Verify and add number</button></form><div id="linkPhoneStatus" class="status" role="status"></div></div><div id="profileEditPanel" class="profile-edit hidden"><div class="field"><label for="editDisplayName">Display name</label><input id="editDisplayName" maxlength="40"></div><div class="field"><label for="editUsername">Username</label><input id="editUsername" maxlength="20"></div><button id="saveProfileBtn" class="primary" type="button">Save changes</button><div id="profileEditStatus" class="status"></div>
 <div class="profile-details" style="margin-top:14px"><b>Account & safety</b><div class="profile-actions"><button id="privacyPolicyBtn" class="iconbtn" type="button">Privacy & safety</button><button id="deleteAccountBtn" class="iconbtn" type="button">Request account deletion</button></div><div id="deletionRequestStatus" class="status" role="status"></div><button id="myReportsBtn" class="iconbtn" type="button">My reports</button><div id="myReportsList" class="hidden"></div></div>
 <div id="privacyPolicyPanel" class="profile-details hidden" style="margin-top:12px;line-height:1.6"><b>CHATDUN privacy & safety</b>
 <p><b>Information collected:</b> your verified phone number for sign-in; your display name, username and optional profile photo; messages, voice notes, group membership, photo statuses and status-view records; notification settings; and reports you submit.</p>
@@ -172,7 +172,7 @@ const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'chatdun.auth.token' } });
 const $ = id => document.getElementById(id);
 let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
-let pendingPhone = '', replyTarget=null, typingTimer=null, recorder=null, recordChunks=[], recordStartedAt=0, messageCache=new Map(), notificationChannel=null, notificationPrefs={notifications_enabled:true,browser_enabled:true}, mutedConversations=new Set(), currentConversationMuted=false, activeGroupMembers=[];
+let pendingPhone = '', pendingLinkPhone='', replyTarget=null, typingTimer=null, recorder=null, recordChunks=[], recordStartedAt=0, messageCache=new Map(), notificationChannel=null, notificationPrefs={notifications_enabled:true,browser_enabled:true}, mutedConversations=new Set(), currentConversationMuted=false, activeGroupMembers=[];
 const inviteUsername = (new URLSearchParams(location.search).get('invite') || '').trim().replace(/^@/,'').toLowerCase();
 if (/^[a-z0-9_]{3,20}$/.test(inviteUsername)) {
   $('inviteBanner').innerHTML = '<b>You\'ve been invited to CHATDUN!</b><br>@'+escapeHtml(inviteUsername)+' invites you to join CHATDUN by I D LABS.<br>Connect. Chat. Share.';
@@ -647,10 +647,44 @@ function renderProfile(){
   $('profileUsername').textContent='@'+(profile.username||'username');
   $('profileUserId').textContent='CD-'+user.id.toUpperCase();
   $('profilePhone').textContent=user.phone||'Not available on this account';
+  $('linkPhonePanel').classList.toggle('hidden',!!user.phone);
   $('editDisplayName').value=profile.display_name||'';
   $('editUsername').value=profile.username||'';
 }
 function openMyProfile(){switchTab('profile');$('profilePage').classList.remove('hidden');$('app').classList.remove('chat-open');renderProfile()}
+$('linkPhoneForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const phone=normalizePhone($('linkPhoneInput').value);
+ if(!validPhone(phone)){status('linkPhoneStatus','Enter a valid phone number with country code.',true);return}
+ const btn=$('linkPhoneSend');btn.disabled=true;status('linkPhoneStatus','Sending verification code…');
+ try{
+  const {error}=await supabase.auth.updateUser({phone});
+  if(error)throw error;
+  pendingLinkPhone=phone;
+  $('linkPhoneOtpForm').classList.remove('hidden');
+  status('linkPhoneStatus','Code sent. Enter the SMS code to verify this number.');
+  $('linkPhoneOtp').focus();
+ }catch(err){status('linkPhoneStatus',err.message||'Could not send the code.',true)}
+ finally{btn.disabled=false}
+});
+$('linkPhoneOtpForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const token=$('linkPhoneOtp').value.trim();
+ if(!/^\\d{6}$/.test(token)){status('linkPhoneStatus','Enter the 6-digit code.',true);return}
+ const btn=$('linkPhoneVerify');btn.disabled=true;status('linkPhoneStatus','Verifying your number…');
+ try{
+  const {data,error}=await supabase.auth.verifyOtp({phone:pendingLinkPhone,token,type:'phone_change'});
+  if(error)throw error;
+  user=data.user||user;
+  pendingLinkPhone='';
+  $('linkPhoneForm').classList.add('hidden');
+  $('linkPhoneOtpForm').classList.add('hidden');
+  $('linkPhoneInput').value='';$('linkPhoneOtp').value='';
+  status('linkPhoneStatus','Phone number verified. Your account can now be found by this number.');
+  renderProfile();
+ }catch(err){status('linkPhoneStatus',err.message||'That code could not be verified.',true)}
+ finally{btn.disabled=false}
+});
 $('profileBtn').onclick=openMyProfile;
 
 
