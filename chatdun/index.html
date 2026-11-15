@@ -670,7 +670,7 @@ $('linkPhoneForm').addEventListener('submit',async e=>{
 $('linkPhoneOtpForm').addEventListener('submit',async e=>{
  e.preventDefault();
  const token=$('linkPhoneOtp').value.trim();
- if(!/^\\d{6}$/.test(token)){status('linkPhoneStatus','Enter the 6-digit code.',true);return}
+ if(!/^\d{6}$/.test(token)){status('linkPhoneStatus','Enter the 6-digit code.',true);return}
  const btn=$('linkPhoneVerify');btn.disabled=true;status('linkPhoneStatus','Verifying your number…');
  try{
   const {data,error}=await supabase.auth.verifyOtp({phone:pendingLinkPhone,token,type:'phone_change'});
