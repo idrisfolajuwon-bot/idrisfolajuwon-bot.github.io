@@ -92,6 +92,36 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
 .toolbar{display:flex;gap:8px}.iconbtn{background:#eef5f1;color:var(--green);padding:9px 11px;border-radius:11px;font-weight:700;font-size:12px}.hidden{display:none!important}.foot{padding:12px 18px;border-top:1px solid var(--line);font-size:11px;color:#899690;display:flex;justify-content:space-between}
 @media(max-width:720px){.shell{padding:0}.app{height:100dvh;min-height:0;border-radius:0;border:0;grid-template-columns:1fr}.sidebar{border:0}.main{display:none}.app.chat-open .sidebar{display:none}.app.chat-open .main{display:flex}.top{height:68px}.chathead{height:68px}.messages{padding:14px}.composer{padding:10px}.back{display:block!important}.app:not(.chat-open) .main{display:none}}
 @media(min-width:721px){.back{display:none!important}}
+/* Treat narrow tablets and phones in landscape as mobile too. */
+@media(max-width:900px){
+ .shell{padding:0}
+ .app{width:100%;height:100dvh;min-height:0;border-radius:0;border:0;grid-template-columns:1fr}
+ .sidebar{border:0}
+ .main{display:none}
+ .app.chat-open .sidebar{display:none}
+ .app.chat-open .main{display:flex}
+ .top{height:68px}
+ .chathead{height:68px}
+ .messages{padding:14px}
+ .composer{padding:10px}
+ .back{display:block!important}
+ .app:not(.chat-open) .main{display:none}
+ .sidebar{background:#f7faf8}
+ .sidebar>.top{padding:0 16px;box-shadow:0 2px 10px rgba(12,55,45,.08)}
+ .sidebar>.search,.sidebar>.newchat,.sidebar>.group-action,.sidebar>.invitebtn,.sidebar>.phonefinder,.sidebar>#searchResults{display:none!important}
+ .sidebar>.section-label{padding:16px 18px 9px;background:#f7faf8;color:#73837c}
+ .sidebar>.chatlist{background:#fff;margin:0 12px 12px;border:1px solid var(--line);border-radius:16px;overflow:auto}
+ .sidebar>.foot{margin-top:auto;background:#fff}
+ .chatrow{padding:15px 14px;min-height:72px}
+ .chatrow:last-child{border-bottom:0}
+ .empty{padding:28px 18px}
+ .tab-screen{background:#f5f8f6}
+ .tab-head{height:66px;padding:0 18px;box-shadow:0 2px 10px rgba(12,55,45,.08)}
+ .tab-content{padding:16px}
+ .bottomnav{height:68px;box-shadow:0 -4px 18px rgba(12,55,45,.06)}
+ .main{background:#f7faf8}
+}
+
 </style>
 </head>
 <body>
@@ -535,7 +565,7 @@ function switchTab(tab){
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
   ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));$('notificationsPage').classList.add('hidden');
   const finder=document.querySelector('.phonefinder');
-  const isMobile=window.matchMedia('(max-width:720px)').matches;
+  const isMobile=window.matchMedia('(max-width:900px)').matches;
   if(finder){
     if(tab==='contacts')$('contactsFinderHost').appendChild(finder);
     else $('sidebarFinderAnchor').before(finder);
@@ -834,21 +864,3 @@ async function refreshStatusViewerCount(statusId){
   const ids=[...new Set(views.map(v=>v.viewer_id))];
   const {data:people}=await supabase.from('chatdun_profiles').select('id,display_name,username').in('id',ids);
   list.innerHTML=views.map(v=>{const p=people?.find(x=>x.id===v.viewer_id);return '<div class="status-viewer-person">'+escapeHtml(p?.display_name||'CHATDUN user')+' · @'+escapeHtml(p?.username||'user')+' <span style="opacity:.7">· '+new Date(v.viewed_at).toLocaleString()+'</span></div>'}).join('');
-}
-$('statusPrevBtn').onclick=()=>openStatusViewer(statusViewerIndex-1);
-$('statusNextBtn').onclick=()=>openStatusViewer(statusViewerIndex+1);
-$('statusViewerClose').onclick=()=>{$('statusViewer').classList.add('hidden');$('statusViewerImage').src=''};
-$('statusViewersToggle').onclick=()=>{$('statusViewersList').classList.toggle('hidden');const item=statusViewerItems[statusViewerIndex];if(item)refreshStatusViewerCount(item.id)};
-
-
-$('reportBtn').onclick=async()=>{const reason=prompt('Tell us why you are reporting this conversation (3–500 characters):');if(!reason)return;if(reason.trim().length<3||reason.trim().length>500)return alert('Please enter 3–500 characters.');const c=conversations.find(x=>x.id===activeConversation);const target=c?.others?.[0]?.id||null;const {error}=await supabase.from('chatdun_reports').insert({reporter_id:user.id,reported_user_id:target,conversation_id:activeConversation,reason:reason.trim()});if(error)alert('Could not send report: '+error.message);else alert('Report submitted. Thank you.');};
-$('logoutBtn').onclick=async()=>{if(activeChannel)await supabase.removeChannel(activeChannel);await supabase.auth.signOut();user=null;profile=null;activeConversation=null;$('app').classList.add('hidden');$('auth').classList.remove('hidden');$('phone').value='';$('otp').value='';pendingPhone='';showAuthStep('phoneStep')};
-const {data:{session}}=await supabase.auth.getSession();
-if(session){user=session.user;try{await routeAuthenticated()}catch(err){console.error(err);status('phoneStatus','Could not load your CHATDUN account.',true)}}
-supabase.auth.onAuthStateChange(async(event,session)=>{
-  if(event==='SIGNED_OUT') return;
-  if(session&&!user){user=session.user;try{await routeAuthenticated()}catch(e){console.error(e);status('phoneStatus','Could not load your CHATDUN account.',true)}}
-});
-</script>
-</body>
-</html>
