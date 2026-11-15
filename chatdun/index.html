@@ -331,11 +331,130 @@ button:active{transform:scale(.975)}
 }
 </style>
 
+
+<style id="chatdun-structural-redesign">
+/* CHATDUN product redesign: new hierarchy, split onboarding, redesigned inbox. */
+body{background:#edf0f7}
+.shell{padding:24px}
+.app{width:min(1380px,100%);height:min(900px,calc(100dvh - 48px));grid-template-columns:390px minmax(0,1fr);border-radius:28px;overflow:hidden}
+.sidebar{display:flex;flex-direction:column;background:#fff;padding:0!important;min-height:0}
+.sidebar>.top{height:82px;flex:none}
+.inbox-heading{display:flex;align-items:flex-end;justify-content:space-between;padding:24px 22px 15px;background:#fff}
+.inbox-kicker{display:block;font-size:9px;font-weight:800;letter-spacing:2px;color:#8c91a7;margin-bottom:6px}
+.inbox-heading h2{font-size:27px;letter-spacing:-1px;line-height:1;margin:0;color:#1b2340}
+.inbox-heading p{font-size:11px;color:#9299ad;margin:7px 0 0}
+.inbox-live{font-size:8px;letter-spacing:1px;font-weight:800;color:#7c8298;display:flex;align-items:center;gap:6px;padding-bottom:3px}
+.inbox-live i{width:7px;height:7px;border-radius:50%;background:#2ec8a5;box-shadow:0 0 0 4px #e8faf5}
+.sidebar-tools-host{padding:0 17px 14px;display:grid;gap:8px;border-bottom:1px solid #eef0f6}
+.sidebar-tools-host .search{padding:0}
+.sidebar-tools-host .search input{height:44px;background:#f5f6fb;border:1px solid #eaecf4;border-radius:13px;padding:0 14px;font-size:12px}
+.sidebar-tools-host .newchat,.sidebar-tools-host .group-action,.sidebar-tools-host .invitebtn{margin:0;border-radius:12px;padding:11px 13px;text-align:left;font-size:11px}
+.sidebar-tools-host .newchat{background:#6558ef;color:#fff}
+.sidebar-tools-host .group-action{background:#f0efff;color:#5e53dc;border:1px solid #e5e2ff}
+.sidebar-tools-host .invitebtn{background:#eef9f7;color:#218d81;border:1px solid #def3ee}
+.chatlist-heading{display:flex;align-items:center;justify-content:space-between;padding:17px 22px 8px;color:#9ba1b3;font-size:9px;font-weight:800;letter-spacing:1.5px}
+.chatlist-heading span+span{background:#f0efff;color:#6458e7;border-radius:20px;padding:4px 8px;letter-spacing:0}
+.sidebar>.chatlist{padding:4px 12px 16px;min-height:0;overflow:auto;flex:1}
+.sidebar .chatrow{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid transparent;border-radius:16px;margin:4px 0;min-height:70px;cursor:pointer}
+.sidebar .chatrow:hover{background:#f7f7fc;border-color:#f0eff8}
+.sidebar .chatrow.active{background:#f0efff;border-color:#e7e4ff;box-shadow:none}
+.chat-avatar-wrap{position:relative;flex:none}
+.chat-avatar-wrap .avatar{width:46px;height:46px;border-radius:15px}
+.sidebar .chatmeta{min-width:0;flex:1}
+.sidebar .chatmeta b{font-size:12px;color:#202944}
+.sidebar .chatmeta small{font-size:10px;color:#9299ad}
+.chatrow-arrow{font-size:22px;color:#b5b9c8}
+.sidebar .foot{flex:none;margin:0;background:#fff;border-top:1px solid #eef0f6}
+.main{min-height:0;background:#f7f8fc;padding:0!important}
+.welcome{max-width:620px;width:100%;margin:auto;padding:42px;text-align:left}
+.welcome .heroicon{margin:0 0 26px;width:76px;height:76px;border-radius:24px;background:linear-gradient(145deg,#e8e5ff,#dcf8f2);color:#6558ef}
+.welcome h1{font-size:clamp(28px,4vw,44px);letter-spacing:-1.8px;line-height:1.08;max-width:420px}
+.welcome p{max-width:420px;font-size:13px}
+.welcome:after{content:"A PRIVATE SPACE TO STAY CONNECTED";display:block;margin-top:30px;font-size:9px;letter-spacing:2px;font-weight:800;color:#a0a6b7}
+.chathead{height:82px;flex:none;padding:0 26px}
+.chathead .avatar{border-radius:15px}
+.messages{min-height:0}
+.composer{flex:none}
+.bottomnav{left:0;right:0}
+.authwrap{width:min(940px,100%);min-height:570px;display:grid;grid-template-columns:1fr 1fr;align-content:center;gap:0;padding:0;overflow:hidden;background:#fff;border:1px solid #e7e9f2;border-radius:30px;box-shadow:0 32px 90px rgba(31,37,75,.17);color:#202944}
+.auth-showcase{grid-column:1;grid-row:1 / span 8;position:relative;overflow:hidden;min-height:570px;padding:42px;background:linear-gradient(145deg,#242b59,#5146b6 60%,#187e87);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.showcase-orbit{position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:50%;pointer-events:none}
+.orbit-one{width:420px;height:420px;right:-230px;top:-170px;box-shadow:0 0 0 32px rgba(255,255,255,.035),0 0 0 70px rgba(255,255,255,.025)}
+.orbit-two{width:270px;height:270px;left:-170px;bottom:-130px;box-shadow:0 0 0 28px rgba(255,255,255,.035)}
+.showcase-mark{position:relative;z-index:1;width:55px;height:55px;border-radius:18px;background:linear-gradient(145deg,#fff,#c7fff2);color:#5146b6;display:grid;place-items:center;font-size:27px;font-weight:900}
+.showcase-copy{position:relative;z-index:1;margin:45px 0}
+.showcase-copy>span,.showcase-foot span{font-size:9px;letter-spacing:2px;font-weight:800;color:#b9fff0}
+.showcase-copy h2{font-size:clamp(30px,4vw,43px);line-height:1.08;letter-spacing:-1.7px;margin:18px 0}
+.showcase-copy h2 em{font-style:normal;color:#9ff7e7}
+.showcase-copy p{font-size:12px;line-height:1.8;color:#e0e5ff;max-width:300px}
+.showcase-foot{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-size:10px}
+.showcase-foot b{letter-spacing:2px}
+.authbrand,.authwrap>#phoneStep,.authwrap>#otpStep,.authwrap>#profileStep,.authwrap>#inviteBanner,.authwrap>.note{grid-column:2;margin-left:36px;margin-right:36px}
+.authbrand{align-self:end;margin-top:38px;margin-bottom:24px}
+.authbrand .mark{display:none}
+.authbrand h1{text-align:left;font-size:26px;letter-spacing:2px;color:#202944;margin:0 0 5px}
+.authbrand p{text-align:left;color:#8c94aa;font-size:12px}
+.authwrap .field label{color:#46516b}
+.authwrap .field input{background:#f7f8fc;border:1px solid #e7e9f2;color:#202944;border-radius:13px;padding:14px}
+.authwrap .field input::placeholder{color:#a6adbf}
+.authwrap .primary{border-radius:13px;padding:14px;background:linear-gradient(110deg,#6558ef,#4d91f3);color:#fff}
+.authwrap .note{color:#969db0;font-size:10px}
+.authwrap .google-btn{border-radius:13px;background:#fff;border:1px solid #e6e8f0}
+.authwrap .auth-divider{color:#a2a8b8}
+.authwrap .auth-divider:before,.authwrap .auth-divider:after{background:#e8eaf1}
+.authwrap>#phoneStep,.authwrap>#otpStep,.authwrap>#profileStep{align-self:start}
+.authwrap>.note:last-child{align-self:start;margin-bottom:30px}
+@media(min-width:901px){
+ .app{grid-template-columns:390px minmax(0,1fr)}
+ .sidebar>.top{background:#151d34}
+ .bottomnav{left:390px}
+ .tab-screen{inset:0 0 0 390px}
+}
+@media(max-width:900px){
+ .shell{padding:0}
+ .app{width:100%;height:100dvh;min-height:0;border:0;border-radius:0;grid-template-columns:1fr}
+ .sidebar{height:100dvh}
+ .sidebar>.top{height:72px;padding:0 17px}
+ .inbox-heading{padding:21px 19px 13px}
+ .inbox-heading h2{font-size:25px}
+ .sidebar-tools-host{padding:0 14px 12px;grid-template-columns:1fr 1fr}
+ .sidebar-tools-host .search{grid-column:1/-1}
+ .sidebar-tools-host .invitebtn{grid-column:1/-1}
+ .sidebar-tools-host .phonefinder{grid-column:1/-1}
+ .sidebar>.chatlist{margin:0;padding:3px 10px 14px;border:0;border-radius:0;background:#fff}
+ .sidebar .chatrow{min-height:72px;padding:12px 10px}
+ .sidebar .foot{padding:11px 15px}
+ .main{height:100dvh}
+ .chathead{height:70px;padding:0 13px}
+ .messages{padding:15px 12px 18px}
+ .composer{padding:10px 11px max(10px,env(safe-area-inset-bottom))}
+ .bottomnav{height:68px}
+ .tab-screen{inset:0 0 68px}
+ .authwrap{width:100%;min-height:100dvh;border:0;border-radius:0;grid-template-columns:1fr;grid-template-rows:auto 1fr;align-content:start}
+ .auth-showcase{grid-column:1;grid-row:1;min-height:220px;padding:23px 25px}
+ .showcase-mark{width:43px;height:43px;border-radius:14px;font-size:22px}
+ .showcase-copy{margin:18px 0 8px}
+ .showcase-copy>span{font-size:8px}
+ .showcase-copy h2{font-size:25px;margin:8px 0}
+ .showcase-copy p{font-size:10px;line-height:1.5;margin:0;max-width:280px}
+ .showcase-foot{display:none}
+ .authbrand,.authwrap>#phoneStep,.authwrap>#otpStep,.authwrap>#profileStep,.authwrap>#inviteBanner,.authwrap>.note{grid-column:1;margin-left:25px;margin-right:25px}
+ .authbrand{margin-top:25px;margin-bottom:17px}
+ .authbrand h1{font-size:22px}
+ .authwrap>.note:last-child{margin-bottom:25px}
+}
+@media(max-width:380px){
+ .inbox-live{display:none}
+ .sidebar-tools-host{grid-template-columns:1fr}
+ .sidebar-tools-host .search,.sidebar-tools-host .invitebtn{grid-column:1}
+}
+</style>
 </head>
 <body>
 <div class="shell">
   <section id="auth" class="authwrap">
-    <div class="authbrand"><div class="mark">✉</div><h1>CHATDUN</h1><p>Connect. Chat. Share.</p></div>
+    <div class="auth-showcase"><div class="showcase-orbit orbit-one"></div><div class="showcase-orbit orbit-two"></div><div class="showcase-mark">C.</div><div class="showcase-copy"><span>MESSAGING, REIMAGINED</span><h2>Your people.<br>Your conversations.<br><em>Your space.</em></h2><p>A calmer place to keep in touch, share moments and stay close to the people who matter.</p></div><div class="showcase-foot"><span>BUILT WITH PURPOSE</span><b>I D LABS</b></div></div>
+    <div class="authbrand"><div class="mark">C.</div><h1>CHATDUN</h1><p>Sign in to your space</p></div>
 
     <div id="inviteBanner" class="invitebanner hidden" role="status"></div>
     <div id="phoneStep">
@@ -387,7 +506,9 @@ button:active{transform:scale(.975)}
         <p class="phonehint">Only the number you choose or enter is checked. Phone numbers are not shown to other users.</p>
       </div>
       <div id="searchResults" class="hidden"></div>
-      <div class="section-label">Your conversations</div>
+      <div class="inbox-heading"><div><span class="inbox-kicker">YOUR SPACE</span><h2>Messages</h2><p>Your conversations, all in one place.</p></div><span class="inbox-live"><i></i> PRIVATE INBOX</span></div>
+      <div id="sidebarToolsHost" class="sidebar-tools-host"></div>
+      <div class="chatlist-heading"><span>RECENT CONVERSATIONS</span><span id="chatCount">0</span></div>
       <div id="chatList" class="chatlist"><div class="empty">Your chats will appear here.</div></div>
       <div class="foot"><span id="myHandle">@username</span><button id="logoutBtn" class="iconbtn" type="button">Log out</button></div>
     </aside>
@@ -761,8 +882,9 @@ async function loadConversations(){
 }
 function avatarMarkup(name,url){return url?'<div class="avatar"><img src="'+escapeHtml(url)+'" alt="'+escapeHtml(name||'Profile photo')+'"></div>':'<div class="avatar">'+escapeHtml(initials(name))+'</div>'}
 function renderConversations(){
- const root=$('chatList');if(!conversations.length){root.innerHTML='<div class="empty">No conversations yet.<br>Start one with a username.</div>';return}
- root.innerHTML=conversations.map(c=>'<div class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'">'+avatarMarkup(c.label,c.is_group?c.group_avatar_url:c.others?.[0]?.avatar_url)+'<div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'👥 '+(c.participants?.length||0)+' members':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div></div>').join('');
+ const root=$('chatList');$('chatCount').textContent=String(conversations.length);
+ if(!conversations.length){root.innerHTML='<div class="empty inbox-empty"><span class="empty-symbol">✦</span><b>Your inbox is ready.</b><small>Start a conversation and it will appear here.</small><button type="button" id="emptyStartChat">Find someone</button></div>';const start=$('emptyStartChat');if(start)start.onclick=()=>$('peopleSearch').focus();return}
+ root.innerHTML=conversations.map(c=>'<article class="chatrow '+(activeConversation===c.id?'active':'')+'" data-id="'+c.id+'"><div class="chat-avatar-wrap">'+avatarMarkup(c.label,c.is_group?c.group_avatar_url:c.others?.[0]?.avatar_url)+'</div><div class="chatmeta"><b>'+escapeHtml(c.label)+'</b><small>'+(c.is_group?'Group · '+(c.participants?.length||0)+' members':(c.handle?'@'+escapeHtml(c.handle):'Private conversation'))+'</small></div><span class="chatrow-arrow">›</span></article>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>openConversation(el.dataset.id));
 }
 let activeTab='chats';
@@ -789,8 +911,8 @@ function switchTab(tab){
     if(phoneFinder)host.appendChild(phoneFinder);
     if($('searchResults'))host.appendChild($('searchResults'));
   }else{
-    const before=anchor.nextSibling;
-    [searchBox,$('newChatBtn'),$('createGroupBtn'),$('inviteBtn'),phoneFinder,$('searchResults')].filter(Boolean).forEach(el=>sidebar.insertBefore(el,before));
+    const toolsHost=$('sidebarToolsHost');
+    [searchBox,$('newChatBtn'),$('createGroupBtn'),$('inviteBtn'),phoneFinder,$('searchResults')].filter(Boolean).forEach(el=>toolsHost.appendChild(el));
   }
   if(tab==='contacts')$('app').classList.remove('chat-open');
   if(tab==='updates')loadStatuses();
