@@ -122,6 +122,105 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
  .main{background:#f7faf8}
 }
 
+
+/* CHATDUN visual identity — original midnight / aqua interface */
+:root{--green:#176f78;--green2:#087f91;--lime:#55dfc2;--ink:#172b3a;--muted:#718494;--paper:#f3f7fa;--line:#e4edf2;--white:#fff;--shadow:0 24px 70px rgba(20,48,68,.12)}
+body{background:#eaf1f5;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif}
+.shell{padding:28px}
+.app{width:min(1240px,100%);height:min(850px,calc(100dvh - 56px));min-height:600px;border:1px solid #dce7ee;border-radius:28px;box-shadow:0 28px 90px rgba(24,52,72,.15);grid-template-columns:390px minmax(0,1fr);background:#fff}
+.sidebar{background:#fff;border-right:1px solid #e8eef2;padding-bottom:0}
+.top{height:86px;background:#142b3b;padding:0 22px}
+.mark{width:42px;height:42px;border-radius:15px;background:#54dec3;color:#123546;font-size:21px;box-shadow:0 6px 18px rgba(84,222,195,.2)}
+.brand b{font-size:20px;letter-spacing:1.7px}.brand small{font-size:9px;letter-spacing:2px;color:#a8c0cd;opacity:1}
+.notification-trigger,.profile-trigger{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.1);border-radius:14px}
+.profile-trigger .avatar{width:32px;height:32px;background:#d8f7f0;color:#155e69}
+.section-label{padding:19px 22px 10px;color:#8798a4;font-size:10px;letter-spacing:1.6px}
+.chatlist{padding:0 10px 14px}
+.chatrow{border:0;border-radius:16px;margin:3px 0;padding:14px 12px;min-height:76px;transition:background .16s ease}
+.chatrow:hover{background:#f3f8fa}.chatrow.active{background:#eaf8f6;box-shadow:inset 3px 0 #22b99f}
+.avatar{width:48px;height:48px;border-radius:17px;background:#dff3ef;color:#176f78;font-size:16px}
+.chatmeta b{font-size:14px;color:#20394a}.chatmeta small{font-size:12px;color:#8495a0}
+.foot{border-top:1px solid #edf2f5;padding:14px 18px}
+.main{background:#f4f8fa;padding-bottom:0}
+.welcome{max-width:470px}
+.welcome .heroicon{width:96px;height:96px;border-radius:30px;background:#ddf7f0;color:#147c7d;font-size:40px}
+.welcome h1{font-size:29px;letter-spacing:-.8px;color:#193648}
+.welcome p{font-size:14px}
+.chathead{height:82px;border-bottom:1px solid #e7eef2;padding:0 25px;background:#fff}
+.chathead .avatar{border-radius:16px}
+.chathead b{font-size:15px;color:#1b3444}
+.chathead small{font-size:12px;color:#7f929e}
+.messages{padding:26px;background-color:#f4f8fa;background-image:radial-gradient(#dfe9ee .8px,transparent .8px);background-size:22px 22px;gap:12px}
+.bubble{border:1px solid #e7eef2;border-radius:18px 18px 18px 6px;padding:12px 15px;box-shadow:0 4px 14px rgba(30,60,78,.045)}
+.bubble.mine{background:#dff8f1;border-color:#ccefe6;border-radius:18px 18px 6px 18px}
+.bubble p{font-size:14px;line-height:1.55}
+.bubble time{color:#83969f}
+.composer{padding:16px 20px;background:#fff;border-top:1px solid #e7eef2;gap:10px}
+.composer input{background:#f4f8fa;border:1px solid #e4edf1;border-radius:17px;padding:14px 18px}
+.send{width:48px;height:48px;background:#147f87;color:#fff;box-shadow:0 5px 14px rgba(20,127,135,.2)}
+.voice-btn{width:46px;height:46px;background:#e8f7f3;color:#147f87}
+.bottomnav{left:0;right:0;height:72px;background:rgba(255,255,255,.97);border-top:1px solid #e6edf1;padding:7px 12px max(7px,env(safe-area-inset-bottom))}
+.navitem{color:#82939d;font-size:11px;border-radius:14px}
+.navicon{font-size:19px}
+.navitem.active{background:#e8f8f4;color:#147f87}
+.tab-screen{background:#f4f8fa}
+.tab-head{height:82px;background:#142b3b;color:#fff;padding:0 26px;gap:12px;flex-direction:column;align-items:flex-start;justify-content:center;font-size:20px}
+.tab-head small{font-size:11px;font-weight:500;color:#a8c0cd}
+.tab-content{padding:24px;max-width:850px;width:100%;margin:0 auto}
+.contacts-intro{padding:22px 22px 18px;background:linear-gradient(130deg,#17394a,#1d5961);border-radius:22px;color:#fff;margin-bottom:18px}
+.contacts-intro .eyebrow{font-size:10px;letter-spacing:1.8px;color:#8debd8;font-weight:800}
+.contacts-intro h2{font-size:25px;letter-spacing:-.7px;margin:9px 0 5px}
+.contacts-intro p{font-size:13px;line-height:1.6;color:#c0d7dd;margin:0;max-width:470px}
+.contacts-tools{display:grid;gap:10px}
+.contacts-tools .search{padding:0}
+.contacts-tools .search input{background:#fff;border:1px solid #dfe9ee;border-radius:14px;padding:15px}
+.contacts-tools .newchat,.contacts-tools .group-action,.contacts-tools .invitebtn{margin:0;padding:14px 16px;border-radius:14px;text-align:left}
+.contacts-tools .newchat{background:#e6f8f3;color:#176f78;border:1px solid #d3f0e7}
+.contacts-tools .group-action{background:#eef4fa;color:#385a77;border:1px solid #e0eaf1}
+.contacts-tools .invitebtn{background:#142b3b;color:#fff}
+.contacts-tools .phonefinder{padding:15px;background:#fff;border:1px solid #e3edf1;border-radius:16px}
+.contacts-tools .phonefinder .section-label{padding:0 0 10px;color:#627c8a}
+.contacts-tools .phonefindrow input{background:#f5f8fa;border-radius:12px;padding:12px}
+.contacts-tools #searchResults{background:#fff;border:1px solid #e3edf1;border-radius:15px;overflow:hidden}
+.contacts-tools .chatrow{margin:0;border-radius:0;border-bottom:1px solid #edf2f5}
+.tab-empty,.tab-empty strong{color:#708391}
+.status-compose{background:#e5f8f2;color:#176f78;border:1px solid #d4f0e7}
+.status-card,.notification-settings,.notification-row,.profile-card,.profile-details,.profile-edit,.status-compose-panel{border-color:#e2ebf0;box-shadow:0 5px 18px rgba(26,58,77,.035)}
+.authwrap{border:1px solid #e1eaf0;box-shadow:0 25px 75px rgba(20,48,68,.14)}
+.authbrand .mark{background:#dff8f1}
+.primary{background:#176f78}
+@media(max-width:900px){
+ .shell{padding:0;background:#f4f8fa}
+ .app{width:100%;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none;grid-template-columns:minmax(0,1fr)}
+ .sidebar{background:#f4f8fa}
+ .sidebar>.top{height:76px;padding:0 18px;box-shadow:none;background:#142b3b}
+ .sidebar>.section-label{padding:20px 20px 12px;background:#f4f8fa}
+ .sidebar>.chatlist{background:transparent;margin:0 10px 8px;padding:0 7px 12px;border:0;border-radius:0}
+ .chatrow{min-height:78px;padding:14px 11px}
+ .avatar{width:49px;height:49px;border-radius:17px}
+ .foot{margin-top:auto;background:#fff}
+ .main{background:#f4f8fa}
+ .chathead{height:72px;padding:0 14px}
+ .chathead .toolbar{gap:5px}
+ .chathead .toolbar .iconbtn{padding:8px;font-size:10px}
+ .messages{padding:16px 13px 20px}
+ .composer{padding:10px 11px max(10px,env(safe-area-inset-bottom))}
+ .composer input{padding:13px 14px}
+ .bottomnav{height:70px;box-shadow:0 -6px 22px rgba(25,57,76,.06)}
+ .tab-head{height:76px;padding:0 20px}
+ .tab-content{padding:17px 15px 24px}
+ .contacts-intro{padding:20px;border-radius:19px}
+ .app.chat-open .bottomnav{display:none}
+}
+@media(min-width:901px){
+ .app{grid-template-columns:390px minmax(0,1fr)}
+ .bottomnav{left:390px}
+ .sidebar{padding-bottom:72px}
+ .main{padding-bottom:0}
+ .tab-screen{inset:0 0 0 390px}
+ .tab-screen .tab-head{height:82px}
+}
+
 </style>
 </head>
 <body>
@@ -205,7 +304,7 @@ button,input{font:inherit}button{cursor:pointer;border:0}.shell{min-height:100vh
 <p>Use CHATDUN respectfully and lawfully. Do not harass, threaten, impersonate, spam, share others' private information without permission, or upload content you do not have permission to share. Do not use the service to scam or harm people. I D LABS may review reports and restrict accounts that violate these rules. Features may change while CHATDUN is in testing.</p>
 <p><small>Last updated: 13 November 2026. This is an in-app product notice, not legal advice. A full jurisdiction-specific privacy and terms review is still required before public launch.</small></p></div>
 <div id="deletionRequestPanel" class="profile-details hidden" style="margin-top:12px"><b>Request account deletion</b><p>This sends a request to I D LABS for review. Your account will not be deleted immediately, and you can continue using CHATDUN while it is reviewed.</p><textarea id="deletionReason" maxlength="500" placeholder="Optional reason (up to 500 characters)" style="width:100%;min-height:72px"></textarea><button id="submitDeletionRequestBtn" class="iconbtn" type="button">Submit deletion request</button></div></div></div></section><section id="notificationsPage" class="tab-screen hidden"><div class="tab-head"><button id="notificationsBackBtn" class="iconbtn" type="button">←</button> Notifications</div><div class="tab-content"><div class="notification-panel"><div class="notification-settings"><b>Notification settings</b><label class="notification-setting"><span>Message and reply alerts</span><input id="notificationsEnabled" type="checkbox" checked></label><label class="notification-setting"><span>Browser alerts while CHATDUN is open</span><input id="browserNotificationsEnabled" type="checkbox" checked></label><button id="enableBrowserNotificationsBtn" class="iconbtn" type="button">Enable device notifications</button><div id="notificationSettingsStatus" class="status"></div></div><div class="notification-settings"><b>Group invitations</b><div id="groupInviteList"><div class="empty">Loading invitations…</div></div></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b>Recent notifications</b><button id="markAllNotificationsReadBtn" class="iconbtn" type="button">Mark all read</button></div><div id="notificationList"><div class="empty">Loading notifications…</div></div></div></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head">Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
-    <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head">Find People</div><div class="tab-content"><p style="color:var(--muted);font-size:13px;line-height:1.5;margin-top:0">Find someone already using CHATDUN. Their phone number stays private.</p><div id="contactsFinderHost"></div></div></section>
+    <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head"><span>Discover</span><small>Find your people on CHATDUN</small></div><div class="tab-content"><div class="contacts-intro"><span class="eyebrow">YOUR NETWORK</span><h2>Find your people.</h2><p>Search by username or display name, or look up a number. Phone numbers stay private.</p></div><div id="contactsToolsHost" class="contacts-tools"></div></div></section>
     <section id="callsPage" class="tab-screen hidden"><div class="tab-head">Calls</div><div class="tab-content"><div class="tab-empty"><strong>Your calls</strong>Voice and video call history will appear here. Secure calling needs a real-time calling service that is not connected yet.</div></div></section>
     
 <div id="groupCreateModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="groupCreateTitle"><form id="groupCreateForm" class="modal-card"><div class="modal-head"><h2 id="groupCreateTitle">Create a group</h2><button class="modal-close" type="button" data-close-modal="groupCreateModal">×</button></div><div class="field"><label for="groupCreateName">Group name</label><input id="groupCreateName" maxlength="40" required placeholder="e.g. Family, Classmates"></div><div class="field"><label for="groupCreateMembers">Add people by username</label><input id="groupCreateMembers" maxlength="500" required placeholder="@username1, @username2"></div><p class="modal-help">Enter at least one existing CHATDUN username. Separate usernames with commas or spaces.</p><label class="field"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Group photo (optional)</span><input id="groupCreatePhoto" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="groupCreatePhotoPreview" class="group-photo-preview hidden" alt="Group photo preview"><button id="groupCreateSubmit" class="primary" type="submit">Create group</button><div id="groupCreateStatus" class="status"></div></form></div>
@@ -563,12 +662,26 @@ let statusViewerIndex=0;
 function switchTab(tab){
   activeTab=tab;
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-  ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));$('notificationsPage').classList.add('hidden');
-  const finder=document.querySelector('.phonefinder');
-  const isMobile=window.matchMedia('(max-width:900px)').matches;
-  if(finder){
-    if(tab==='contacts')$('contactsFinderHost').appendChild(finder);
-    else $('sidebarFinderAnchor').before(finder);
+  ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
+  $('notificationsPage').classList.add('hidden');
+  const sidebar=$('app').querySelector('.sidebar');
+  let anchor=$('sidebarToolsAnchor');
+  if(!anchor){anchor=document.createElement('div');anchor.id='sidebarToolsAnchor';sidebar.insertBefore(anchor,sidebar.querySelector('.search'))}
+  const toolIds=['peopleSearch','newChatBtn','createGroupBtn','inviteBtn','contactPhone','pickContactBtn','phoneResults','searchResults'];
+  const tools=toolIds.map(id=>$(id)).filter(Boolean);
+  const searchBox=document.querySelector('.search');
+  const phoneFinder=document.querySelector('.phonefinder');
+  const host=$('contactsToolsHost');
+  if(tab==='contacts'){
+    if(searchBox)host.appendChild(searchBox);
+    if($('newChatBtn'))host.appendChild($('newChatBtn'));
+    if($('createGroupBtn'))host.appendChild($('createGroupBtn'));
+    if($('inviteBtn'))host.appendChild($('inviteBtn'));
+    if(phoneFinder)host.appendChild(phoneFinder);
+    if($('searchResults'))host.appendChild($('searchResults'));
+  }else{
+    const before=anchor.nextSibling;
+    [searchBox,$('newChatBtn'),$('createGroupBtn'),$('inviteBtn'),phoneFinder,$('searchResults')].filter(Boolean).forEach(el=>sidebar.insertBefore(el,before));
   }
   if(tab==='contacts')$('app').classList.remove('chat-open');
   if(tab==='updates')loadStatuses();
