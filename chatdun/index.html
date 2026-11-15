@@ -570,11 +570,26 @@ $('pickContactBtn').onclick=async()=>{
 let searchTimer;
 $('peopleSearch').addEventListener('input',()=>{clearTimeout(searchTimer);const q=$('peopleSearch').value.trim().replace(/^@/,'').toLowerCase();if(q.length<2){$('searchResults').classList.add('hidden');return}searchTimer=setTimeout(()=>searchPeople(q),250)});
 async function searchPeople(q){
+ const root=$('searchResults');root.classList.remove('hidden');root.innerHTML='<div class="empty">Searching CHATDUN…</div>';
+ try{
+  const term=String(q||'').trim().slice(0,40).replace(/[\\\\%_]/g,'\\\\async function searchPeople(q){
  const {data,error}=await supabase.from('chatdun_profiles').select('id,username,display_name').ilike('username',q+'%').neq('id',user.id).limit(12);
  const root=$('searchResults');root.classList.remove('hidden');if(error){root.innerHTML='<div class="empty">Could not search right now.</div>';return}
  if(!data.length){root.innerHTML='<div class="empty">No matching usernames found.</div>';return}
  root.innerHTML='<div class="section-label">People</div>'+data.map(p=>'<div class="chatrow" data-id="'+p.id+'"><div class="avatar">'+escapeHtml(initials(p.display_name))+'</div><div class="chatmeta"><b>'+escapeHtml(p.display_name)+'</b><small>@'+escapeHtml(p.username)+'</small></div><button class="iconbtn" type="button">Chat</button></div>').join('');
  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>startConversation(el.dataset.id));
+}');
+  if(!term){root.classList.add('hidden');return}
+  const [byUsername,byName]=await Promise.all([
+   supabase.from('chatdun_profiles').select('id,username,display_name').ilike('username','%'+term+'%').neq('id',user.id).limit(12),
+   supabase.from('chatdun_profiles').select('id,username,display_name').ilike('display_name','%'+term+'%').neq('id',user.id).limit(12)
+  ]);
+  if(byUsername.error)throw byUsername.error;if(byName.error)throw byName.error;
+  const seen=new Set(),data=[...(byUsername.data||[]),...(byName.data||[])].filter(p=>!seen.has(p.id)&&seen.add(p.id)).slice(0,12);
+  if(!data.length){root.innerHTML='<div class="empty">No matching users found. Check the spelling or search their username.</div>';return}
+  root.innerHTML='<div class="section-label">People</div>'+data.map(p=>'<div class="chatrow" data-id="'+p.id+'"><div class="avatar">'+escapeHtml(initials(p.display_name))+'</div><div class="chatmeta"><b>'+escapeHtml(p.display_name)+'</b><small>@'+escapeHtml(p.username)+'</small></div><button class="iconbtn" type="button">Chat</button></div>').join('');
+  root.querySelectorAll('.chatrow').forEach(el=>el.onclick=()=>startConversation(el.dataset.id));
+ }catch(err){console.error('CHATDUN people search:',err);root.innerHTML='<div class="empty">Search is temporarily unavailable. Please try again.</div>'}
 }
 async function startConversation(otherId){
  try{
