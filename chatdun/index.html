@@ -980,6 +980,7 @@ async function refreshStatusViewerCount(statusId){
   const ids=[...new Set(views.map(v=>v.viewer_id))];
   const {data:people}=await supabase.from('chatdun_profiles').select('id,display_name,username').in('id',ids);
   list.innerHTML=views.map(v=>{const p=people?.find(x=>x.id===v.viewer_id);return '<div class="status-viewer-person">'+escapeHtml(p?.display_name||'CHATDUN user')+' · @'+escapeHtml(p?.username||'user')+' <span style="opacity:.7">· '+new Date(v.viewed_at).toLocaleString()+'</span></div>'}).join('');
+}
 </script>
 </body>
 </html>
