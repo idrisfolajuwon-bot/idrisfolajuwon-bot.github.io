@@ -549,6 +549,44 @@ body{background:#f1f0f4;color:#202236}
  .welcome-feature small{grid-column:2}
 }
 </style>
+
+<style id="chatdun-layout-rebuild">
+/* Structural rebuild: desktop becomes a three-zone product shell with a dedicated navigation rail.
+   On phones the rail returns to a familiar bottom navigation and the conversation list remains the home screen. */
+@media(min-width:901px){
+ .app{display:grid!important;grid-template-columns:78px 350px minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)}
+ .sidebar{grid-column:2;grid-row:1;min-width:0}
+ .main{grid-column:3;grid-row:1;min-width:0}
+ .bottomnav{position:absolute!important;left:0!important;top:0!important;right:auto!important;bottom:0!important;width:78px!important;height:auto!important;
+   display:flex!important;flex-direction:column!important;align-items:center;justify-content:flex-start;gap:12px;
+   padding:18px 9px!important;background:#171a2b!important;border:0!important;border-right:1px solid #303247!important;border-radius:0!important;box-shadow:none!important}
+ .bottomnav:before{content:"C.";display:grid;place-items:center;width:43px;height:43px;flex:none;margin:0 auto 22px;border-radius:15px;background:#f38a70;color:#171a2b;font-weight:1000;font-size:20px;letter-spacing:-1px}
+ .bottomnav:after{content:"I D LABS";position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:7px;letter-spacing:1.3px;font-weight:900;color:#888ba2;writing-mode:vertical-rl;transform:rotate(180deg)}
+ .navitem{width:58px;min-height:58px;flex:none;gap:5px;padding:7px 3px;border-radius:14px;color:#a6a7b8;font-size:9px}
+ .navitem .navicon{font-size:20px}
+ .navitem.active{color:#ff9b81;background:rgba(255,255,255,.10)}
+ .sidebar{padding-bottom:0!important}
+ .main{padding-bottom:0!important}
+ .tab-screen{inset:0 0 0 428px!important}
+ .tab-screen .tab-head{padding-left:30px}
+ .sidebar>.top{height:84px}
+ .chathead{padding-left:30px;padding-right:30px}
+ .welcome{max-width:790px}
+}
+@media(max-width:900px){
+ .app{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)}
+ .sidebar{grid-column:1;grid-row:1}
+ .main{grid-column:1;grid-row:1}
+ .bottomnav{position:absolute!important;left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto!important;height:68px!important;
+   display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;flex-direction:row!important;align-items:stretch;
+   padding:6px 8px max(6px,env(safe-area-inset-bottom))!important;border-top:1px solid #292b3b!important;border-right:0!important}
+ .bottomnav:before,.bottomnav:after{display:none!important;content:none!important}
+ .navitem{width:auto;min-height:0;flex:initial;gap:3px;padding:5px 2px;font-size:10px}
+ .navitem .navicon{font-size:19px}
+ .tab-screen{inset:0 0 68px!important}
+ .app.chat-open .bottomnav{display:none!important}
+}
+</style>
 </head>
 <body>
 <div class="shell">
