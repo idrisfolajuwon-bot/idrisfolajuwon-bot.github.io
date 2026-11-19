@@ -684,7 +684,25 @@ body{background:#f1f0f4;color:#202236}
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.4';
 const SUPABASE_URL = 'https://fgkylbebokqcviqcbmoi.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_biF9EZXH3jxwGrvXGGmdiQ_LZwlPQNj';
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { storageKey: 'chatdun.auth.token' } });
+const SHARED_AUTH_STORAGE_KEY = 'sb-fgkylbebokqcviqcbmoi-auth-token';
+// Keep existing CHATDUN sessions when moving to the shared I D LABS login.
+try {
+  const legacySession = localStorage.getItem('chatdun.auth.token');
+  if (legacySession && !localStorage.getItem(SHARED_AUTH_STORAGE_KEY)) {
+    localStorage.setItem(SHARED_AUTH_STORAGE_KEY, legacySession);
+  }
+  if (legacySession) localStorage.removeItem('chatdun.auth.token');
+} catch (migrationError) {
+  console.warn('Could not migrate the previous CHATDUN session:', migrationError);
+}
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: {
+    storageKey: SHARED_AUTH_STORAGE_KEY,
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true
+  }
+});
 const $ = id => document.getElementById(id);
 let user = null, profile = null, activeConversation = null, activeChannel = null, conversations = [];
 let pendingPhone = '', pendingLinkPhone='', replyTarget=null, typingTimer=null, recorder=null, recordChunks=[], recordStartedAt=0, messageCache=new Map(), notificationChannel=null, notificationPrefs={notifications_enabled:true,browser_enabled:true}, mutedConversations=new Set(), currentConversationMuted=false, activeGroupMembers=[];
@@ -710,13 +728,45 @@ function normalizePhone(value){
   return '+'+v;
 }
 function validPhone(phone){return phone.startsWith('+')&&phone.length>=9&&phone.length<=16&&!phone.slice(1).split('').some(ch=>ch<'0'||ch>'9')}
+let authRoutePromise = null;
 async function routeAuthenticated(){
   if(!user) return;
-  const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',user.id).maybeSingle();
-  if(error) throw error;
-  if(data){profile=data;await enterApp();return}
-  showAuthStep('profileStep');
+  if(authRoutePromise) return authRoutePromise;
+  const authUserId = user.id;
+  authRoutePromise = (async()=>{
+    const {data,error}=await supabase.from('chatdun_profiles').select('*').eq('id',authUserId).maybeSingle();
+    if(error) throw error;
+    if(user?.id !== authUserId) return;
+    if(data){profile=data;await enterApp();return}
+    showAuthStep('profileStep');
+  })();
+  try { await authRoutePromise; }
+  finally { authRoutePromise = null; }
 }
+// Restore the same Supabase account used by IDRIS AI STUDIO after page loads.
+supabase.auth.onAuthStateChange((event, session)=>{
+  const nextUser = session?.user || null;
+  if(event === 'SIGNED_OUT'){
+    user = null;
+    profile = null;
+    $('app').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    return;
+  }
+  if(!nextUser){
+    if(event === 'INITIAL_SESSION'){user = null;profile = null;}
+    return;
+  }
+  user = nextUser;
+  if(['INITIAL_SESSION','SIGNED_IN','TOKEN_REFRESHED','USER_UPDATED'].includes(event)){
+    setTimeout(()=>{
+      routeAuthenticated().catch(err=>{
+        console.error('CHATDUN account session could not be restored:',err);
+        status('phoneStatus',err.message||'Could not load your account.',true);
+      });
+    },0);
+  }
+});
 $('googleSignIn').addEventListener('click',async()=>{
   const btn=$('googleSignIn');btn.disabled=true;status('googleStatus','Connecting to Google…');
   try{
