@@ -587,6 +587,14 @@ body{background:#f1f0f4;color:#202236}
  .app.chat-open .bottomnav{display:none!important}
 }
 </style>
+
+<style id="chatdun-mobile-inbox-fix">
+/* On phones, keep the Chats home focused on the conversation list.
+   The search/actions are moved to Contacts by switchTab(), so hide their sidebar host here. */
+@media (max-width:900px){
+  #sidebarToolsHost{display:none!important}
+}
+</style>
 </head>
 <body>
 <div class="shell">
