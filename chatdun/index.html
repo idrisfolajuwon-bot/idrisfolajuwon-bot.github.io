@@ -688,10 +688,17 @@ const SHARED_AUTH_STORAGE_KEY = 'sb-fgkylbebokqcviqcbmoi-auth-token';
 // Keep existing CHATDUN sessions when moving to the shared I D LABS login.
 try {
   const legacySession = localStorage.getItem('chatdun.auth.token');
-  if (legacySession && !localStorage.getItem(SHARED_AUTH_STORAGE_KEY)) {
+  const sharedSession = localStorage.getItem(SHARED_AUTH_STORAGE_KEY);
+  if (legacySession && !sharedSession) {
     localStorage.setItem(SHARED_AUTH_STORAGE_KEY, legacySession);
+    localStorage.removeItem('chatdun.auth.token');
+  } else if (legacySession && sharedSession && legacySession === sharedSession) {
+    localStorage.removeItem('chatdun.auth.token');
+  } else if (legacySession && sharedSession) {
+    // Different sessions may belong to different existing accounts. Keep the old
+    // CHATDUN session as a backup; do not silently merge or discard either login.
+    console.warn('Both a shared I D LABS session and an older CHATDUN session exist. Manual account linking may be needed.');
   }
-  if (legacySession) localStorage.removeItem('chatdun.auth.token');
 } catch (migrationError) {
   console.warn('Could not migrate the previous CHATDUN session:', migrationError);
 }
