@@ -1090,6 +1090,13 @@ function switchTab(tab){
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
   ['profile','updates','contacts','calls'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
   $('notificationsPage').classList.add('hidden');
+
+  // Keep each navigation section separate from an open conversation.
+  // Returning to Chats restores the inbox so previous conversations are visible.
+  $('app').classList.remove('chat-open');
+  $('chatPanel').classList.add('hidden');
+  $('welcome').classList.remove('hidden');
+
   const sidebar=$('app').querySelector('.sidebar');
   let anchor=$('sidebarToolsAnchor');
   if(!anchor){anchor=document.createElement('div');anchor.id='sidebarToolsAnchor';sidebar.insertBefore(anchor,sidebar.querySelector('.search'))}
@@ -1187,6 +1194,7 @@ async function startConversation(otherId){
  }catch(err){alert(err.message||'Could not start chat.')}
 }
 async function openConversation(id){
+ if(activeTab!=='chats')switchTab('chats');
  activeConversation=id;const c=conversations.find(x=>x.id===id);if(!c)return;updateMuteButton();
  $('welcome').classList.add('hidden');$('chatPanel').classList.remove('hidden');$('app').classList.add('chat-open');$('chatTitle').textContent=c.label;$('chatSubtitle').textContent=c.is_group?(c.participants?.length||0)+' members':(c.handle?'@'+c.handle:'Private conversation');$('chatAvatar').innerHTML=(c.is_group?c.group_avatar_url:c.others?.[0]?.avatar_url)?'<img src="'+escapeHtml(c.is_group?c.group_avatar_url:c.others[0].avatar_url)+'" alt="">':escapeHtml(initials(c.label));$('groupInfoBtn').classList.toggle('hidden',!c.is_group);renderConversations();
  if(activeChannel){await supabase.removeChannel(activeChannel);activeChannel=null}
