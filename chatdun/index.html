@@ -651,6 +651,20 @@ body{background:#f1f0f4;color:#202236}
 }
 </style>
 
+
+<style id="chatdun-home-polish">
+/* Small, lightweight finish details for the home dashboard. */
+.hub-header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96)}
+.hub-card,.hub-feature,.hub-icon-btn,.hub-profile,.hub-footer button{-webkit-tap-highlight-color:transparent}
+.hub-card:focus-visible,.hub-feature:focus-visible,.hub-icon-btn:focus-visible,.hub-profile:focus-visible,.hub-footer button:focus-visible{outline:3px solid #7bd9bf;outline-offset:3px}
+@media(hover:hover){
+ .hub-card:hover{transform:translateY(-2px);border-color:#b9ded0;box-shadow:0 10px 24px rgba(23,61,48,.12)}
+ .hub-feature:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:0 12px 28px rgba(18,34,54,.18)}
+ .hub-icon-btn:hover,.hub-profile:hover{background:#f2f8f5;border-color:#cfe5da}
+}
+@media(prefers-reduced-motion:reduce){.hub-card,.hub-feature{transition:none;transform:none!important}}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -698,7 +712,7 @@ body{background:#f1f0f4;color:#202236}
     <section id="homeHub" class="hub-screen hidden" aria-label="CHATDUN home">
   <header class="hub-header">
     <div class="hub-brand"><span class="hub-logo">C.</span><div><b>CHATDUN</b><small>YOUR SPACE TO CONNECT</small></div></div>
-    <div class="hub-header-actions"><button id="hubNotifications" class="hub-icon-btn" type="button" aria-label="Notifications">♧</button><button id="hubProfile" class="hub-profile" type="button"><span id="hubAvatar">?</span><span>Profile</span></button></div>
+    <div class="hub-header-actions"><button id="hubNotifications" class="hub-icon-btn" type="button" aria-label="Notifications">🔔</button><button id="hubProfile" class="hub-profile" type="button"><span id="hubAvatar">?</span><span>Profile</span></button></div>
   </header>
   <main class="hub-content">
     <section class="hub-welcome">
