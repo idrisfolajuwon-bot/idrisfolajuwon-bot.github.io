@@ -612,6 +612,28 @@ body{background:#f1f0f4;color:#202236}
 .app.menu-home .main{display:none!important}
 .app.menu-home .tab-screen{display:none!important}
 @media(max-width:900px){.app.menu-home .sidebar{width:100%!important;max-width:none!important}}
+</style><style id="chatdun-home-experience">
+/* CHATDUN's new home: a calm, product-led dashboard rather than a plain menu. */
+.app.menu-home{display:block!important;position:relative!important;overflow:hidden!important;background:#f4f7f6!important}
+.app.menu-home>.sidebar,.app.menu-home>.main{display:none!important}
+.hub-screen{position:absolute;inset:0;z-index:100;display:flex;flex-direction:column;overflow:auto;background:#f4f7f6;color:#182b29}
+.hub-header{height:76px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(17px,4vw,42px);background:#fff;border-bottom:1px solid #e8eeeb}
+.hub-brand{display:flex;align-items:center;gap:11px}.hub-logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:#0b6559;color:#fff;font-size:20px;font-weight:900;box-shadow:0 6px 14px #0b655926}.hub-brand b{display:block;font-size:15px;letter-spacing:1.7px}.hub-brand small{display:block;margin-top:3px;color:#81918b;font-size:9px;letter-spacing:1.3px;font-weight:800}
+.hub-header-actions{display:flex;align-items:center;gap:9px}.hub-icon-btn,.hub-profile{height:40px;border:1px solid #e7eeea;border-radius:13px;background:#fff;color:#315d53;font-weight:800}.hub-icon-btn{width:42px;font-size:19px}.hub-profile{display:flex;align-items:center;gap:8px;padding:4px 12px 4px 5px;font-size:11px}.hub-profile>span:first-child{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#e5f2ed;color:#0b6559;font-size:12px}
+.hub-content{width:min(970px,100%);margin:0 auto;padding:clamp(17px,3.5vw,34px);overflow:visible}
+.hub-welcome{position:relative;min-height:215px;overflow:hidden;display:flex;align-items:center;padding:27px 32px 48px;border-radius:24px;background:radial-gradient(circle at 84% 20%,#2c8b79 0,transparent 27%),linear-gradient(118deg,#123c37,#0b6559 62%,#164d51);color:#fff;box-shadow:0 15px 36px #174e4020}
+.hub-welcome-copy{position:relative;z-index:2;max-width:560px}.hub-eyebrow{font-size:9px;letter-spacing:2px;font-weight:900;color:#a9e9d6}.hub-welcome h1{font-size:clamp(30px,5vw,45px);line-height:1.02;letter-spacing:-1.6px;margin:12px 0 9px}.hub-welcome h1 em{font-style:normal;color:#a8f0d9}.hub-welcome p{max-width:390px;margin:0;color:#d1e9e0;font-size:12px;line-height:1.65}
+.hub-orbit{position:absolute;right:10%;top:15px;width:175px;height:150px;border:1px solid #ffffff25;border-radius:50%;transform:rotate(-25deg)}.hub-orbit:before,.hub-orbit:after{content:"";position:absolute;border:1px solid #ffffff2b;border-radius:50%;inset:17px -14px;transform:rotate(50deg)}.hub-orbit:after{inset:32px 16px;transform:rotate(-40deg)}.hub-orbit span{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(25deg);font-size:47px;color:#c3ffeb;text-shadow:0 0 30px #8df3d1}.hub-orbit i,.hub-orbit b{position:absolute;width:9px;height:9px;border-radius:50%;background:#b7f3dc;box-shadow:0 0 0 6px #b7f3dc20}.hub-orbit i{left:10px;top:34px}.hub-orbit b{right:5px;bottom:22px;background:#e6d7a3}
+.hub-welcome-bottom{position:absolute;left:32px;right:32px;bottom:17px;display:flex;justify-content:space-between;color:#b8d9ce;font-size:8px;font-weight:900;letter-spacing:1.3px}.hub-welcome-bottom i{display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:#76e5b5;box-shadow:0 0 0 4px #76e5b522}
+.hub-section{margin-top:26px}.hub-section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}.hub-section-title small{color:#8b9a94;font-size:8px;font-weight:900;letter-spacing:1.6px}.hub-section-title h2{margin:4px 0 0;font-size:20px;letter-spacing:-.6px;color:#1c3530}.hub-section-title>span{color:#9aa9a3;font-size:8px;font-weight:900;letter-spacing:1px}
+.hub-grid{display:grid;gap:11px}.hub-grid-primary{grid-template-columns:repeat(2,minmax(0,1fr))}
+.hub-card{min-width:0;min-height:91px;display:flex;align-items:center;gap:13px;padding:15px;border:1px solid #e5ece8;border-radius:17px;background:#fff;text-align:left;color:#203a34;box-shadow:0 5px 16px #173d3010;transition:transform .16s ease,border-color .16s ease}.hub-card:active,.hub-feature:active{transform:scale(.985)}.hub-card-icon{width:43px;height:43px;flex:none;display:grid;place-items:center;border-radius:14px;background:#eaf5f0;color:#0c7765;font-size:21px}.hub-card-copy{flex:1;min-width:0}.hub-card-copy b{display:block;font-size:13px}.hub-card-copy small{display:block;margin-top:4px;color:#81918a;font-size:10px;line-height:1.45}.hub-arrow{color:#9caaa4;font-size:19px}
+.hub-people .hub-card-icon{background:#eef1ff;color:#5c65b8}.hub-updates .hub-card-icon{background:#fff5e9;color:#b47a30}.hub-calls .hub-card-icon{background:#edf1f7;color:#61758e}
+.hub-grid-feature{grid-template-columns:repeat(2,minmax(0,1fr))}.hub-feature{position:relative;min-height:168px;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;padding:17px;border:1px solid transparent;border-radius:18px;text-align:left;color:#fff}.hub-ai{background:radial-gradient(circle at 90% 0,#7463bd 0,transparent 34%),linear-gradient(135deg,#242044,#40356e)}.hub-arena{background:radial-gradient(circle at 90% 0,#4b9b9c 0,transparent 34%),linear-gradient(135deg,#173c47,#216d70)}
+.hub-feature-symbol{font-size:25px;color:#c5f5e7}.hub-feature-tag{position:absolute;right:13px;top:14px;padding:6px 8px;border:1px solid #ffffff30;border-radius:20px;background:#ffffff12;color:#e5e5ff;font-size:7px;font-weight:900;letter-spacing:1px}.hub-feature>b{margin-top:10px;font-size:15px;letter-spacing:.6px}.hub-feature p{max-width:260px;margin:5px 0 12px;color:#d4d6e8;font-size:10px;line-height:1.55}.hub-feature-link{margin-top:auto;font-size:10px;font-weight:900;color:#bdf5e2}.hub-feature-link i{font-style:normal;margin-left:6px}
+.hub-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 0 5px;padding:13px 2px;border-top:1px solid #e2eae5;color:#9aa8a2;font-size:8px;font-weight:900;letter-spacing:1.1px}.hub-footer i{font-style:normal;color:#0c7765}.hub-footer button{border:0;background:transparent;color:#72837b;font-size:9px;font-weight:800}
+@media(max-width:560px){.hub-header{height:66px;padding:0 15px}.hub-content{padding:15px}.hub-welcome{min-height:205px;padding:23px 20px 47px;border-radius:19px}.hub-welcome-bottom{left:20px;right:20px}.hub-orbit{right:-42px;top:23px;opacity:.65;transform:scale(.82) rotate(-25deg)}.hub-welcome-copy{max-width:75%}.hub-welcome h1{font-size:34px}.hub-welcome p{font-size:11px}.hub-grid-primary{gap:8px}.hub-card{min-height:100px;padding:11px;gap:9px;border-radius:14px}.hub-card-icon{width:36px;height:36px;border-radius:11px;font-size:18px}.hub-card-copy b{font-size:12px}.hub-card-copy small{font-size:9px}.hub-grid-feature{gap:8px}.hub-feature{min-height:165px;padding:13px;border-radius:15px}.hub-feature-tag{right:9px;top:10px;font-size:6px;padding:5px 6px}.hub-feature>b{font-size:13px}.hub-feature p{font-size:9px}.hub-footer{font-size:7px;letter-spacing:.6px}}
+@media(prefers-reduced-motion:reduce){.hub-card,.hub-feature{transition:none}}
 </style></head>
 <body>
 <div class="shell">
@@ -656,6 +678,37 @@ body{background:#f1f0f4;color:#202236}
   </section>
 
   <section id="app" class="app hidden">
+    <section id="homeHub" class="hub-screen hidden" aria-label="CHATDUN home">
+  <header class="hub-header">
+    <div class="hub-brand"><span class="hub-logo">C.</span><div><b>CHATDUN</b><small>YOUR SPACE TO CONNECT</small></div></div>
+    <div class="hub-header-actions"><button id="hubNotifications" class="hub-icon-btn" type="button" aria-label="Notifications">♧</button><button id="hubProfile" class="hub-profile" type="button"><span id="hubAvatar">?</span><span>Profile</span></button></div>
+  </header>
+  <main class="hub-content">
+    <section class="hub-welcome">
+      <div class="hub-welcome-copy"><span class="hub-eyebrow">WELCOME TO YOUR SPACE</span><h1>Good to have<br><em>you here.</em></h1><p>Your conversations, people and new experiences — all in one place.</p></div>
+      <div class="hub-orbit" aria-hidden="true"><span>✦</span><i></i><b></b></div>
+      <div class="hub-welcome-bottom"><span><i></i> YOUR CHATDUN SPACE</span><span>BY I D LABS</span></div>
+    </section>
+    <section class="hub-section">
+      <div class="hub-section-title"><div><small>YOUR EVERYDAY SPACE</small><h2>Stay connected</h2></div><span>01 / CONNECT</span></div>
+      <div class="hub-grid hub-grid-primary">
+        <button class="hub-card hub-chats" data-hub-tab="chats" type="button"><span class="hub-card-icon">☏</span><span class="hub-card-copy"><b>Chats</b><small>Your private and group conversations</small></span><span class="hub-arrow">↗</span></button>
+        <button class="hub-card hub-people" data-hub-tab="contacts" type="button"><span class="hub-card-icon">⌕</span><span class="hub-card-copy"><b>People</b><small>Find and connect with people</small></span><span class="hub-arrow">↗</span></button>
+        <button class="hub-card hub-updates" data-hub-tab="updates" type="button"><span class="hub-card-icon">◉</span><span class="hub-card-copy"><b>Updates</b><small>Share moments that disappear after 24 hours</small></span><span class="hub-arrow">↗</span></button>
+        <button class="hub-card hub-calls" data-hub-tab="calls" type="button"><span class="hub-card-icon">⌁</span><span class="hub-card-copy"><b>Calls</b><small>Keep your call space in one place</small></span><span class="hub-arrow">↗</span></button>
+      </div>
+    </section>
+    <section class="hub-section hub-discover-section">
+      <div class="hub-section-title"><div><small>EXPLORE SOMETHING DIFFERENT</small><h2>Beyond messaging</h2></div><span>02 / EXPLORE</span></div>
+      <div class="hub-grid hub-grid-feature">
+        <button class="hub-feature hub-ai" data-hub-tab="ai" type="button"><span class="hub-feature-symbol">✧</span><span class="hub-feature-tag">AI PREVIEW</span><b>CHATDUN AI</b><p>A separate space for ideas, learning and creativity.</p><span class="hub-feature-link">Explore AI <i>↗</i></span></button>
+        <button class="hub-feature hub-arena" data-hub-tab="arena" type="button"><span class="hub-feature-symbol">◈</span><span class="hub-feature-tag">IN DEVELOPMENT</span><b>ARENA</b><p>Discover the next side of social experiences.</p><span class="hub-feature-link">Enter Arena <i>↗</i></span></button>
+      </div>
+    </section>
+    <footer class="hub-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>AN I D LABS PRODUCT</span></footer>
+  </main>
+</section>
+
     <aside class="sidebar">
       <div class="top"><div class="brand"><div class="mark">C.</div><nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
@@ -1114,14 +1167,18 @@ function showMenuHome(){
   activeTab='home';
   $('app').classList.remove('chat-open');
   $('app').classList.add('menu-home');
+  $('homeHub').classList.remove('hidden');
   $('chatPanel').classList.add('hidden');
   $('welcome').classList.add('hidden');
   ['profile','updates','contacts','calls','arena','ai','notifications'].forEach(name=>{const el=$(name+'Page');if(el)el.classList.add('hidden')});
   document.querySelectorAll('.navitem').forEach(b=>b.classList.remove('active'));
+  const avatar=$('topProfileAvatar');
+  $('hubAvatar').innerHTML=avatar?.innerHTML||'?';
 }
 function switchTab(tab){
   activeTab=tab;
   $('app').classList.remove('menu-home');
+  $('homeHub').classList.add('hidden');
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
   ['profile','updates','contacts','calls','arena','ai'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
   $('notificationsPage').classList.add('hidden');
@@ -1155,6 +1212,10 @@ function switchTab(tab){
   if(tab==='updates')loadStatuses();
 }
 document.querySelectorAll('.navitem').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+document.querySelectorAll('[data-hub-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.hubTab)));
+$('hubProfile').addEventListener('click',()=>$('profileBtn').click());
+$('hubNotifications').addEventListener('click',()=>$('notificationsBtn').click());
+$('hubLogout').addEventListener('click',()=>$('logoutBtn').click());
 document.querySelectorAll('[data-menu-back]').forEach(b=>b.addEventListener('click',showMenuHome));
 $('arenaExploreBtn').onclick=()=>$('arenaExperiences').scrollIntoView({behavior:'smooth',block:'start'});
 $('arenaChatBtn').onclick=()=>switchTab('chats');
