@@ -603,7 +603,16 @@ body{background:#f1f0f4;color:#202236}
 @media(max-width:900px){.sidebar{overflow:auto;min-height:0}.side-navigation{padding:10px 14px 12px;gap:4px}.side-navigation .navitem{min-height:42px}.sidebar>.chatlist{flex:1;min-height:110px}.tab-screen{inset:0!important}.app.chat-open .sidebar{display:none}}
 .ai-page{background:#f5f7fc!important;color:#1d2540}.ai-topbar{height:70px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px;background:#17152e;color:#fff}.ai-brand{display:flex;align-items:center;gap:11px}.ai-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#b9a8ff,#74e5d3);color:#211a48;font-size:22px;font-weight:900}.ai-brand b{display:block;font-size:15px;letter-spacing:1.3px}.ai-brand small{display:block;margin-top:3px;color:#b9b4d8;font-size:9px;letter-spacing:1.2px}.ai-preview-tag{padding:7px 10px;border:1px solid #514a79;border-radius:30px;color:#d2caff;background:#282344;font-size:9px;font-weight:900;letter-spacing:1px}.ai-scroll{width:100%;max-width:980px;margin:0 auto;padding:22px;overflow:auto}.ai-welcome{position:relative;overflow:hidden;padding:30px;border-radius:24px;background:radial-gradient(circle at 88% 12%,rgba(153,127,255,.28),transparent 34%),linear-gradient(130deg,#1a1736,#30285a 62%,#174d55);color:#fff}.ai-orbit{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.22);border-radius:16px;background:rgba(255,255,255,.1);font-size:25px;color:#b9fff0}.ai-eyebrow{margin-top:18px;color:#aeece1;font-size:9px;font-weight:900;letter-spacing:2px}.ai-welcome h1{max-width:620px;margin:12px 0;font-size:clamp(28px,5vw,44px);line-height:1.08;letter-spacing:-1.5px}.ai-welcome h1 span{color:#a9f0e3}.ai-welcome p{max-width:590px;margin:0;color:#d3d0e8;font-size:13px;line-height:1.7}.ai-capabilities{padding:24px 2px 12px}.ai-section-heading small{color:#8a82bd;font-size:9px;font-weight:900;letter-spacing:1.7px}.ai-section-heading h2{margin:7px 0 15px;font-size:21px;letter-spacing:-.5px}.ai-cap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ai-cap-grid article{padding:17px;border:1px solid #e7e7f1;border-radius:17px;background:#fff;box-shadow:0 7px 20px rgba(35,32,80,.04)}.ai-cap-grid article>span{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#f0edff;color:#6754d8;font-size:17px}.ai-cap-grid b{display:block;margin-top:12px;font-size:13px}.ai-cap-grid p{margin:6px 0 0;color:#778092;font-size:11px;line-height:1.6}.ai-status-panel{display:flex;gap:12px;padding:15px;border:1px solid #e5e0ff;border-radius:16px;background:#f5f2ff}.ai-status-dot{width:9px;height:9px;flex:none;margin-top:4px;border-radius:50%;background:#8a72ef;box-shadow:0 0 0 4px #e9e3ff}.ai-status-panel b{font-size:12px;color:#40357e}.ai-status-panel p{margin:5px 0 0;color:#6d668a;font-size:11px;line-height:1.6}.ai-footer-note{text-align:center;padding:18px;color:#a0a5b3;font-size:9px;letter-spacing:1.4px;font-weight:800}
 @media(max-width:560px){.ai-scroll{padding:14px}.ai-welcome{padding:22px}.ai-cap-grid{grid-template-columns:1fr}.ai-topbar{padding:0 15px}}.arena-page .arena-scroll{padding:22px}.arena-page .arena-card{cursor:default}@media(max-width:560px){.arena-page .arena-scroll{padding:14px}}
-</style><style id="chatdun-section-back-style">.section-menu-back{flex:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:inherit;border-radius:10px;padding:9px 11px;font-size:11px;font-weight:800}.ai-topbar .section-menu-back,.arena-topbar .section-menu-back{margin-right:12px}.ai-topbar,.arena-topbar{gap:8px}.ai-brand,.arena-brand{margin-right:auto}@media(max-width:520px){.section-menu-back{padding:8px 9px;font-size:10px}.ai-topbar .section-menu-back,.arena-topbar .section-menu-back{margin-right:4px}}</style></head>
+</style><style id="chatdun-section-back-style">.section-menu-back{flex:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:inherit;border-radius:10px;padding:9px 11px;font-size:11px;font-weight:800}.ai-topbar .section-menu-back,.arena-topbar .section-menu-back{margin-right:12px}.ai-topbar,.arena-topbar{gap:8px}.ai-brand,.arena-brand{margin-right:auto}@media(max-width:520px){.section-menu-back{padding:8px 9px;font-size:10px}.ai-topbar .section-menu-back,.arena-topbar .section-menu-back{margin-right:4px}}</style><style id="chatdun-menu-home-only">
+/* First screen after sign-in: brand header plus navigation only. */
+.app.menu-home{display:flex!important;flex-direction:column!important;min-height:100%!important}
+.app.menu-home .sidebar{display:flex!important;flex:1 1 auto!important;width:100%!important;max-width:none!important;min-width:0!important;min-height:100%!important;overflow:auto!important;border:0!important;padding:0!important}
+.app.menu-home .sidebar>:not(.top):not(.side-navigation){display:none!important}
+.app.menu-home .side-navigation{display:grid!important;width:100%!important;flex:none!important;border:0!important;border-top:1px solid #edf1f4!important}
+.app.menu-home .main{display:none!important}
+.app.menu-home .tab-screen{display:none!important}
+@media(max-width:900px){.app.menu-home .sidebar{width:100%!important;max-width:none!important}}
+</style></head>
 <body>
 <div class="shell">
   <section id="auth" class="authwrap">
@@ -648,7 +657,7 @@ body{background:#f1f0f4;color:#202236}
 
   <section id="app" class="app hidden">
     <aside class="sidebar">
-      <div class="top"><div class="brand"><div class="mark">C.</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
+      <div class="top"><div class="brand"><div class="mark">C.</div><nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
       <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button><button id="createGroupBtn" class="group-action" type="button">👥 Create a group</button>
       <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
@@ -693,7 +702,7 @@ body{background:#f1f0f4;color:#202236}
     
 <div id="groupCreateModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="groupCreateTitle"><form id="groupCreateForm" class="modal-card"><div class="modal-head"><h2 id="groupCreateTitle">Create a group</h2><button class="modal-close" type="button" data-close-modal="groupCreateModal">×</button></div><div class="field"><label for="groupCreateName">Group name</label><input id="groupCreateName" maxlength="40" required placeholder="e.g. Family, Classmates"></div><div class="field"><label for="groupCreateMembers">Add people by username</label><input id="groupCreateMembers" maxlength="500" required placeholder="@username1, @username2"></div><p class="modal-help">Enter at least one existing CHATDUN username. Separate usernames with commas or spaces.</p><label class="field"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Group photo (optional)</span><input id="groupCreatePhoto" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="groupCreatePhotoPreview" class="group-photo-preview hidden" alt="Group photo preview"><button id="groupCreateSubmit" class="primary" type="submit">Create group</button><div id="groupCreateStatus" class="status"></div></form></div>
 <div id="groupManageModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="groupManageTitle"><div class="modal-card"><div class="modal-head"><h2 id="groupManageTitle">Group information</h2><button class="modal-close" type="button" data-close-modal="groupManageModal">×</button></div><div id="groupManageAdmin" class="hidden"><div class="field"><label for="groupRenameInput">Group name</label><input id="groupRenameInput" maxlength="40"></div><div class="profile-actions"><button id="saveGroupNameBtn" class="iconbtn" type="button">Save name</button><button id="changeGroupPhotoBtn" class="iconbtn" type="button">Change photo</button></div><input id="groupPhotoInput" type="file" accept="image/jpeg,image/png,image/webp" class="hidden"><div class="group-section">Add a member</div><div class="phonefindrow"><input id="groupAddUsername" placeholder="@username" autocomplete="off"><button id="groupAddMemberBtn" type="button">Add</button></div><div id="groupManageStatus" class="status"></div></div><div class="group-section">Members</div><div id="groupMemberList"><div class="empty">Loading members…</div></div><div style="display:flex;gap:8px;margin-top:16px"><button id="leaveGroupBtn" class="iconbtn" type="button">Leave group</button><button class="iconbtn" type="button" data-close-modal="groupManageModal">Done</button></div></div></div>
-<nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav>
+
   </section>
 </div>
 <script type="module">
@@ -851,7 +860,7 @@ async function ensureProfile(){
  if(!data) throw new Error('Complete your CHATDUN profile first.');
  profile=data;
 }
-async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');switchTab('chats');$('myHandle').textContent='@'+profile.username;renderProfile();await loadConversations();await loadStatuses();await initializeNotifications()}
+async function enterApp(){if(!profile)await ensureProfile();$('auth').classList.add('hidden');$('app').classList.remove('hidden');showMenuHome();$('myHandle').textContent='@'+profile.username;renderProfile();await loadConversations();await loadStatuses();await initializeNotifications()}
 async function initializeNotifications(){
   const {data:pref,error:prefError}=await supabase.from('chatdun_notification_preferences').select('*').eq('user_id',user.id).maybeSingle();
   if(prefError)console.warn('Notification preferences unavailable:',prefError.message);
@@ -1101,8 +1110,18 @@ function renderConversations(){
 let activeTab='chats';
 let statusViewerItems=[];
 let statusViewerIndex=0;
+function showMenuHome(){
+  activeTab='home';
+  $('app').classList.remove('chat-open');
+  $('app').classList.add('menu-home');
+  $('chatPanel').classList.add('hidden');
+  $('welcome').classList.add('hidden');
+  ['profile','updates','contacts','calls','arena','ai','notifications'].forEach(name=>{const el=$(name+'Page');if(el)el.classList.add('hidden')});
+  document.querySelectorAll('.navitem').forEach(b=>b.classList.remove('active'));
+}
 function switchTab(tab){
   activeTab=tab;
+  $('app').classList.remove('menu-home');
   document.querySelectorAll('.navitem').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
   ['profile','updates','contacts','calls','arena','ai'].forEach(name=>$(name+'Page').classList.toggle('hidden',name!==tab));
   $('notificationsPage').classList.add('hidden');
@@ -1136,7 +1155,7 @@ function switchTab(tab){
   if(tab==='updates')loadStatuses();
 }
 document.querySelectorAll('.navitem').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
-document.querySelectorAll('[data-menu-back]').forEach(b=>b.addEventListener('click',()=>switchTab('chats')));
+document.querySelectorAll('[data-menu-back]').forEach(b=>b.addEventListener('click',showMenuHome));
 $('arenaExploreBtn').onclick=()=>$('arenaExperiences').scrollIntoView({behavior:'smooth',block:'start'});
 $('arenaChatBtn').onclick=()=>switchTab('chats');
 $('newStatusBtn').onclick=()=>{$('statusComposer').classList.toggle('hidden');$('statusPhotoInput').focus()};
