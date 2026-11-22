@@ -634,7 +634,24 @@ body{background:#f1f0f4;color:#202236}
 .hub-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 0 5px;padding:13px 2px;border-top:1px solid #e2eae5;color:#9aa8a2;font-size:8px;font-weight:900;letter-spacing:1.1px}.hub-footer i{font-style:normal;color:#0c7765}.hub-footer button{border:0;background:transparent;color:#72837b;font-size:9px;font-weight:800}
 @media(max-width:560px){.hub-header{height:66px;padding:0 15px}.hub-content{padding:15px}.hub-welcome{min-height:205px;padding:23px 20px 47px;border-radius:19px}.hub-welcome-bottom{left:20px;right:20px}.hub-orbit{right:-42px;top:23px;opacity:.65;transform:scale(.82) rotate(-25deg)}.hub-welcome-copy{max-width:75%}.hub-welcome h1{font-size:34px}.hub-welcome p{font-size:11px}.hub-grid-primary{gap:8px}.hub-card{min-height:100px;padding:11px;gap:9px;border-radius:14px}.hub-card-icon{width:36px;height:36px;border-radius:11px;font-size:18px}.hub-card-copy b{font-size:12px}.hub-card-copy small{font-size:9px}.hub-grid-feature{gap:8px}.hub-feature{min-height:165px;padding:13px;border-radius:15px}.hub-feature-tag{right:9px;top:10px;font-size:6px;padding:5px 6px}.hub-feature>b{font-size:13px}.hub-feature p{font-size:9px}.hub-footer{font-size:7px;letter-spacing:.6px}}
 @media(prefers-reduced-motion:reduce){.hub-card,.hub-feature{transition:none}}
-</style></head>
+</style>
+<style id="chatdun-navigation-layout-fix">
+/* Keep the brand header clean; navigation belongs below it, not inside the logo row. */
+.sidebar>.side-navigation{width:100%;padding:11px 14px 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:none;background:#fff;border-bottom:1px solid #edf1f4}
+.sidebar>.side-navigation .side-nav-label{grid-column:1/-1}
+.sidebar>.side-navigation .navitem{min-width:0;min-height:40px}
+@media(max-width:900px){
+.sidebar>.side-navigation{display:flex;align-items:center;gap:7px;padding:8px 12px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:none}
+.sidebar>.side-navigation::-webkit-scrollbar{display:none}
+.sidebar>.side-navigation .side-nav-label{display:none}
+.sidebar>.side-navigation .navitem{width:auto;min-width:max-content;min-height:38px;flex:0 0 auto;gap:6px;padding:6px 10px;font-size:10px;white-space:nowrap}
+.sidebar>.side-navigation .navicon{width:22px;height:22px;font-size:14px}
+.sidebar>.side-navigation .nav-chevron{display:none}
+.sidebar>.side-navigation .side-nav-divider{width:1px;height:23px;flex:0 0 1px;margin:0 2px}
+}
+</style>
+
+</head>
 <body>
 <div class="shell">
   <section id="auth" class="authwrap">
@@ -710,7 +727,9 @@ body{background:#f1f0f4;color:#202236}
 </section>
 
     <aside class="sidebar">
-      <div class="top"><div class="brand"><div class="mark">C.</div><nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
+      <div class="top"><div class="brand"><div class="mark">C.</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
+      <nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav>
+      
       <div class="search"><input id="peopleSearch" placeholder="Search people by username…" autocomplete="off"></div>
       <button id="newChatBtn" class="newchat" type="button">＋ Start a new chat</button><button id="createGroupBtn" class="group-action" type="button">👥 Create a group</button>
       <button id="inviteBtn" class="invitebtn" type="button">↗ Invite friends to CHATDUN</button>
