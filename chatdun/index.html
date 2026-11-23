@@ -1249,6 +1249,23 @@ document.querySelectorAll('[data-hub-tab]').forEach(b=>b.addEventListener('click
 $('hubProfile').addEventListener('click',()=>$('profileBtn').click());
 $('hubNotifications').addEventListener('click',()=>$('notificationsBtn').click());
 $('hubLogout').addEventListener('click',()=>$('logoutBtn').click());
+$('logoutBtn').addEventListener('click',async()=>{
+  const btn=$('logoutBtn');
+  if(btn.disabled)return;
+  btn.disabled=true;
+  btn.textContent='Logging out…';
+  try{
+    if(activeChannel){await supabase.removeChannel(activeChannel);activeChannel=null;}
+    if(notificationChannel){await supabase.removeChannel(notificationChannel);notificationChannel=null;}
+    const {error}=await supabase.auth.signOut({scope:'local'});
+    if(error)throw error;
+  }catch(err){
+    console.error('CHATDUN sign-out failed:',err);
+    btn.disabled=false;
+    btn.textContent='Log out';
+    alert('Could not log out. Please try again.');
+  }
+});
 document.querySelectorAll('[data-menu-back]').forEach(b=>b.addEventListener('click',showMenuHome));
 $('arenaExploreBtn').onclick=()=>$('arenaExperiences').scrollIntoView({behavior:'smooth',block:'start'});
 $('arenaChatBtn').onclick=()=>switchTab('chats');
