@@ -935,6 +935,8 @@ async function routeAuthenticated(){
 supabase.auth.onAuthStateChange((event, session)=>{
   const nextUser = session?.user || null;
   if(event === 'SIGNED_OUT'){
+    if(arenaLiveSession) arenaCleanupLiveSession(false,'You signed out. The live session was closed.');
+    if(arenaInviteChannel){supabase.removeChannel(arenaInviteChannel);arenaInviteChannel=null;}
     user = null;
     profile = null;
     $('app').classList.add('hidden');
