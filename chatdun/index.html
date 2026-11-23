@@ -671,6 +671,32 @@ body{background:#f1f0f4;color:#202236}
 @media(max-width:760px){.arena-live-grid{grid-template-columns:1fr}.ai-live-layout{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);height:calc(100% - 68px)}.ai-live-sidebar{padding:10px 12px;border-right:0;border-bottom:1px solid #e0e6ec;max-height:122px}.ai-new-chat{padding:9px 11px;width:auto;align-self:flex-start}.ai-history-heading{margin:10px 5px 5px}.ai-history-list{flex-direction:row;overflow-x:auto;overflow-y:hidden}.ai-history-item{flex:0 0 160px}.ai-history-foot{display:none}.ai-live-main{padding:15px 12px 12px}.ai-live-heading{margin-bottom:10px}.ai-live-heading h1{font-size:21px}.ai-live-heading p{font-size:11px}.ai-delete-chat{padding:7px 8px}.ai-message{max-width:94%}.ai-composer-bottom span{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.arena-live-page *,.ai-live-page *{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
+
+<style id="chatdun-arena-private-live">
+.arena-private-panel{background:#fff;border:1px solid #e1e9eb;border-radius:20px;padding:18px;margin:0 0 16px;box-shadow:0 8px 25px rgba(18,45,55,.045)}
+.arena-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.arena-panel-heading small{display:block;color:#71848a;font-size:9px;letter-spacing:1.4px;font-weight:800}
+.arena-panel-heading h2{margin:5px 0 0;color:#152c33;font-size:20px}
+.arena-field-label{display:block;font-size:12px;font-weight:800;color:#30464d;margin:0 0 7px}
+.arena-friend-select{width:100%;border:1px solid #dbe5e7;border-radius:12px;padding:13px;background:#f8fbfa;color:#17323a;font:inherit;min-height:46px}
+.arena-start-btn,.arena-stop-btn{margin-top:12px;border:0;border-radius:12px;padding:13px 17px;background:#087b69;color:white;font-weight:800;font:inherit;cursor:pointer}
+.arena-start-btn:disabled,.arena-stop-btn:disabled{opacity:.5;cursor:wait}
+.arena-small-note{font-size:11px;line-height:1.55;color:#718187;margin:10px 0 0}
+.arena-refresh-btn{border:1px solid #d8e6e2;background:#f0f8f5;color:#08745f;border-radius:10px;padding:9px 12px;font-weight:800}
+.arena-invites-list{display:grid;gap:9px}
+.arena-invite-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;border:1px solid #e3ebed;border-radius:13px;background:#f9fbfb}
+.arena-invite-copy{min-width:0}.arena-invite-copy b{display:block;font-size:13px;color:#18323a}.arena-invite-copy small{display:block;color:#728188;font-size:11px;margin-top:4px}
+.arena-join-btn{border:0;border-radius:10px;background:#102b37;color:#fff;padding:10px 13px;font-weight:800;white-space:nowrap}
+.arena-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.arena-video-tile{position:relative;min-width:0;background:#0d1d25;border-radius:15px;overflow:hidden;aspect-ratio:16/10}
+.arena-video-tile>span{position:absolute;z-index:1;top:9px;left:10px;padding:5px 8px;border-radius:7px;background:rgba(0,0,0,.55);color:#fff;font-size:9px;font-weight:800;letter-spacing:1px}
+.arena-video-tile video{display:block;width:100%;height:100%;object-fit:cover;background:#0d1d25}
+.arena-live-controls{display:flex;gap:9px;flex-wrap:wrap}
+.arena-stop-btn{background:#b42332}.arena-stop-btn.secondary{background:#e8f1ef;color:#24534a}
+.arena-safety-note{border:1px solid #d7e9e3;background:#f0f8f5;color:#48635c;border-radius:14px;padding:14px;font-size:11px;line-height:1.6;margin:14px 0 24px}
+.arena-safety-note b{display:block;color:#075e54;margin-bottom:4px}
+@media(max-width:560px){.arena-video-grid{grid-template-columns:1fr}.arena-video-tile{aspect-ratio:16/9}.arena-private-panel{padding:14px}.arena-panel-heading h2{font-size:18px}.arena-invite-row{align-items:flex-start;flex-direction:column}.arena-join-btn{width:100%}}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -800,11 +826,32 @@ body{background:#f1f0f4;color:#202236}
 <div id="chatdunAiStatus" class="ai-live-status" role="status">AI beta · No live web search yet · Check important information.</div></main></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button> Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
     <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button><span>Discover</span><small>Find your people on CHATDUN</small></div><div class="tab-content"><div class="contacts-intro"><span class="eyebrow">YOUR NETWORK</span><h2>Find your people.</h2><p>Search by username or display name, or look up a number. Phone numbers stay private.</p></div><div id="contactsToolsHost" class="contacts-tools"></div></div></section>
     <section id="arenaPage" class="tab-screen hidden arena-page arena-live-page" aria-label="CHATDUN Arena">
-<header class="arena-topbar"><button class="section-menu-back" data-menu-back type="button" aria-label="Back to menu">← Menu</button><div class="arena-brand"><span class="arena-brand-mark">✦</span><div><b>CHATDUN ARENA</b><small>THE SOCIAL EXPERIENCE SPACE</small></div></div><span class="arena-access">DISCOVER & JOIN</span></header>
-<div class="arena-scroll arena-live-scroll"><section class="arena-hero arena-live-hero"><div class="arena-eyebrow">A new side of CHATDUN</div><h1>Find your space.<br>Bring your <span>interests.</span></h1><p>You can explore Arena even if you arrive without friends on CHATDUN. Discover interest spaces and join the ones you like.</p><div class="arena-hero-foot"><span>DISCOVER · JOIN · CONNECT</span><span>AN I D LABS PRODUCT</span></div></section>
-<section class="arena-live-section"><div class="arena-section-head"><div><small>OPEN TO CHATDUN MEMBERS</small><h2>Explore interest spaces</h2></div><span class="arena-live-count" id="arenaJoinedCount">0 joined</span></div><p class="arena-live-intro">These are shared-interest spaces, not private chats. Joining is optional, and you can leave any space whenever you want.</p><div id="arenaStatus" class="arena-live-status" role="status">Loading Arena spaces…</div><div id="arenaSpacesList" class="arena-live-grid"><div class="arena-live-loading">Preparing your Arena…</div></div></section>
-<section class="arena-spotlight arena-live-spotlight"><div class="arena-spotlight-icon">✦</div><div class="arena-spotlight-copy"><small>WHAT'S LIVE NOW</small><b>Discover and join interest spaces</b><p>Public posts, event hosting, direct messaging inside spaces and community challenges are not enabled yet. They will need moderation and reporting before launch.</p></div></section>
-<div class="arena-note">Arena is in its first live stage. Your memberships are private to your account. Space discovery is available to signed-in CHATDUN members.</div></div></section><section id="callsPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button> Calls</div><div class="tab-content"><div class="tab-empty"><strong>Your calls</strong>Voice and video call history will appear here. Secure calling needs a real-time calling service that is not connected yet.</div></div></section>
+<header class="arena-topbar"><button class="section-menu-back" data-menu-back type="button" aria-label="Back to menu">← Menu</button><div class="arena-brand"><span class="arena-brand-mark">✦</span><div><b>CHATDUN ARENA</b><small>PRIVATE LIVE VIDEO · EARLY TEST</small></div></div><span class="arena-access">INVITE ONLY</span></header>
+<div class="arena-scroll arena-live-scroll">
+<section class="arena-hero arena-live-hero"><div class="arena-eyebrow">A new side of CHATDUN</div><h1>Go live.<br>Share a <span>moment.</span></h1><p>Start a private live video with one person you already chat with on CHATDUN. This first test is deliberately small and invite-only.</p><div class="arena-hero-foot"><span>PRIVATE · ONE HOST · ONE VIEWER</span><span>AN I D LABS PRODUCT</span></div></section>
+<section class="arena-private-panel">
+<div class="arena-panel-heading"><div><small>START A PRIVATE SESSION</small><h2>Invite someone you know</h2></div><span class="arena-live-count">1 viewer max</span></div>
+<label class="arena-field-label" for="arenaLiveFriend">Choose an existing one-to-one chat</label>
+<select id="arenaLiveFriend" class="arena-friend-select"><option value="">Loading your chats…</option></select>
+<button id="arenaStartLiveBtn" class="arena-start-btn" type="button">◉ Start private live</button>
+<p class="arena-small-note">Your camera and microphone are requested only after you press Start. Your stream is not recorded.</p>
+<div id="arenaLiveStatus" class="arena-live-status" role="status">Preparing your private live room…</div>
+</section>
+<section class="arena-private-panel">
+<div class="arena-panel-heading"><div><small>ONLY INVITATIONS ADDRESSED TO YOU</small><h2>Incoming live invitations</h2></div><button id="arenaRefreshInvitesBtn" class="arena-refresh-btn" type="button">Refresh</button></div>
+<div id="arenaIncomingInvites" class="arena-invites-list"><div class="arena-live-empty">No incoming invitations yet.</div></div>
+</section>
+<section class="arena-private-panel">
+<div class="arena-panel-heading"><div><small>YOUR PRIVATE ROOM</small><h2>Live stage</h2></div><span class="arena-live-count">Not public</span></div>
+<div class="arena-video-grid">
+<div class="arena-video-tile"><span>YOUR CAMERA</span><video id="arenaLocalVideo" autoplay muted playsinline></video></div>
+<div class="arena-video-tile"><span>LIVE VIEW</span><video id="arenaRemoteVideo" autoplay playsinline controls></video></div>
+</div>
+<div id="arenaLiveSessionStatus" class="arena-live-status" role="status">No active live session.</div>
+<div class="arena-live-controls"><button id="arenaStopLiveBtn" class="arena-stop-btn hidden" type="button">End live session</button><button id="arenaLeaveLiveBtn" class="arena-stop-btn secondary hidden" type="button">Leave live session</button></div>
+</section>
+<div class="arena-safety-note"><b>Private test, not public streaming.</b> Only the person you choose from an existing one-to-one CHATDUN conversation can join. There is no public discovery, recording, or open room list. Use this only with someone you know and trust. Video quality and connection may vary because this free test has no paid relay server.</div>
+</div></section><section id="callsPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button> Calls</div><div class="tab-content"><div class="tab-empty"><strong>Your calls</strong>Voice and video call history will appear here. Secure calling needs a real-time calling service that is not connected yet.</div></div></section>
     
 <div id="groupCreateModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="groupCreateTitle"><form id="groupCreateForm" class="modal-card"><div class="modal-head"><h2 id="groupCreateTitle">Create a group</h2><button class="modal-close" type="button" data-close-modal="groupCreateModal">×</button></div><div class="field"><label for="groupCreateName">Group name</label><input id="groupCreateName" maxlength="40" required placeholder="e.g. Family, Classmates"></div><div class="field"><label for="groupCreateMembers">Add people by username</label><input id="groupCreateMembers" maxlength="500" required placeholder="@username1, @username2"></div><p class="modal-help">Enter at least one existing CHATDUN username. Separate usernames with commas or spaces.</p><label class="field"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Group photo (optional)</span><input id="groupCreatePhoto" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="groupCreatePhotoPreview" class="group-photo-preview hidden" alt="Group photo preview"><button id="groupCreateSubmit" class="primary" type="submit">Create group</button><div id="groupCreateStatus" class="status"></div></form></div>
 <div id="groupManageModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="groupManageTitle"><div class="modal-card"><div class="modal-head"><h2 id="groupManageTitle">Group information</h2><button class="modal-close" type="button" data-close-modal="groupManageModal">×</button></div><div id="groupManageAdmin" class="hidden"><div class="field"><label for="groupRenameInput">Group name</label><input id="groupRenameInput" maxlength="40"></div><div class="profile-actions"><button id="saveGroupNameBtn" class="iconbtn" type="button">Save name</button><button id="changeGroupPhotoBtn" class="iconbtn" type="button">Change photo</button></div><input id="groupPhotoInput" type="file" accept="image/jpeg,image/png,image/webp" class="hidden"><div class="group-section">Add a member</div><div class="phonefindrow"><input id="groupAddUsername" placeholder="@username" autocomplete="off"><button id="groupAddMemberBtn" type="button">Add</button></div><div id="groupManageStatus" class="status"></div></div><div class="group-section">Members</div><div id="groupMemberList"><div class="empty">Loading members…</div></div><div style="display:flex;gap:8px;margin-top:16px"><button id="leaveGroupBtn" class="iconbtn" type="button">Leave group</button><button class="iconbtn" type="button" data-close-modal="groupManageModal">Done</button></div></div></div>
@@ -1255,7 +1302,7 @@ function showMenuHome(){
 }
 function switchTab(tab){
   activeTab=tab;
-  if(tab==='arena')loadArenaSpaces();
+  if(tab==='arena')loadArenaLiveWorkspace();
   if(tab==='ai')loadChatdunAiWorkspace();
   $('app').classList.remove('menu-home');
   $('homeHub').classList.add('hidden');
@@ -1714,6 +1761,217 @@ async function toggleArenaMembership(spaceId){
  catch(error){status('arenaStatus','Could not update membership: '+(error.message||'Please try again.'),true)}
  finally{arenaBusyIds.delete(spaceId);renderArenaSpaces()}
 }
+
+
+/* CHATDUN Arena — private one-host / one-viewer WebRTC pilot. */
+let arenaLiveSession=null;
+let arenaInviteChannel=null;
+let arenaInviteRefreshBusy=false;
+function arenaSetStatus(message,isError=false){
+ const el=$('arenaLiveStatus');if(el){el.textContent=message;el.style.color=isError?'#b42318':'#08745f'}
+}
+function arenaSetSessionStatus(message,isError=false){
+ const el=$('arenaLiveSessionStatus');if(el){el.textContent=message;el.style.color=isError?'#b42318':'#08745f'}
+}
+function arenaRenderFriendOptions(){
+ const select=$('arenaLiveFriend');if(!select)return;
+ const previous=select.value;
+ const direct=(conversations||[]).filter(c=>!c.is_group&&Array.isArray(c.participants)&&c.participants.length===2&&c.participants.some(p=>p.user_id===user?.id));
+ select.innerHTML='';
+ const first=document.createElement('option');first.value='';first.textContent=direct.length?'Choose a person…':'No one-to-one chats yet';select.append(first);
+ direct.forEach(c=>{const other=c.participants.find(p=>p.user_id!==user.id);const option=document.createElement('option');option.value=c.id;option.textContent=c.label||other?.profile?.display_name||other?.profile?.username||'CHATDUN contact';select.append(option)});
+ if(direct.some(c=>c.id===previous))select.value=previous;
+ $('arenaStartLiveBtn').disabled=!direct.length||!!arenaLiveSession;
+}
+async function loadArenaLiveInvites(){
+ if(!user||arenaInviteRefreshBusy)return;
+ arenaInviteRefreshBusy=true;
+ const root=$('arenaIncomingInvites');
+ try{
+  const {data,error}=await supabase.from('chatdun_arena_live_rooms')
+   .select('id,conversation_id,host_id,created_at,expires_at')
+   .eq('viewer_id',user.id).eq('status','live').gt('expires_at',new Date().toISOString())
+   .order('created_at',{ascending:false}).limit(10);
+  if(error)throw error;
+  root.innerHTML='';
+  if(!data?.length){const empty=document.createElement('div');empty.className='arena-live-empty';empty.textContent='No incoming invitations yet.';root.append(empty);return}
+  const ids=[...new Set(data.map(x=>x.host_id))];
+  const {data:people,error:peopleError}=await supabase.from('chatdun_profiles').select('id,display_name,username').in('id',ids);
+  if(peopleError)throw peopleError;
+  data.forEach(room=>{
+   const person=(people||[]).find(p=>p.id===room.host_id);
+   const row=document.createElement('div');row.className='arena-invite-row';
+   const copy=document.createElement('div');copy.className='arena-invite-copy';
+   const name=document.createElement('b');name.textContent=(person?.display_name||'A CHATDUN contact')+' invited you';
+   const detail=document.createElement('small');detail.textContent='Private live session · Expires '+new Date(room.expires_at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+   copy.append(name,detail);
+   const join=document.createElement('button');join.type='button';join.className='arena-join-btn';join.textContent='Join live';join.disabled=!!arenaLiveSession;
+   join.addEventListener('click',()=>arenaJoinPrivateLive(room));
+   row.append(copy,join);root.append(row);
+  });
+ }catch(error){
+  root.innerHTML='';const message=document.createElement('div');message.className='arena-live-empty';message.textContent='Invitations could not be loaded. '+(error.message||'Try again.');root.append(message);
+ }finally{arenaInviteRefreshBusy=false}
+}
+async function loadArenaLiveWorkspace(){
+ if(!user){arenaSetStatus('Sign in to use private Arena live video.',true);return}
+ arenaRenderFriendOptions();
+ await loadArenaLiveInvites();
+ if(!arenaInviteChannel){
+  arenaInviteChannel=supabase.channel('chatdun-arena-invites-'+user.id)
+   .on('postgres_changes',{event:'INSERT',schema:'public',table:'chatdun_arena_live_rooms',filter:'viewer_id=eq.'+user.id},()=>loadArenaLiveInvites())
+   .on('postgres_changes',{event:'UPDATE',schema:'public',table:'chatdun_arena_live_rooms',filter:'viewer_id=eq.'+user.id},()=>loadArenaLiveInvites())
+   .subscribe();
+ }
+ arenaSetStatus('Private live rooms are ready. Choose an existing one-to-one chat to invite someone.');
+}
+function arenaStopTracks(stream){try{stream?.getTracks?.().forEach(track=>track.stop())}catch(_){}}
+async function arenaBroadcast(session,event,payload){
+ if(!session?.channel||session.closed)return;
+ const result=await session.channel.send({type:'broadcast',event,payload});
+ if(result?.status==='error')throw new Error('The private connection signal could not be sent.');
+}
+async function arenaFlushCandidates(session){
+ if(!session.remoteReady||!session.pendingCandidates.length)return;
+ const pending=session.pendingCandidates.splice(0);
+ for(const candidate of pending){try{await session.peer.addIceCandidate(new RTCIceCandidate(candidate))}catch(error){console.warn('Could not add queued live candidate:',error)}}
+}
+async function arenaMakeOffer(session){
+ if(session.offerSent||session.closed||session.role!=='host')return;
+ session.offerSent=true;
+ try{
+  const offer=await session.peer.createOffer();
+  await session.peer.setLocalDescription(offer);
+  await arenaBroadcast(session,'offer',{description:session.peer.localDescription});
+  arenaSetSessionStatus('Your private live is connecting to the invited viewer…');
+ }catch(error){session.offerSent=false;arenaSetSessionStatus('Could not start the live connection: '+(error.message||'Please try again.'),true)}
+}
+async function arenaConnectRoom(room,role,localStream=null){
+ if(arenaLiveSession)throw new Error('End the current live session before joining another.');
+ const {data:{session:authSession}}=await supabase.auth.getSession();
+ if(!authSession?.access_token)throw new Error('Your sign-in session has expired. Sign in again.');
+ await supabase.realtime.setAuth(authSession.access_token);
+ const session={room,role,localStream,channel:null,peer:null,pendingCandidates:[],remoteReady:false,offerSent:false,closed:false};
+ arenaLiveSession=session;
+ const peer=new RTCPeerConnection({iceServers:[{urls:'stun:stun.l.google.com:19302'}]});
+ session.peer=peer;
+ if(localStream)localStream.getTracks().forEach(track=>peer.addTrack(track,localStream));
+ const localVideo=$('arenaLocalVideo'),remoteVideo=$('arenaRemoteVideo');
+ localVideo.srcObject=localStream||null;
+ peer.ontrack=event=>{
+  if(event.streams?.[0]){remoteVideo.srcObject=event.streams[0];remoteVideo.play().catch(()=>{});arenaSetSessionStatus('You are connected to a private live video.')}
+ };
+ peer.onicecandidate=event=>{
+  if(event.candidate)arenaBroadcast(session,'ice',{from:user.id,candidate:event.candidate.toJSON()}).catch(error=>console.warn('Live ICE signal:',error));
+ };
+ peer.onconnectionstatechange=()=>{
+  if(['failed','disconnected'].includes(peer.connectionState))arenaSetSessionStatus('The connection is unstable. This free test may not connect on every network.',true);
+  else if(peer.connectionState==='connected')arenaSetSessionStatus('Live connection established.');
+ };
+ const topic='arena-live:'+room.id;
+ const channel=supabase.channel(topic,{config:{private:true,broadcast:{ack:true,self:false}}});
+ session.channel=channel;
+ channel.on('broadcast',{event:'viewer-ready'},payload=>{
+  if(role==='host'&&payload.payload?.user_id===room.viewer_id)arenaMakeOffer(session);
+ });
+ channel.on('broadcast',{event:'host-ready'},()=>{
+  if(role==='viewer')arenaBroadcast(session,'viewer-ready',{user_id:user.id}).catch(()=>{});
+ });
+ channel.on('broadcast',{event:'offer'},async payload=>{
+  if(role!=='viewer'||session.closed||!payload.payload?.description)return;
+  try{
+   await peer.setRemoteDescription(new RTCSessionDescription(payload.payload.description));
+   session.remoteReady=true;await arenaFlushCandidates(session);
+   const answer=await peer.createAnswer();await peer.setLocalDescription(answer);
+   await arenaBroadcast(session,'answer',{description:peer.localDescription});
+   arenaSetSessionStatus('Joining the live video…');
+  }catch(error){arenaSetSessionStatus('Could not join the live video: '+(error.message||'Try again.'),true)}
+ });
+ channel.on('broadcast',{event:'answer'},async payload=>{
+  if(role!=='host'||session.closed||!payload.payload?.description)return;
+  try{await peer.setRemoteDescription(new RTCSessionDescription(payload.payload.description));session.remoteReady=true;await arenaFlushCandidates(session)}
+  catch(error){arenaSetSessionStatus('The viewer response could not be connected: '+(error.message||'Try again.'),true)}
+ });
+ channel.on('broadcast',{event:'ice'},async payload=>{
+  const data=payload.payload;
+  if(session.closed||!data?.candidate||data.from===user.id)return;
+  if(!session.remoteReady){session.pendingCandidates.push(data.candidate);return}
+  try{await peer.addIceCandidate(new RTCIceCandidate(data.candidate))}catch(error){console.warn('Could not add live candidate:',error)}
+ });
+ channel.on('broadcast',{event:'room-ended'},()=>arenaCleanupLiveSession(false,'The other person ended the live session.'));
+ await new Promise((resolve,reject)=>{
+  const timeout=setTimeout(()=>reject(new Error('The private live channel timed out. Check your connection and try again.')),15000);
+  channel.subscribe((state,error)=>{
+   if(state==='SUBSCRIBED'){clearTimeout(timeout);resolve()}
+   else if(['CHANNEL_ERROR','TIMED_OUT','CLOSED'].includes(state)){clearTimeout(timeout);reject(error||new Error('Could not connect to the private live room.'))}
+  });
+ });
+ $('arenaStopLiveBtn').classList.toggle('hidden',role!=='host');
+ $('arenaLeaveLiveBtn').classList.toggle('hidden',role!=='viewer');
+ $('arenaStartLiveBtn').disabled=true;
+ if(role==='host'){
+  arenaSetSessionStatus('Private room created. Waiting for the invited person to join…');
+  await arenaBroadcast(session,'host-ready',{user_id:user.id});
+ }else{
+  arenaSetSessionStatus('Joining the private live room…');
+  await arenaBroadcast(session,'viewer-ready',{user_id:user.id});
+ }
+}
+async function arenaStartPrivateLive(){
+ if(!user||arenaLiveSession)return;
+ const conversationId=$('arenaLiveFriend').value;
+ const chat=conversations.find(c=>c.id===conversationId&&!c.is_group);
+ const other=chat?.participants?.find(p=>p.user_id!==user.id);
+ if(!chat||!other){arenaSetStatus('Choose someone from an existing one-to-one chat first.',true);return}
+ if(!navigator.mediaDevices?.getUserMedia||!window.RTCPeerConnection){arenaSetStatus('This browser does not support live video. Try an updated browser.',true);return}
+ const button=$('arenaStartLiveBtn');button.disabled=true;button.textContent='Opening camera…';
+ let stream=null;
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({audio:true,video:{facingMode:'user',width:{ideal:640},height:{ideal:360},frameRate:{ideal:20,max:24}}});
+  const expired=await supabase.from('chatdun_arena_live_rooms').update({status:'ended',ended_at:new Date().toISOString()}).eq('conversation_id',conversationId).eq('status','live').lt('expires_at',new Date().toISOString());
+  if(expired.error)throw expired.error;
+  const {data:room,error}=await supabase.from('chatdun_arena_live_rooms').insert({conversation_id:conversationId,host_id:user.id,viewer_id:other.user_id}).select('id,conversation_id,host_id,viewer_id,status,created_at,expires_at').single();
+  if(error)throw error;
+  await arenaConnectRoom(room,'host',stream);stream=null;
+  arenaSetStatus('Invitation sent privately to '+(other.profile?.display_name||other.profile?.username||'your contact')+'.');
+ }catch(error){
+  arenaStopTracks(stream);arenaSetStatus(error.message||'Could not start your private live session.',true);
+  if(arenaLiveSession)await arenaCleanupLiveSession(true,'The live session could not start.');
+ }finally{button.textContent='◉ Start private live';button.disabled=!!arenaLiveSession;arenaRenderFriendOptions()}
+}
+async function arenaJoinPrivateLive(room){
+ if(arenaLiveSession)return;
+ try{
+  $('arenaIncomingInvites').querySelectorAll('button').forEach(button=>button.disabled=true);
+  await arenaConnectRoom(room,'viewer',null);
+  arenaSetStatus('You joined the private live session.');
+ }catch(error){
+  if(arenaLiveSession)await arenaCleanupLiveSession(false,'Could not join the live session.');
+  arenaSetStatus(error.message||'Could not join this live session.',true);
+  await loadArenaLiveInvites();
+ }
+}
+async function arenaCleanupLiveSession(updateRoom=true,message='Live session ended.'){
+ const session=arenaLiveSession;if(!session)return;
+ session.closed=true;arenaLiveSession=null;
+ try{if(session.channel&&updateRoom)await arenaBroadcast(session,'room-ended',{user_id:user.id})}catch(_){}
+ try{session.peer?.close()}catch(_){}
+ arenaStopTracks(session.localStream);
+ try{if(session.channel)await supabase.removeChannel(session.channel)}catch(_){}
+ $('arenaLocalVideo').srcObject=null;$('arenaRemoteVideo').srcObject=null;
+ $('arenaStopLiveBtn').classList.add('hidden');$('arenaLeaveLiveBtn').classList.add('hidden');
+ $('arenaStartLiveBtn').disabled=false;
+ arenaSetSessionStatus(message);
+ if(updateRoom){
+  const {error}=await supabase.from('chatdun_arena_live_rooms').update({status:'ended',ended_at:new Date().toISOString()}).eq('id',session.room.id).eq('status','live');
+  if(error)arenaSetSessionStatus('Session ended locally, but the room status could not sync: '+error.message,true);
+ }
+ arenaRenderFriendOptions();await loadArenaLiveInvites();
+}
+$('arenaStartLiveBtn').addEventListener('click',arenaStartPrivateLive);
+$('arenaRefreshInvitesBtn').addEventListener('click',loadArenaLiveInvites);
+$('arenaStopLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,'You ended the private live session.'));
+$('arenaLeaveLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,'You left the private live session.'));
 
 </script>
 </body>
