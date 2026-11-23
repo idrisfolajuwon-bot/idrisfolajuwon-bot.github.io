@@ -1314,8 +1314,6 @@ $('logoutBtn').addEventListener('click',async()=>{
   }
 });
 document.querySelectorAll('[data-menu-back]').forEach(b=>b.addEventListener('click',showMenuHome));
-$('arenaExploreBtn').onclick=()=>$('arenaExperiences').scrollIntoView({behavior:'smooth',block:'start'});
-$('arenaChatBtn').onclick=()=>switchTab('chats');
 $('newStatusBtn').onclick=()=>{$('statusComposer').classList.toggle('hidden');$('statusPhotoInput').focus()};
 $('statusPhotoInput').addEventListener('change',()=>{const file=$('statusPhotoInput').files?.[0];if(!file){$('statusPreview').classList.add('hidden');return}if(!['image/jpeg','image/png','image/webp'].includes(file.type)){status('statusMessage','Choose a JPG, PNG or WebP photo.',true);return}const preview=URL.createObjectURL(file);$('statusPreview').src=preview;$('statusPreview').classList.remove('hidden')});
 $('publishStatusBtn').onclick=publishPhotoStatus;
