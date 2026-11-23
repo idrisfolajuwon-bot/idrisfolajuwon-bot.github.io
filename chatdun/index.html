@@ -796,7 +796,7 @@ body{background:#f1f0f4;color:#202236}
 <aside class="ai-live-sidebar"><button id="chatdunAiNewBtn" class="ai-new-chat" type="button">＋ New conversation</button><div class="ai-history-heading">RECENT CONVERSATIONS</div><div id="chatdunAiHistoryList" class="ai-history-list"><div class="ai-history-empty">Your conversations will appear here.</div></div><div class="ai-history-foot">Your AI chats are private to your account.</div></aside>
 <main class="ai-live-main"><div class="ai-live-heading"><div><small>YOUR CHATDUN THINKING PARTNER</small><h1>What are we thinking about?</h1><p>Ask a question, learn something, plan an idea or work through a problem.</p></div><button id="chatdunAiDeleteBtn" class="ai-delete-chat" type="button" disabled>Delete chat</button></div>
 <div id="chatdunAiMessages" class="ai-live-messages" aria-live="polite"><div class="ai-live-empty"><span>✧</span><b>Start with one good question.</b><p>Your CHATDUN AI conversations are saved to your account so you can return to them later.</p></div></div>
-<form id="chatdunAiForm" class="ai-live-composer"><textarea id="chatdunAiInput" rows="2" maxlength="6000" placeholder="Message CHATDUN AI…" aria-label="Message CHATDUN AI" required></textarea><div class="ai-composer-bottom"><span>Enter to send · Shift + Enter for a new line</span><button id="chatdunAiSendBtn" type="submit">Send <span>↗</span></button></div></form>
+<form id="chatdunAiForm" class="ai-live-composer" novalidate><textarea id="chatdunAiInput" rows="2" maxlength="6000" enterkeyhint="enter" placeholder="Message CHATDUN AI…" aria-label="Message CHATDUN AI"></textarea><div class="ai-composer-bottom"><span>Type normally, then tap Send</span><button id="chatdunAiSendBtn" type="button">Send <span>↗</span></button></div></form>
 <div id="chatdunAiStatus" class="ai-live-status" role="status">AI beta · No live web search yet · Check important information.</div></main></div></section><section id="updatesPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button> Updates</div><div class="tab-content"><button id="newStatusBtn" class="status-compose" type="button">＋ Share a photo status</button><div id="statusComposer" class="status-compose-panel hidden"><div class="profile-actions"><button id="statusGalleryBtn" class="iconbtn" type="button">🖼️ Gallery</button><button id="statusCameraBtn" class="iconbtn" type="button">📷 Camera</button></div><input id="statusPhotoInput" class="hidden" type="file" accept="image/*"><input id="statusCameraInput" class="hidden" type="file" accept="image/*" capture="environment"><img id="statusPreview" class="status-preview hidden" alt="Status preview"><label class="field" style="display:block;margin:12px 0"><span style="display:block;font-size:12px;font-weight:700;margin-bottom:7px">Who can see this status?</span><select id="statusVisibility" class="status-input" style="min-height:0"><option value="contacts" selected>My CHATDUN contacts</option><option value="everyone">Everyone on CHATDUN</option><option value="only_me">Only me</option></select></label><textarea id="statusText" class="status-input" maxlength="280" placeholder="Add a caption (optional)…"></textarea><button id="publishStatusBtn" class="primary" type="button">Post status</button><div id="statusMessage" class="status"></div></div><div id="statusList"><div class="tab-empty"><strong>Photo updates</strong>Active photo statuses stay visible for 24 hours.</div></div></div></section>
     <section id="statusViewer" class="status-viewer hidden" role="dialog" aria-modal="true" aria-label="Photo status viewer"><div class="status-viewer-panel"><div class="status-viewer-top"><div class="status-progress"><span></span></div><div class="status-viewer-head"><button id="statusPrevBtn" type="button" aria-label="Previous status">‹</button><div><b id="statusViewerName">CHATDUN user</b><small id="statusViewerTime"></small></div><button id="statusNextBtn" type="button" aria-label="Next status">›</button><button id="statusViewerClose" type="button" aria-label="Close status">✕</button></div></div><div class="status-viewer-body"><img id="statusViewerImage" alt="Status photo"><p id="statusViewerCaption"></p></div><div class="status-viewer-foot"><button id="statusViewersToggle" type="button">Seen by 0</button><div id="statusViewersList" class="status-viewers-list hidden"></div></div></div></section><section id="contactsPage" class="tab-screen hidden"><div class="tab-head"><button class="section-menu-back" data-menu-back type="button">← Menu</button><span>Discover</span><small>Find your people on CHATDUN</small></div><div class="tab-content"><div class="contacts-intro"><span class="eyebrow">YOUR NETWORK</span><h2>Find your people.</h2><p>Search by username or display name, or look up a number. Phone numbers stay private.</p></div><div id="contactsToolsHost" class="contacts-tools"></div></div></section>
     <section id="arenaPage" class="tab-screen hidden arena-page arena-live-page" aria-label="CHATDUN Arena">
@@ -1636,7 +1636,7 @@ async function openChatdunAiConversation(id){
  chatdunAiConversationId=item.conversation_id;chatdunAiMessages=Array.isArray(item.messages)?item.messages.filter(x=>x&&['user','assistant'].includes(x.role)&&typeof x.content==='string'):[];
  renderChatdunAiHistory();renderChatdunAiMessages();$('chatdunAiDeleteBtn').disabled=!chatdunAiMessages.length;status('chatdunAiStatus','Conversation opened.');
 }
-function startChatdunAiConversation(){if(chatdunAiBusy)return;chatdunAiConversationId=null;chatdunAiMessages=[];renderChatdunAiHistory();renderChatdunAiMessages();$('chatdunAiInput').focus();status('chatdunAiStatus','New conversation. What would you like to explore?')}
+function startChatdunAiConversation(){if(chatdunAiBusy)return;chatdunAiConversationId=null;chatdunAiMessages=[];renderChatdunAiHistory();renderChatdunAiMessages();status('chatdunAiStatus','New conversation. What would you like to explore?')}
 async function saveChatdunAiConversation(){
  if(!user||!chatdunAiConversationId)throw new Error('Sign in to save this conversation.');
  const first=chatdunAiMessages.find(x=>x.role==='user'),title=String(first?.content||'New conversation').replace(/\s+/g,' ').trim().slice(0,76)||'New conversation';
@@ -1648,7 +1648,7 @@ async function saveChatdunAiConversation(){
 async function sendChatdunAiMessage(){
  if(chatdunAiBusy)return;if(!user){status('chatdunAiStatus','Sign in to use CHATDUN AI.',true);return}
  const input=$('chatdunAiInput'),content=input.value.trim();if(!content)return;if(content.length>6000){status('chatdunAiStatus','Keep your message under 6,000 characters.',true);return}
- chatdunAiBusy=true;const send=$('chatdunAiSendBtn');send.disabled=true;input.disabled=true;if(!chatdunAiConversationId)chatdunAiConversationId=crypto.randomUUID();
+ chatdunAiBusy=true;const send=$('chatdunAiSendBtn');send.disabled=true;if(!chatdunAiConversationId)chatdunAiConversationId=crypto.randomUUID();
  chatdunAiMessages.push({role:'user',content,created_at:new Date().toISOString()});input.value='';renderChatdunAiMessages();
  try{
   await saveChatdunAiConversation();status('chatdunAiStatus','CHATDUN AI is thinking…');
@@ -1660,7 +1660,7 @@ async function sendChatdunAiMessage(){
   const answer=String(result.reply||'').trim();if(!answer)throw new Error('CHATDUN AI returned an empty answer. Please try again.');
   chatdunAiMessages.push({role:'assistant',content:answer,created_at:new Date().toISOString()});await saveChatdunAiConversation();renderChatdunAiMessages();status('chatdunAiStatus','Reply received. Important facts should still be checked.');
  }catch(error){status('chatdunAiStatus',error.name==='AbortError'?'CHATDUN AI took too long to respond. Try again.':(error.message||'Something went wrong.'),true);renderChatdunAiMessages()}
- finally{chatdunAiBusy=false;send.disabled=false;input.disabled=false;$('chatdunAiDeleteBtn').disabled=!chatdunAiConversationId||!chatdunAiMessages.length;input.focus()}
+ finally{chatdunAiBusy=false;send.disabled=false;$('chatdunAiDeleteBtn').disabled=!chatdunAiConversationId||!chatdunAiMessages.length}
 }
 async function deleteChatdunAiConversation(){
  if(!user||!chatdunAiConversationId||chatdunAiBusy)return;if(!confirm('Delete this CHATDUN AI conversation? This cannot be undone.'))return;
@@ -1671,13 +1671,38 @@ async function deleteChatdunAiConversation(){
 }
 $('chatdunAiNewBtn').addEventListener('click',startChatdunAiConversation);
 $('chatdunAiDeleteBtn').addEventListener('click',deleteChatdunAiConversation);
-$('chatdunAiForm').addEventListener('submit',event=>{event.preventDefault();sendChatdunAiMessage()});
-$('chatdunAiInput').addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChatdunAiMessage()}});
+$('chatdunAiSendBtn').addEventListener('click',sendChatdunAiMessage);
+$('chatdunAiForm').addEventListener('submit',event=>{event.preventDefault();event.stopPropagation()});
 async function loadArenaSpaces(force=false){
- if(!user){status('arenaStatus','Sign in to explore Arena.',true);return}if(!force&&arenaLoadedUserId===user.id)return;status('arenaStatus','Loading interest spaces…');
- try{const [spacesResult,membersResult]=await Promise.all([supabase.from('chatdun_arena_spaces').select('id,slug,title,category,description,icon').eq('status','active').order('sort_order',{ascending:true}),supabase.from('chatdun_arena_members').select('space_id').eq('user_id',user.id)]);
-  if(spacesResult.error)throw spacesResult.error;if(membersResult.error)throw membersResult.error;arenaSpacesCache=Array.isArray(spacesResult.data)?spacesResult.data:[];arenaJoinedIds=new Set((membersResult.data||[]).map(x=>x.space_id));arenaLoadedUserId=user.id;renderArenaSpaces();status('arenaStatus',arenaSpacesCache.length?'Choose a space and join whenever you like.':'No Arena spaces are available yet.');
- }catch(error){status('arenaStatus','Could not load Arena: '+(error.message||'Please try again.'),true)}
+ const root=$('arenaSpacesList');
+ if(!user){if(root)root.textContent='Sign in to explore Arena.';status('arenaStatus','Sign in to explore Arena.',true);return}
+ if(!force&&arenaLoadedUserId===user.id){renderArenaSpaces();return}
+ if(root)root.innerHTML='<div class="arena-live-loading">Loading your interest spaces…</div>';
+ status('arenaStatus','Connecting to Arena…');
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+ try{
+  const [spacesResult,membersResult]=await Promise.all([
+   supabase.from('chatdun_arena_spaces').select('id,slug,title,category,description,icon').eq('status','active').order('sort_order',{ascending:true}).abortSignal(controller.signal),
+   supabase.from('chatdun_arena_members').select('space_id').eq('user_id',user.id).abortSignal(controller.signal)
+  ]);
+  if(spacesResult.error)throw spacesResult.error;
+  if(membersResult.error)throw membersResult.error;
+  arenaSpacesCache=Array.isArray(spacesResult.data)?spacesResult.data:[];
+  arenaJoinedIds=new Set((membersResult.data||[]).map(x=>x.space_id));
+  arenaLoadedUserId=user.id;
+  renderArenaSpaces();
+  status('arenaStatus',arenaSpacesCache.length?'Choose a space and join whenever you like.':'No Arena spaces are available yet.');
+ }catch(error){
+  const message=error.name==='AbortError'?'Arena is taking too long to respond. Check your connection and try again.':(error.message||'Please try again.');
+  if(root){
+   root.innerHTML='';
+   const panel=document.createElement('div');panel.className='arena-live-empty';
+   const copy=document.createElement('p');copy.textContent='Your spaces could not be loaded. '+message;
+   const retry=document.createElement('button');retry.type='button';retry.className='arena-space-action';retry.textContent='Try again';retry.addEventListener('click',()=>loadArenaSpaces(true));
+   panel.append(copy,retry);root.append(panel);
+  }
+  status('arenaStatus','Could not load Arena: '+message,true);
+ }finally{clearTimeout(timeout)}
 }
 function renderArenaSpaces(){
  const root=$('arenaSpacesList');if(!root)return;root.innerHTML='';
