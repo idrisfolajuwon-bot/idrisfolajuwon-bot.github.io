@@ -37,8 +37,13 @@ as $$
     and exists (
       select 1 from public.chatdun_members m
       where m.conversation_id = p_conversation_id and m.user_id = p_viewer_id
+    )
+    and not exists (
+      select 1 from public.chatdun_blocks b
+      where (b.blocker_id = p_host_id and b.blocked_id = p_viewer_id)
+         or (b.blocker_id = p_viewer_id and b.blocked_id = p_host_id)
     );
-$$;
+$;
 
 alter table public.chatdun_arena_live_rooms enable row level security;
 
