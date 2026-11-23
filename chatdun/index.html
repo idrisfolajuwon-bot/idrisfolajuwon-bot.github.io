@@ -1953,8 +1953,8 @@ async function arenaJoinPrivateLive(room){
 }
 async function arenaCleanupLiveSession(updateRoom=true,message='Live session ended.'){
  const session=arenaLiveSession;if(!session)return;
+ try{if(session.channel&&updateRoom)await session.channel.send({type:'broadcast',event:'room-ended',payload:{user_id:user.id}})}catch(_){}
  session.closed=true;arenaLiveSession=null;
- try{if(session.channel&&updateRoom)await arenaBroadcast(session,'room-ended',{user_id:user.id})}catch(_){}
  try{session.peer?.close()}catch(_){}
  arenaStopTracks(session.localStream);
  try{if(session.channel)await supabase.removeChannel(session.channel)}catch(_){}
