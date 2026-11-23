@@ -25,7 +25,7 @@ create policy "CHATDUN AI users update own conversations" on public.chatdun_ai_c
   with check ((select auth.uid()) = user_id);
 create policy "CHATDUN AI users delete own conversations" on public.chatdun_ai_conversations
   for delete to authenticated using ((select auth.uid()) = user_id);
-revoke all on public.chatdun_ai_conversations from anon;
+revoke all on public.chatdun_ai_conversations from public, anon, authenticated;
 grant select, insert, update, delete on public.chatdun_ai_conversations to authenticated;
 
 create table if not exists public.chatdun_arena_spaces (
@@ -42,7 +42,7 @@ create table if not exists public.chatdun_arena_spaces (
 alter table public.chatdun_arena_spaces enable row level security;
 create policy "CHATDUN Arena members discover active spaces" on public.chatdun_arena_spaces
   for select to authenticated using (status = 'active');
-revoke all on public.chatdun_arena_spaces from anon;
+revoke all on public.chatdun_arena_spaces from public, anon, authenticated;
 grant select on public.chatdun_arena_spaces to authenticated;
 
 create table if not exists public.chatdun_arena_members (
@@ -60,7 +60,7 @@ create policy "CHATDUN Arena users join as themselves" on public.chatdun_arena_m
   for insert to authenticated with check ((select auth.uid()) = user_id);
 create policy "CHATDUN Arena users leave own memberships" on public.chatdun_arena_members
   for delete to authenticated using ((select auth.uid()) = user_id);
-revoke all on public.chatdun_arena_members from anon;
+revoke all on public.chatdun_arena_members from public, anon, authenticated;
 grant select, insert, delete on public.chatdun_arena_members to authenticated;
 
 insert into public.chatdun_arena_spaces (slug,title,category,description,icon,sort_order)
