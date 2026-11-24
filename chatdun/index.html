@@ -982,6 +982,34 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   .hub-feature{min-height:145px}
 }
 </style>
+<style id="chatdun-phone-rebuild">
+.hub-screen{position:absolute;inset:0;z-index:30;display:flex;flex-direction:column;overflow:auto;padding-bottom:0}.hub-screen.hidden{display:none!important}.hub-header{height:70px;flex:none;display:flex;align-items:center;justify-content:space-between}.hub-content{flex:1;min-height:0;overflow:auto;padding-bottom:34px}.hub-mobile-nav{display:none}
+@media(max-width:900px){
+.app.menu-home{display:block!important;overflow:hidden!important;background:#f5f6fb!important}
+.app.menu-home>.sidebar,.app.menu-home>.main{display:none!important}
+.app.menu-home>#homeHub{display:flex!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow-y:auto!important;padding-bottom:82px!important;background:#f5f6fb!important}
+.app.menu-home #homeHub .hub-header{height:66px;min-height:66px;padding:0 17px;background:#fff;border-bottom:1px solid #e9ebf2}
+.app.menu-home #homeHub .hub-logo{width:39px;height:39px;display:grid;place-items:center;font-size:18px;font-weight:900}
+.app.menu-home #homeHub .hub-brand b{font-size:15px;letter-spacing:1.4px}.app.menu-home #homeHub .hub-brand small{font-size:9px;letter-spacing:1.1px}
+.app.menu-home #homeHub .hub-content{width:100%;padding:17px 16px 30px;margin:0}
+.app.menu-home #homeHub .hub-welcome{min-height:205px;position:relative;overflow:hidden;padding:25px 22px 42px;border-radius:22px;background:linear-gradient(130deg,#20283b 0%,#34465e 66%,#167d78 100%);box-shadow:0 13px 30px rgba(31,40,59,.15)}
+.app.menu-home #homeHub .hub-welcome h1{font-size:34px;line-height:1.04;letter-spacing:-1.5px;margin:10px 0}.app.menu-home #homeHub .hub-welcome p{font-size:12px;line-height:1.55;max-width:235px}
+.app.menu-home #homeHub .hub-orbit{position:absolute;right:-8px;top:20px;transform:scale(.78);opacity:.72}
+.app.menu-home #homeHub .hub-welcome-bottom{left:22px;right:22px;bottom:14px;font-size:8px;letter-spacing:1px}
+.app.menu-home #homeHub .hub-section{margin-top:23px}.app.menu-home #homeHub .hub-section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}
+.app.menu-home #homeHub .hub-section-title small{font-size:9px;letter-spacing:1.3px}.app.menu-home #homeHub .hub-section-title h2{font-size:21px;margin:5px 0 0}.app.menu-home #homeHub .hub-section-title>span{font-size:8px}
+.app.menu-home #homeHub .hub-grid-primary,.app.menu-home #homeHub .hub-grid-feature{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.app.menu-home #homeHub .hub-card{min-height:112px;padding:14px;border-radius:17px;display:flex;align-items:flex-start;gap:10px;box-shadow:0 5px 17px rgba(31,40,59,.045)}
+.app.menu-home #homeHub .hub-card-icon{width:34px;height:34px;min-width:34px;border-radius:11px;display:grid;place-items:center;font-size:17px}
+.app.menu-home #homeHub .hub-card-copy{display:flex;flex-direction:column;gap:5px;min-width:0}.app.menu-home #homeHub .hub-card-copy b{font-size:14px}.app.menu-home #homeHub .hub-card-copy small{font-size:10px;line-height:1.4}.app.menu-home #homeHub .hub-arrow{margin-left:auto}
+.app.menu-home #homeHub .hub-feature{min-height:160px;padding:15px;border-radius:18px}.app.menu-home #homeHub .hub-feature b{font-size:16px}.app.menu-home #homeHub .hub-feature p{font-size:10px;line-height:1.45}
+.app.menu-home #homeHub .hub-footer{padding:20px 2px 8px;font-size:8px;gap:8px;flex-wrap:wrap}
+.app.menu-home #homeHub .hub-mobile-nav{position:fixed;z-index:60;left:0;right:0;bottom:0;height:74px;padding:7px 8px max(7px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);background:rgba(255,255,255,.97);border-top:1px solid #e8eaf0;box-shadow:0 -8px 24px rgba(31,40,59,.08);backdrop-filter:blur(16px)}
+.app.menu-home #homeHub .hub-mobile-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;color:#8791a3;border-radius:12px}
+.app.menu-home #homeHub .hub-mobile-item span{font-size:20px;line-height:1}.app.menu-home #homeHub .hub-mobile-item small{font-size:9px;font-weight:700}.app.menu-home #homeHub .hub-mobile-item.active{color:#159b91;background:#e9f7f4}
+}
+@media(max-width:370px){.app.menu-home #homeHub .hub-content{padding-left:12px;padding-right:12px}.app.menu-home #homeHub .hub-welcome{padding-left:18px}.app.menu-home #homeHub .hub-welcome h1{font-size:30px}.app.menu-home #homeHub .hub-card{padding:11px;gap:7px}.app.menu-home #homeHub .hub-card-copy small{font-size:9px}}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -1058,6 +1086,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     <footer class="hub-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>AN I D LABS PRODUCT</span></footer>
   </main>
 </section>
+    <nav class="hub-mobile-nav" aria-label="CHATDUN navigation"><button type="button" class="hub-mobile-item active" data-hub-mobile="home"><span>⌂</span><small>Home</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="chats"><span>☏</span><small>Chats</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="ai"><span>✧</span><small>AI</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="arena"><span>◈</span><small>Arena</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="updates"><span>◉</span><small>Updates</small></button></nav>
 
     <aside class="sidebar">
       <div class="top"><div class="brand"><div class="mark">C.</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
@@ -2260,6 +2289,10 @@ $('arenaRefreshInvitesBtn').addEventListener('click',loadArenaLiveInvites);
 $('arenaStopLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,'You ended the private live session.'));
 $('arenaLeaveLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,'You left the private live session.'));
 
+</script>
+<script id="chatdun-phone-navigation">
+document.querySelectorAll('[data-hub-mobile]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-mobile');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item===button)});if(target==='home'){showMenuHome();return}switchTab(target)})});
+document.querySelectorAll('[data-hub-tab]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-tab');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-hub-mobile')===target)});switchTab(target)})});
 </script>
 </body>
 </html>
