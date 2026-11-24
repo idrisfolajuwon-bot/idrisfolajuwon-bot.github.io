@@ -1010,6 +1010,77 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 }
 @media(max-width:370px){.app.menu-home #homeHub .hub-content{padding-left:12px;padding-right:12px}.app.menu-home #homeHub .hub-welcome{padding-left:18px}.app.menu-home #homeHub .hub-welcome h1{font-size:30px}.app.menu-home #homeHub .hub-card{padding:11px;gap:7px}.app.menu-home #homeHub .hub-card-copy small{font-size:9px}}
 </style>
+
+<style id="chatdun-screen-family-update">
+/* Shared visual language for the screens beyond the home hub. */
+:root{--cd-ink:#20283b;--cd-muted:#7f899b;--cd-teal:#159b91;--cd-line:#e7eaf0;--cd-paper:#f5f6fb}
+.tab-screen{background:var(--cd-paper)!important;color:var(--cd-ink)}
+.tab-head{background:#fff!important;color:var(--cd-ink)!important;border-bottom:1px solid var(--cd-line);box-shadow:0 3px 14px rgba(30,42,65,.035)}
+.tab-head .section-menu-back{border:1px solid var(--cd-line);background:#f7f8fb;color:#536174;border-radius:11px;padding:8px 11px;font-size:12px;font-weight:800}
+.tab-content{color:var(--cd-ink)}
+.tab-empty,.status-compose-panel,.status-card,.profile-card,.profile-details{border:1px solid var(--cd-line)!important;border-radius:18px!important;box-shadow:0 8px 24px rgba(28,43,65,.045)}
+.status-compose{background:#e8f7f4!important;color:#12877e!important;border:1px solid #d2eee8}
+.status-input{background:#fff;border-color:var(--cd-line);border-radius:13px}
+#contactsPage .contacts-intro{box-shadow:0 12px 28px rgba(26,48,64,.12)}
+#callsPage .tab-empty{max-width:620px}
+.ai-live-page{background:var(--cd-paper)!important}
+.ai-live-main{background:var(--cd-paper)}
+.ai-live-heading h1{color:var(--cd-ink)}
+.ai-live-messages{border:1px solid var(--cd-line);border-radius:20px;background:#fff}
+.ai-live-composer{border:1px solid var(--cd-line);border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(28,43,65,.05)}
+.arena-live-page{background:var(--cd-paper)!important}
+.arena-private-panel{border:1px solid var(--cd-line)!important;border-radius:20px!important;box-shadow:0 8px 24px rgba(28,43,65,.045)}
+.arena-live-hero{box-shadow:0 14px 32px rgba(25,44,61,.12)}
+@media(max-width:900px){
+  .tab-screen{inset:0!important;overflow:auto!important;padding-bottom:0!important}
+  .tab-head{position:sticky;top:0;z-index:5;min-height:76px;height:auto;padding:13px 16px;gap:8px;font-size:19px}
+  .tab-content{padding:18px 15px 30px;overflow:visible}
+  .tab-empty{margin:14px 0;padding:24px 18px}
+  .status-compose{min-height:52px;text-align:left;padding:15px 16px;border-radius:15px}
+  .status-compose-panel{padding:15px;background:#fff}
+  .status-card{margin:12px 0;padding:15px}
+  #contactsPage .tab-head{align-items:flex-start;justify-content:center}
+  #contactsPage .tab-content{padding-top:17px}
+  #contactsPage .contacts-intro{padding:23px 20px 20px;border-radius:21px}
+  #contactsPage .contacts-intro h2{font-size:27px}
+  #contactsPage .contacts-tools{gap:12px}
+  #callsPage .tab-empty{margin:20px 0}
+  .ai-topbar,.arena-topbar{height:68px;min-height:68px;padding:0 13px;gap:8px}
+  .ai-topbar .section-menu-back,.arena-topbar .section-menu-back{padding:8px 9px;font-size:10px;white-space:nowrap}
+  .ai-brand b,.arena-brand b{font-size:12px;letter-spacing:1px}
+  .ai-brand small,.arena-brand small{font-size:8px;letter-spacing:.7px}
+  .ai-mark,.arena-brand-mark{width:34px;height:34px;flex:none}
+  .ai-live-layout{height:auto;min-height:calc(100% - 68px);display:flex;flex-direction:column;overflow:auto}
+  .ai-live-sidebar{padding:12px 14px;min-height:0;border-right:0;border-bottom:1px solid var(--cd-line)}
+  .ai-history-heading{margin:12px 5px 7px}
+  .ai-history-list{max-height:86px;flex-direction:row;overflow-x:auto;overflow-y:hidden}
+  .ai-history-item{flex:none;max-width:190px;background:#fff;border:1px solid var(--cd-line)}
+  .ai-history-foot{display:none}
+  .ai-live-main{padding:18px 14px 22px;min-height:540px}
+  .ai-live-heading{gap:10px;flex-direction:column}
+  .ai-live-heading h1{font-size:25px;line-height:1.15}
+  .ai-live-heading p{font-size:13px}
+  .ai-live-messages{min-height:250px;padding:14px}
+  .ai-live-composer{position:sticky;bottom:8px;z-index:3;padding:10px}
+  .arena-live-scroll{padding:15px 13px 28px;overflow:visible}
+  .arena-live-hero{padding:24px 20px 18px;border-radius:22px;margin-bottom:16px}
+  .arena-live-hero h1{font-size:36px;line-height:1.02}
+  .arena-live-hero p{font-size:13px;line-height:1.6}
+  .arena-private-panel{padding:16px!important;margin:13px 0!important}
+  .arena-panel-heading{gap:10px;align-items:flex-start}
+  .arena-panel-heading h2{font-size:19px}
+  .arena-video-grid{grid-template-columns:1fr!important}
+  .arena-video-tile{min-height:190px}
+}
+@media(max-width:390px){
+  .ai-live-main{padding-left:11px;padding-right:11px}
+  .ai-live-heading h1{font-size:23px}
+  .arena-live-scroll{padding-left:10px;padding-right:10px}
+  .arena-live-hero h1{font-size:32px}
+  .arena-access{font-size:8px;padding:6px 7px}
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
