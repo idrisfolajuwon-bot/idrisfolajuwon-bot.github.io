@@ -1433,7 +1433,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       </div>
       <div class="hub-preview-orbit" aria-hidden="true">✧</div>
       <div class="hub-preview-quick">
-        <button type="button" data-hub-tab="chats"><i>☏</i>New chat</button>
+        <button type="button" data-hub-action="new-chat"><i>☏</i>New chat</button>
         <button type="button" data-hub-tab="updates"><i>◉</i>Post update</button>
         <button type="button" data-hub-tab="ai"><i>✧</i>Ask AI</button>
         <button type="button" data-hub-tab="arena"><i>◈</i>Arena</button>
@@ -2688,6 +2688,7 @@ document.querySelectorAll('[data-hub-mobile]').forEach(function(button){button.a
 document.querySelectorAll('[data-hub-tab]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-tab');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-hub-mobile')===target)});switchTab(target)})});
 </script>
 <script id="shared-app-shell-actions">
+document.querySelectorAll('[data-hub-action="new-chat"]').forEach(function(button){button.addEventListener('click',function(){document.getElementById('newChatBtn')?.click();});});
 document.querySelectorAll('[data-shared-action]').forEach(function(button){
   button.addEventListener('click',function(){
     var action=button.getAttribute('data-shared-action');
