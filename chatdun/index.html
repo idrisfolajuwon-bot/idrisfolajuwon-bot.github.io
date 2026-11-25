@@ -21,7 +21,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--green:#075e54;--green2:#128c7e;--lime:#25d366;--ink:#172b27;--muted:#71817c;--paper:#f5f8f6;--line:#e7eeea;--white:#fff;--shadow:0 18px 55px rgba(12,55,45,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:'DM Sans',system-ui,sans-serif;background:linear-gradient(140deg,#e8f4ef,#f7faf8 55%,#e6f2ed);color:var(--ink);min-height:100vh}
@@ -1170,6 +1170,234 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
  #app:not(.menu-home) #profilePage .profile-actions{flex-wrap:wrap;justify-content:center}
 }
 </style>
+
+<style id="chatdun-lovable-design-port">
+:root{
+  --cd-l-bg:#f6f4ee;--cd-l-card:#fffefa;--cd-l-ink:#20283b;--cd-l-muted:#788094;
+  --cd-l-line:#e7e5df;--cd-l-teal:#8bd8d0;--cd-l-teal-deep:#5ebdb5;
+  --cd-l-coral:#e98b68;--cd-l-violet:#a79ae8;--cd-l-blue:#88b8dd;
+  --cd-l-shadow:0 12px 34px rgba(32,40,59,.08);
+}
+html,body{background:var(--cd-l-bg)!important;color:var(--cd-l-ink)}
+body{font-family:"DM Sans",system-ui,sans-serif}
+.shell{display:block!important;min-height:100dvh!important;padding:0!important}
+.app{display:grid!important;grid-template-columns:248px 330px minmax(0,1fr)!important;gap:0!important;
+  width:100%!important;max-width:none!important;height:100dvh!important;min-height:100dvh!important;
+  margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;
+  background:var(--cd-l-bg)!important;box-shadow:none!important;position:relative!important}
+.cd-lovable-rail{grid-column:1;grid-row:1;position:relative;z-index:80;display:flex;flex-direction:column;
+  min-width:0;height:100dvh;padding:22px 14px 16px;background:linear-gradient(155deg,#202536 0%,#29364b 60%,#233e4b 100%);color:#f8f7f1}
+.cd-rail-brand{display:flex;align-items:center;gap:11px;padding:0 7px 31px;color:#fff;text-decoration:none}
+.cd-rail-logo{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b;font-size:18px;font-weight:900;box-shadow:0 8px 20px #8bd8d033}
+.cd-rail-brand b{display:block;font-size:17px;letter-spacing:.04em;font-weight:900}.cd-rail-brand small{display:block;margin-top:3px;color:#aab3c4;font-size:9px;letter-spacing:.15em}
+.cd-rail-label{padding:0 11px 10px;color:#aab3c4;font-size:9px;font-weight:850;letter-spacing:.16em}
+.cd-rail-nav{display:flex;flex-direction:column;gap:5px}
+.cd-rail-item{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;width:100%;padding:10px 12px;border:0;border-radius:13px;background:transparent;color:#c1c8d3;text-align:left;font-size:12px;cursor:pointer;transition:background .16s ease,color .16s ease}
+.cd-rail-item>span:first-child{display:grid;place-items:center;width:27px;height:27px;flex:none;border-radius:9px;background:#ffffff12;color:#d9e2e7;font-size:17px}
+.cd-rail-item b{font-size:12px;font-weight:700}.cd-rail-item small{margin-left:auto;color:#aab3c4;font-size:9px}
+.cd-rail-item:hover{background:#ffffff10;color:#fff}
+.cd-rail-item.active{background:#ffffff18;color:#9be2d5}
+.cd-rail-item.active>span:first-child{background:#8bd8d033;color:#a8e8dc}
+.cd-rail-bottom{margin-top:auto}.cd-rail-settings{border-top:1px solid #ffffff20;border-radius:0;padding-top:18px;margin-top:12px}
+.cd-rail-footer{padding:18px 12px 0;color:#aab3c4;font-size:8px;font-weight:800;letter-spacing:.12em;line-height:1.8}
+.cd-rail-footer span{color:#77869a;font-size:8px}
+.sidebar{grid-column:2;grid-row:1;display:flex!important;flex-direction:column;min-width:0;width:auto!important;max-width:none!important;height:100dvh;min-height:0!important;padding:0!important;
+  border-right:1px solid var(--cd-l-line)!important;background:var(--cd-l-card)!important;overflow:hidden!important}
+.sidebar>.top,.sidebar>.side-navigation{display:none!important}
+.sidebar>.search{padding:20px 17px 10px;flex:none}
+.sidebar>.search input{min-height:44px;border:1px solid var(--cd-l-line);border-radius:14px;background:#f7f5ef;padding:12px 14px;color:var(--cd-l-ink);font-size:12px}
+.sidebar>.newchat,.sidebar>.group-action,.sidebar>.invitebtn{margin:6px 17px 0;border:1px solid var(--cd-l-line);border-radius:13px;background:#f1f8f5;color:#286e6d;padding:12px 13px;font-size:12px;font-weight:800}
+.sidebar>.group-action{background:#f5f2fa;color:#6a5c9c}
+.sidebar>.invitebtn{background:#f9f2ed;color:#956348}
+.sidebar>.phonefinder{padding:8px 17px 7px}.sidebar>.phonefinder .section-label{padding:8px 0;color:var(--cd-l-muted)}
+.sidebar .phonefindrow input{border-radius:12px;background:#f7f5ef;border:1px solid var(--cd-l-line);padding:10px}
+.sidebar .phonefindrow button,.sidebar .pickcontact{border-radius:11px;background:#e9f6f2;color:#286e6d;font-weight:800}
+.sidebar>.inbox-heading{padding:17px 19px 12px;background:var(--cd-l-card);border-top:1px solid var(--cd-l-line);display:flex;align-items:flex-end}
+.sidebar .inbox-kicker{color:#8b929e;font-size:9px;letter-spacing:.17em}
+.sidebar .inbox-heading h2{margin:3px 0 0;color:var(--cd-l-ink);font-size:25px;letter-spacing:-.045em}
+.sidebar .inbox-heading p{margin:5px 0 0;color:var(--cd-l-muted);font-size:11px}
+.sidebar .inbox-live{font-size:8px;color:#5f8f83;letter-spacing:.08em}
+.sidebar .chatlist-heading{display:flex;align-items:center;justify-content:space-between;padding:12px 18px 7px;color:#8b929e;font-size:9px;font-weight:850;letter-spacing:.13em}
+.sidebar .chatlist-heading #chatCount{display:grid;place-items:center;min-width:21px;height:21px;border-radius:50%;background:#edf4f1;color:#4d827b;font-size:10px}
+#chatList{flex:1;min-height:0;padding:3px 9px 12px;overflow-y:auto;background:var(--cd-l-card)}
+#chatList .chatrow{display:flex;align-items:center;gap:11px;padding:12px 10px;margin:2px 0;border:0;border-radius:14px;background:transparent;cursor:pointer}
+#chatList .chatrow:hover,#chatList .chatrow.active{background:#eff5f1}
+#chatList .chatmeta b{font-size:12px;color:var(--cd-l-ink);font-weight:800}
+#chatList .chatmeta small{font-size:10px;color:var(--cd-l-muted)}
+#chatList .avatar{width:43px;height:43px;border:2px solid #fff;border-radius:50%;background:#e7eee9;color:#516b69}
+#chatList .chatrow-arrow{color:#a7b2b0;font-size:18px}
+.sidebar .foot{padding:12px 16px;border-top:1px solid var(--cd-l-line);background:var(--cd-l-card)}
+.sidebar .foot .iconbtn{border:1px solid var(--cd-l-line);border-radius:10px;background:#f7f5ef;color:var(--cd-l-ink);font-size:10px}
+.main{grid-column:3;grid-row:1;display:flex!important;min-width:0;min-height:0;height:100dvh;padding:0!important;background:var(--cd-l-bg)!important}
+.main .welcome{max-width:620px;padding:40px;color:var(--cd-l-ink)}
+.main .welcome .heroicon{background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b}
+.main .welcome h1{font-size:32px;letter-spacing:-.045em}.main .welcome p{color:var(--cd-l-muted);font-size:14px;line-height:1.7}
+.main #chatPanel{height:100%!important;min-height:0!important;background:var(--cd-l-bg)}
+.main .chathead{height:76px;flex:none;padding:12px 22px;border-bottom:1px solid var(--cd-l-line);background:#fffefa}
+.main .chathead .details b{color:var(--cd-l-ink);font-size:15px;font-weight:850}
+.main .chathead .details small{color:var(--cd-l-muted);font-size:11px}
+.main .chathead .iconbtn{border:1px solid var(--cd-l-line);border-radius:12px;background:#f7f5ef;color:var(--cd-l-ink)}
+.main .messages{background:#f2f0e9;background-image:radial-gradient(#e2dfd5 1px,transparent 1px);background-size:20px 20px;padding:22px}
+.main .bubble{max-width:min(78%,560px);border:1px solid #ece9e0;border-radius:18px;background:#fffefa;color:var(--cd-l-ink);box-shadow:0 4px 14px #20283b0a}
+.main .bubble.mine{background:#dff3ed;border-color:#d0e9df}
+.main .composer{flex:none;padding:13px;border-top:1px solid var(--cd-l-line);background:#fffefa}
+.main .composer input{border:1px solid var(--cd-l-line);border-radius:999px;background:#f6f4ee;color:var(--cd-l-ink)}
+.main .composer .send{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b}
+.cd-mobile-top{display:none}
+#app:not(.menu-home) .tab-screen{position:absolute!important;inset:0 0 0 248px!important;z-index:50;overflow:auto!important;border-radius:0!important;background:var(--cd-l-bg)!important;color:var(--cd-l-ink)!important}
+#app:not(.menu-home) .tab-screen .tab-head{position:sticky;top:0;z-index:8;min-height:76px;padding:17px 26px;background:rgba(246,244,238,.94)!important;border-bottom:1px solid var(--cd-l-line);backdrop-filter:blur(16px);color:var(--cd-l-ink)!important;font-size:23px;font-weight:850;letter-spacing:-.045em}
+#app:not(.menu-home) .tab-screen .tab-content{width:min(100%,1080px);margin:0 auto;padding:25px 28px}
+#app:not(.menu-home) .tab-screen .section-menu-back{border:1px solid var(--cd-l-line);border-radius:999px;background:var(--cd-l-card);color:var(--cd-l-ink);padding:9px 14px;font-size:11px;font-weight:800}
+#app:not(.menu-home) .tab-screen input:not([type=file]),#app:not(.menu-home) .tab-screen textarea,#app:not(.menu-home) .tab-screen select{border:1px solid var(--cd-l-line);border-radius:14px;background:var(--cd-l-card);color:var(--cd-l-ink);padding:12px 14px}
+#app:not(.menu-home) .tab-screen .primary{border:0;border-radius:14px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b;font-weight:850}
+#app:not(.menu-home) #aiPage .ai-topbar,#app:not(.menu-home) #arenaPage .arena-topbar{background:#202536!important;color:#fff!important;border:0!important}
+#app:not(.menu-home) #aiPage .ai-live-layout{background:var(--cd-l-bg)!important}
+#app:not(.menu-home) #aiPage .ai-live-sidebar{background:#fffefa!important;border-right:1px solid var(--cd-l-line)!important}
+#app:not(.menu-home) #aiPage .ai-new-chat{border:0;border-radius:14px;background:#202536;color:#fff;padding:13px 15px;font-weight:800}
+#app:not(.menu-home) #aiPage .ai-live-heading h1{color:var(--cd-l-ink);font-size:clamp(28px,4vw,42px);letter-spacing:-.055em}
+#app:not(.menu-home) #aiPage .ai-live-heading p{color:var(--cd-l-muted);line-height:1.65}
+#app:not(.menu-home) #aiPage .ai-live-messages{border:1px solid var(--cd-l-line);border-radius:22px;background:#fffefa}
+#app:not(.menu-home) #aiPage .ai-live-composer{border:1px solid var(--cd-l-line);border-radius:20px;background:#fffefa;box-shadow:var(--cd-l-shadow)}
+#app:not(.menu-home) #aiPage #chatdunAiSendBtn{border:0;border-radius:13px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b;font-weight:850}
+#app:not(.menu-home) #updatesPage .status-compose{width:min(100%,760px);margin:0 auto 18px;padding:18px 20px;border:1px solid var(--cd-l-line);border-radius:19px;background:#fffefa;color:var(--cd-l-ink);font-weight:800;text-align:left;box-shadow:var(--cd-l-shadow)}
+#app:not(.menu-home) #updatesPage #statusComposer,#app:not(.menu-home) #updatesPage #statusList>*{width:min(100%,760px);margin-left:auto;margin-right:auto}
+#app:not(.menu-home) #updatesPage .status-compose-panel,#app:not(.menu-home) #updatesPage #statusList>*{padding:20px;border:1px solid var(--cd-l-line);border-radius:20px;background:#fffefa;box-shadow:var(--cd-l-shadow)}
+#app:not(.menu-home) #contactsPage .contacts-intro{margin:4px auto 22px;padding:28px;border-radius:24px;background:linear-gradient(135deg,#202536,#34485a);color:#fff;max-width:900px}
+#app:not(.menu-home) #contactsPage .contacts-intro .eyebrow{color:#8bd8d0;font-size:10px;font-weight:850;letter-spacing:.16em}
+#app:not(.menu-home) #contactsPage .contacts-intro h2{font-size:clamp(28px,4vw,40px);font-weight:900;letter-spacing:-.055em}
+#app:not(.menu-home) #contactsPage .contacts-intro p{color:#c5cfda;line-height:1.65}
+#app:not(.menu-home) #contactsPage .contacts-tools{max-width:900px;margin:0 auto;padding:20px;border:1px solid var(--cd-l-line);border-radius:20px;background:#fffefa;box-shadow:var(--cd-l-shadow)}
+#app:not(.menu-home) #arenaPage .arena-scroll{max-width:1080px;margin:0 auto;padding:24px}
+#app:not(.menu-home) #arenaPage .arena-live-hero{border-radius:26px;background:linear-gradient(135deg,#202536,#33475b);padding:clamp(26px,5vw,48px);box-shadow:0 18px 42px #20283b20}
+#app:not(.menu-home) #arenaPage .arena-live-hero h1{font-size:clamp(36px,5.5vw,58px);letter-spacing:-.06em}
+#app:not(.menu-home) #arenaPage .arena-live-hero h1 span{color:#8bd8d0}
+#app:not(.menu-home) #arenaPage .arena-private-panel{margin-top:16px;padding:22px;border:1px solid var(--cd-l-line);border-radius:22px;background:#fffefa;box-shadow:var(--cd-l-shadow)}
+#app:not(.menu-home) #arenaPage .arena-start-btn{border:0;border-radius:14px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#20283b;font-weight:850;padding:14px 18px}
+#app:not(.menu-home) #callsPage .tab-empty,#app:not(.menu-home) #profilePage .profile-card,#app:not(.menu-home) #profilePage .profile-details{max-width:820px;margin-left:auto;margin-right:auto;border:1px solid var(--cd-l-line);border-radius:20px;background:#fffefa;box-shadow:var(--cd-l-shadow)}
+#homeHub{display:none}
+.app.menu-home{display:grid!important;grid-template-columns:248px minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr)!important}
+#app.menu-home #homeHub{position:relative!important;inset:auto!important;grid-column:2;grid-row:1;z-index:30;display:flex!important;flex-direction:column;min-width:0;height:100dvh;overflow:auto!important;background:var(--cd-l-bg)!important;color:var(--cd-l-ink)!important}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","DM Sans",system-ui,sans-serif}
+#app.menu-home #homeHub .cd-home-content{display:flex;flex-direction:column;gap:25px;width:min(100%,1120px);margin:0 auto;padding:26px 30px 32px;overflow:visible}
+.cd-home-hero{position:relative;min-height:245px;overflow:hidden;display:flex;align-items:center;padding:30px 34px 66px;border-radius:27px;background:radial-gradient(circle at 85% 14%,#477d80 0,transparent 28%),linear-gradient(120deg,#202536,#34495a 58%,#1e5b60);color:#fff;box-shadow:0 16px 38px rgba(32,37,54,.13)}
+.cd-home-hero-copy{position:relative;z-index:2;max-width:620px}
+.cd-eyebrow{color:#9be2d5;font-size:9px;font-weight:900;letter-spacing:2px}
+.cd-home-hero h1{margin:12px 0;font-size:clamp(31px,4vw,46px);line-height:1.05;letter-spacing:-1.8px;font-weight:900}
+.cd-home-hero h1 em{font-style:normal;color:#9be2d5}
+.cd-home-hero p{max-width:490px;margin:0;color:#cbd4dc;font-size:13px;line-height:1.7}
+.cd-home-orbit{position:absolute;right:9%;top:30px;width:160px;height:160px;border:1px solid #9be2d55c;border-radius:50%;display:grid;place-items:center;color:#a8ebdd;font-size:50px;opacity:.8}
+.cd-home-orbit:before,.cd-home-orbit:after{content:"";position:absolute;inset:18px;border:1px solid #9be2d544;border-radius:50%}
+.cd-home-orbit:after{inset:42px}.cd-home-orbit i,.cd-home-orbit b{position:absolute;width:8px;height:8px;border-radius:50%;background:#9be2d5;top:21px;left:24px}.cd-home-orbit b{width:6px;height:6px;top:auto;left:auto;right:24px;bottom:33px;background:#e98b68}
+.cd-home-hero-foot{position:absolute;left:34px;right:34px;bottom:19px;display:flex;justify-content:space-between;color:#b4c2cb;font-size:8px;font-weight:850;letter-spacing:1.2px}
+.cd-home-section{display:flex;flex-direction:column;gap:13px}
+.cd-home-section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.cd-home-section-title small{color:#8b929e;font-size:9px;font-weight:900;letter-spacing:1.5px}
+.cd-home-section-title h2{margin:4px 0 0;color:var(--cd-l-ink);font-size:22px;font-weight:900;letter-spacing:-.045em}
+.cd-home-section-title>span,.cd-home-see-all{color:#8a929c;font-size:9px;font-weight:850;letter-spacing:.1em}
+.cd-home-see-all{border:0;background:none;color:#417c77;font-size:11px;letter-spacing:0;cursor:pointer}
+.cd-home-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cd-home-action{display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;align-items:center;column-gap:11px;min-height:80px;padding:14px;border:1px solid var(--cd-l-line);border-radius:17px;background:#fffefa;color:var(--cd-l-ink);text-align:left;box-shadow:0 5px 18px #20283b09}
+.cd-home-action:hover,.cd-home-wide-card:hover{transform:translateY(-1px);box-shadow:var(--cd-l-shadow)}
+.cd-action-icon{grid-row:1/3;display:grid;place-items:center;width:42px;height:42px;border-radius:14px;font-size:20px;font-weight:800}
+.cd-action-icon.teal,.cd-home-wide-icon.teal{background:#e5f5f0;color:#338d83}
+.cd-action-icon.coral,.cd-home-wide-icon.coral{background:#faeee7;color:#c47a5c}
+.cd-action-icon.violet{background:#f0edfa;color:#796bb2}.cd-action-icon.blue{background:#eaf2fa;color:#5d87b2}
+.cd-home-action b{font-size:12px;font-weight:850}.cd-home-action small{align-self:start;color:var(--cd-l-muted);font-size:10px}
+.cd-home-two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cd-home-card{min-width:0;display:flex;flex-direction:column;align-items:flex-start;padding:20px;border:1px solid var(--cd-l-line);border-radius:21px;background:#fffefa;box-shadow:0 8px 24px #20283b08}
+.cd-home-card-top{display:flex;justify-content:space-between;align-items:center;width:100%}
+.cd-home-kicker{color:#8b929e;font-size:8px;font-weight:900;letter-spacing:1.2px}
+.cd-card-symbol{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#f0f2ed;color:#477c77;font-size:18px}
+.cd-home-card h2{margin:10px 0 6px;color:var(--cd-l-ink);font-size:20px;line-height:1.15;letter-spacing:-.04em;font-weight:900}
+.cd-home-card p{max-width:460px;margin:0 0 16px;color:var(--cd-l-muted);font-size:11px;line-height:1.65}
+.cd-home-link{display:inline-flex;align-items:center;gap:20px;margin-top:auto;padding:10px 14px;border:0;border-radius:999px;font-size:11px;font-weight:850;cursor:pointer}
+.cd-home-link.dark{background:#202536;color:#fff}.cd-home-link.teal{background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#202536}
+.cd-home-link span{font-size:15px}
+.cd-home-ai-card{background:linear-gradient(145deg,#fffefa,#f0f6f0)}.cd-home-ai-card .cd-card-symbol{background:#e6f5f1;color:#368d83}
+.cd-home-arena-card{background:linear-gradient(145deg,#fffefa,#f4f1e8)}
+.cd-home-wide-card{display:flex;align-items:center;gap:15px;padding:17px;border:1px solid var(--cd-l-line);border-radius:18px;background:#fffefa;box-shadow:0 6px 19px #20283b08;transition:transform .16s ease,box-shadow .16s ease}
+.cd-home-wide-icon{display:grid;place-items:center;width:43px;height:43px;flex:none;border-radius:14px;font-size:19px}
+.cd-home-wide-card>div:nth-child(2){min-width:0;flex:1}
+.cd-home-wide-card b{font-size:12px;font-weight:850}.cd-home-wide-card p{margin:4px 0 0;color:var(--cd-l-muted);font-size:10px;line-height:1.5}
+.cd-home-card-arrow{display:grid;place-items:center;width:35px;height:35px;flex:none;border-radius:12px;background:#f2f5f0;color:#4f847e;font-size:17px}
+.cd-home-people-card .cd-card-symbol{background:#f0edfa;color:#796bb2}
+.cd-home-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 2px 0;color:#9299a3;font-size:8px;font-weight:850;letter-spacing:1px}
+.cd-home-footer i{font-style:normal;color:#5e9990}.cd-home-footer button{border:0;background:none;color:#657b78;font-size:9px;font-weight:800;letter-spacing:0}
+.hub-mobile-nav{display:none}
+@media(max-width:1100px) and (min-width:901px){
+  .app{grid-template-columns:220px 300px minmax(0,1fr)!important}
+  #app.menu-home #homeHub{left:220px!important}
+  #app:not(.menu-home) .tab-screen{left:220px!important}
+  .cd-home-content{padding-left:22px!important;padding-right:22px!important}
+}
+@media(max-width:900px){
+  .app,.app.menu-home{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;grid-template-rows:minmax(0,1fr)!important;width:100%!important;height:100dvh!important;min-height:100dvh!important;overflow:hidden!important}
+  .cd-lovable-rail{display:none!important}
+  .cd-mobile-top{position:fixed;z-index:140;top:0;left:0;right:0;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;background:rgba(255,254,250,.96);border-bottom:1px solid var(--cd-l-line);backdrop-filter:blur(16px)}
+  .cd-mobile-brand{display:flex;align-items:center;gap:9px;color:var(--cd-l-ink);text-decoration:none}
+  .cd-mobile-logo{display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:linear-gradient(135deg,#8bd8d0,#70c7c1);color:#202536;font-weight:900}
+  .cd-mobile-brand b{display:block;font-size:13px;letter-spacing:.08em}.cd-mobile-brand small{display:block;color:#9299a3;font-size:8px;letter-spacing:.15em}
+  .cd-mobile-actions{display:flex;align-items:center;gap:7px}
+  .cd-mobile-action,.cd-mobile-profile{display:grid;place-items:center;width:37px;height:37px;border:1px solid var(--cd-l-line);border-radius:12px;background:#fffefa;color:var(--cd-l-ink);font-size:17px}
+  .cd-mobile-profile{border-radius:50%;background:#e6f5f1;color:#327c75;font-weight:850}
+  .cd-mobile-profile span{font-size:12px}
+  #app.menu-home #homeHub{inset:62px 0 70px 0!important;z-index:40;overflow-y:auto!important}
+  #app.menu-home #homeHub .cd-home-content{gap:20px;padding:17px 15px 28px}
+  .cd-home-hero{min-height:220px;padding:25px 22px 58px;border-radius:22px}
+  .cd-home-hero h1{font-size:clamp(29px,8vw,38px)}
+  .cd-home-hero p{max-width:285px;font-size:12px}
+  .cd-home-orbit{right:-43px;top:32px;width:145px;height:145px;opacity:.55}
+  .cd-home-hero-foot{left:22px;right:22px;bottom:15px;font-size:7px}
+  .cd-home-section-title h2{font-size:20px}
+  .cd-home-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .cd-home-action{min-height:72px;padding:11px;grid-template-columns:36px 1fr;column-gap:9px;border-radius:15px}
+  .cd-action-icon{width:36px;height:36px;border-radius:12px;font-size:17px}
+  .cd-home-action b{font-size:11px}.cd-home-action small{font-size:9px}
+  .cd-home-two-col{grid-template-columns:1fr;gap:10px}
+  .cd-home-card{padding:17px;border-radius:18px}
+  .cd-home-card h2{font-size:19px}.cd-home-card p{font-size:11px}
+  .cd-home-wide-card{gap:11px;padding:13px;border-radius:16px}
+  .cd-home-wide-card b{font-size:11px}.cd-home-wide-card p{font-size:9px}
+  .cd-home-footer{flex-wrap:wrap;font-size:7px}
+  .hub-mobile-nav{position:fixed!important;z-index:150!important;left:0!important;right:0!important;bottom:0!important;height:70px!important;padding:6px 8px max(6px,env(safe-area-inset-bottom))!important;
+    display:grid!important;grid-template-columns:repeat(5,1fr)!important;background:#202536!important;border-top:1px solid #ffffff1a!important;box-shadow:0 -8px 24px #20253624}
+  .hub-mobile-nav .hub-mobile-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:0;border-radius:12px;background:transparent;color:#aab3c4;font-size:10px}
+  .hub-mobile-nav .hub-mobile-item span{font-size:19px;line-height:1}
+  .hub-mobile-nav .hub-mobile-item small{font-size:9px;font-weight:750}
+  .hub-mobile-nav .hub-mobile-item.active{background:#ffffff18;color:#9be2d5}
+  #app:not(.menu-home) .tab-screen{inset:62px 0 70px 0!important;z-index:60;overflow-y:auto!important;border-radius:0!important}
+  #app:not(.menu-home) .tab-screen .tab-head{min-height:61px;height:auto;padding:13px 16px;font-size:20px}
+  #app:not(.menu-home) .tab-screen .tab-content{padding:16px 14px 24px}
+  #app:not(.menu-home) .sidebar{width:100%!important;height:calc(100dvh - 132px)!important;min-height:0!important;display:flex!important;grid-column:auto;grid-row:auto;overflow:hidden!important}
+  #app:not(.menu-home) .sidebar>.top,#app:not(.menu-home) .sidebar>.side-navigation{display:none!important}
+  #app:not(.menu-home) .sidebar>.search{padding:12px 14px 8px}
+  #app:not(.menu-home) .sidebar>.inbox-heading{padding:12px 16px 10px}
+  #app:not(.menu-home) .sidebar>.newchat,#app:not(.menu-home) .sidebar>.group-action,#app:not(.menu-home) .sidebar>.invitebtn,#app:not(.menu-home) .sidebar>.phonefinder,#app:not(.menu-home) .sidebar>#searchResults{display:none!important}
+  #app:not(.menu-home) .sidebar .foot{display:none!important}
+  #app:not(.menu-home) .main{display:none!important;height:calc(100dvh - 132px)!important}
+  #app:not(.menu-home).chat-open .sidebar{display:none!important}
+  #app:not(.menu-home).chat-open .main{display:flex!important;grid-column:auto;grid-row:auto;height:calc(100dvh - 132px)!important}
+  #app:not(.menu-home).chat-open .main #chatPanel{height:100%!important}
+  #app:not(.menu-home).chat-open .main .chathead{min-height:63px;padding:8px 12px}
+  #app:not(.menu-home).chat-open .main .messages{padding:14px 11px 18px}
+  #app:not(.menu-home).chat-open .main .composer{padding:9px}
+  #app:not(.menu-home) #aiPage .ai-topbar,#app:not(.menu-home) #arenaPage .arena-topbar{min-height:56px;height:56px;padding:8px 12px}
+  #app:not(.menu-home) #aiPage .ai-live-layout{min-height:0}
+  #app:not(.menu-home) #aiPage .ai-live-main{padding:17px 13px 22px}
+  #app:not(.menu-home) #aiPage .ai-live-heading h1{font-size:25px}
+  #app:not(.menu-home) #aiPage .ai-live-composer{position:sticky;bottom:5px;z-index:5}
+  #app:not(.menu-home) #arenaPage .arena-scroll{padding:14px 13px 24px}
+  #app:not(.menu-home) #arenaPage .arena-private-panel{padding:16px}
+  #app:not(.menu-home) #arenaPage .arena-video-grid{grid-template-columns:1fr}
+}
+@media(max-width:390px){
+  .cd-home-content{padding-left:12px!important;padding-right:12px!important}
+  .cd-home-hero{padding-left:18px}.cd-home-hero h1{font-size:29px}
+  .cd-home-action{padding:10px;column-gap:7px}
+  .cd-home-action small{font-size:8px}
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -1216,39 +1444,98 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   </section>
 
   <section id="app" class="app hidden">
-    <section id="homeHub" class="hub-screen hidden" aria-label="CHATDUN home">
-  <header class="hub-header">
-    <div class="hub-brand"><span class="hub-logo">C.</span><div><b>CHATDUN</b><small>YOUR SPACE TO CONNECT</small></div></div>
-    <div class="hub-header-actions"><button id="hubNotifications" class="hub-icon-btn" type="button" aria-label="Notifications">🔔</button><button id="hubProfile" class="hub-profile" type="button"><span id="hubAvatar">?</span><span>Profile</span></button></div>
-  </header>
-  <main class="hub-content">
-    <section class="hub-welcome">
-      <div class="hub-welcome-copy"><span class="hub-eyebrow">WELCOME TO YOUR SPACE</span><h1>Good to have<br><em>you here.</em></h1><p>Your conversations, people and new experiences — all in one place.</p></div>
-      <div class="hub-orbit" aria-hidden="true"><span>✦</span><i></i><b></b></div>
-      <div class="hub-welcome-bottom"><span><i></i> YOUR CHATDUN SPACE</span><span>BY I D LABS</span></div>
+    <header id="cdMobileTop" class="cd-mobile-top">
+  <a class="cd-mobile-brand" href="#" aria-label="CHATDUN home"><span class="cd-mobile-logo">C.</span><span><b>CHATDUN</b><small>BY I D LABS</small></span></a>
+  <div class="cd-mobile-actions">
+    <button id="hubNotifications" class="cd-mobile-action" type="button" aria-label="Notifications">♧</button>
+    <button id="hubProfile" class="cd-mobile-profile" type="button" aria-label="Open profile"><span id="hubAvatar">?</span></button>
+  </div>
+</header>
+
+<section id="homeHub" class="hub-screen hidden cd-home-screen" aria-label="CHATDUN home">
+  <main class="hub-content cd-home-content">
+    <section class="cd-home-hero">
+      <div class="cd-home-hero-copy">
+        <span class="cd-eyebrow">YOUR SPACE TO CONNECT</span>
+        <h1>Good conversations<br><em>deserve a home.</em></h1>
+        <p>Bring your people closer. Your messages, ideas and moments stay together in one thoughtful space.</p>
+      </div>
+      <div class="cd-home-orbit" aria-hidden="true"><span>✧</span><i></i><b></b></div>
+      <div class="cd-home-hero-foot"><span>YOUR CHATDUN SPACE</span><span>AN I D LABS PRODUCT</span></div>
     </section>
-    <section class="hub-section">
-      <div class="hub-section-title"><div><small>YOUR EVERYDAY SPACE</small><h2>Stay connected</h2></div><span>01 / CONNECT</span></div>
-      <div class="hub-grid hub-grid-primary">
-        <button class="hub-card hub-chats" data-hub-tab="chats" type="button"><span class="hub-card-icon">☏</span><span class="hub-card-copy"><b>Chats</b><small>Your private and group conversations</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-people" data-hub-tab="contacts" type="button"><span class="hub-card-icon">⌕</span><span class="hub-card-copy"><b>People</b><small>Find and connect with people</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-updates" data-hub-tab="updates" type="button"><span class="hub-card-icon">◉</span><span class="hub-card-copy"><b>Updates</b><small>Share moments that disappear after 24 hours</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-calls" data-hub-tab="calls" type="button"><span class="hub-card-icon">⌁</span><span class="hub-card-copy"><b>Calls</b><small>Keep your call space in one place</small></span><span class="hub-arrow">↗</span></button>
+
+    <section class="cd-home-section">
+      <div class="cd-home-section-title"><div><small>YOUR EVERYDAY SPACE</small><h2>Stay connected</h2></div><span>01 / CONNECT</span></div>
+      <div class="cd-home-actions">
+        <button type="button" class="cd-home-action" data-hub-action="new-chat"><span class="cd-action-icon teal">＋</span><b>New chat</b><small>Start a conversation</small></button>
+        <button type="button" class="cd-home-action" data-hub-tab="updates"><span class="cd-action-icon coral">◉</span><b>Post update</b><small>Share a photo moment</small></button>
+        <button type="button" class="cd-home-action" data-hub-tab="ai"><span class="cd-action-icon violet">✧</span><b>Ask AI</b><small>Think through an idea</small></button>
+        <button type="button" class="cd-home-action" data-hub-tab="arena"><span class="cd-action-icon blue">◈</span><b>Arena</b><small>Private live video</small></button>
       </div>
     </section>
-    <section class="hub-section hub-discover-section">
-      <div class="hub-section-title"><div><small>EXPLORE SOMETHING DIFFERENT</small><h2>Beyond messaging</h2></div><span>02 / EXPLORE</span></div>
-      <div class="hub-grid hub-grid-feature">
-        <button class="hub-feature hub-ai" data-hub-tab="ai" type="button"><span class="hub-feature-symbol">✧</span><span class="hub-feature-tag">AI PREVIEW</span><b>CHATDUN AI</b><p>A separate space for ideas, learning and creativity.</p><span class="hub-feature-link">Explore AI <i>↗</i></span></button>
-        <button class="hub-feature hub-arena" data-hub-tab="arena" type="button"><span class="hub-feature-symbol">◈</span><span class="hub-feature-tag">IN DEVELOPMENT</span><b>ARENA</b><p>Discover the next side of social experiences.</p><span class="hub-feature-link">Enter Arena <i>↗</i></span></button>
-      </div>
+
+    <div class="cd-home-two-col">
+      <article class="cd-home-card cd-home-chat-card">
+        <div class="cd-home-card-top"><span class="cd-home-kicker">PICK UP WHERE YOU LEFT OFF</span><span class="cd-card-symbol">◌</span></div>
+        <h2>Your conversations,<br>all in one place.</h2>
+        <p>Open your direct and group chats, catch up on messages and keep the conversation going.</p>
+        <button type="button" class="cd-home-link dark" data-hub-tab="chats">Open Chats <span>↗</span></button>
+      </article>
+      <article class="cd-home-card cd-home-ai-card">
+        <div class="cd-home-card-top"><span class="cd-home-kicker">YOUR THINKING PARTNER</span><span class="cd-card-symbol">✧</span></div>
+        <h2>CHATDUN AI</h2>
+        <p>Ask questions, learn something new or work through your next idea with your CHATDUN AI workspace.</p>
+        <button type="button" class="cd-home-link teal" data-hub-tab="ai">Open AI <span>↗</span></button>
+      </article>
+    </div>
+
+    <section class="cd-home-section">
+      <div class="cd-home-section-title"><div><small>MOMENTS FROM YOUR CIRCLE</small><h2>Latest updates</h2></div><button type="button" class="cd-home-see-all" data-hub-tab="updates">See all ↗</button></div>
+      <article class="cd-home-wide-card">
+        <div class="cd-home-wide-icon coral">◉</div>
+        <div><b>Share a moment with your contacts</b><p>Post a photo status and choose who can see it. Active photo statuses disappear after 24 hours.</p></div>
+        <button type="button" class="cd-home-card-arrow" data-hub-tab="updates" aria-label="Open Updates">↗</button>
+      </article>
     </section>
-    <footer class="hub-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>AN I D LABS PRODUCT</span></footer>
+
+    <div class="cd-home-two-col">
+      <article class="cd-home-card cd-home-people-card">
+        <div class="cd-home-card-top"><span class="cd-home-kicker">YOUR NETWORK</span><span class="cd-card-symbol">⌕</span></div>
+        <h2>Find your people.</h2>
+        <p>Search for someone by their CHATDUN username or display name. Your private phone number stays private.</p>
+        <button type="button" class="cd-home-link dark" data-hub-tab="contacts">Explore Contacts <span>↗</span></button>
+      </article>
+      <article class="cd-home-card cd-home-arena-card">
+        <div class="cd-home-card-top"><span class="cd-home-kicker">A NEW SIDE OF CHATDUN</span><span class="cd-card-symbol">◈</span></div>
+        <h2>Go live.<br>Share a moment.</h2>
+        <p>Start a private live video with one person you already chat with on CHATDUN.</p>
+        <button type="button" class="cd-home-link teal" data-hub-tab="arena">Enter Arena <span>↗</span></button>
+      </article>
+    </div>
+
+    <footer class="cd-home-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>BY I D LABS</span></footer>
   </main>
 </section>
     <nav class="hub-mobile-nav" aria-label="CHATDUN navigation"><button type="button" class="hub-mobile-item active" data-hub-mobile="home"><span>⌂</span><small>Home</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="chats"><span>☏</span><small>Chats</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="ai"><span>✧</span><small>AI</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="arena"><span>◈</span><small>Arena</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="updates"><span>◉</span><small>Updates</small></button></nav>
 
-    <aside class="sidebar">
+    <aside class="cd-lovable-rail" aria-label="CHATDUN navigation">
+  <a href="#" class="cd-rail-brand" data-cd-route="home"><span class="cd-rail-logo">C.</span><span><b>CHATDUN</b><small>BY I D LABS</small></span></a>
+  <div class="cd-rail-label">WORKSPACE</div>
+  <nav class="cd-rail-nav">
+    <button type="button" class="cd-rail-item active" data-cd-route="home"><span>⌂</span><b>Home</b></button>
+    <button type="button" class="cd-rail-item" data-cd-route="chats"><span>◌</span><b>Chats</b></button>
+    <button type="button" class="cd-rail-item" data-cd-route="ai"><span>✧</span><b>CHATDUN AI</b><small>AI</small></button>
+    <button type="button" class="cd-rail-item" data-cd-route="arena"><span>◈</span><b>Arena</b></button>
+    <button type="button" class="cd-rail-item" data-cd-route="updates"><span>▤</span><b>Updates</b></button>
+    <button type="button" class="cd-rail-item" data-cd-route="contacts"><span>♙</span><b>Contacts</b></button>
+    <button type="button" class="cd-rail-item" data-cd-route="calls"><span>⌁</span><b>Calls</b></button>
+  </nav>
+  <div class="cd-rail-bottom">
+    <button type="button" class="cd-rail-item cd-rail-settings" data-cd-route="profile"><span>⚙</span><b>Profile & settings</b></button>
+    <div class="cd-rail-footer">PRIVATE BY DESIGN<br><span>AN I D LABS PRODUCT</span></div>
+  </div>
+</aside>
+<aside class="sidebar">
       <div class="top"><div class="brand"><div class="mark">C.</div><div><b>CHATDUN</b><small>CONNECT. CHAT. SHARE.</small></div></div><button id="notificationsBtn" class="notification-trigger" type="button" aria-label="Notifications">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><button id="profileBtn" class="profile-trigger" type="button"><span class="avatar" id="topProfileAvatar">?</span><span>Profile</span></button></div>
       <nav class="side-navigation" aria-label="Main navigation"><div class="side-nav-label">MAIN MENU</div><button class="navitem active" data-tab="chats" type="button"><span class="navicon">☏</span><span>Chats</span><span class="nav-chevron">›</span></button><button class="navitem nav-ai" data-tab="ai" type="button"><span class="navicon">✧</span><span>CHATDUN AI</span><span class="nav-chevron">›</span></button><button class="navitem nav-arena" data-tab="arena" type="button"><span class="navicon">◈</span><span>Arena</span><span class="nav-chevron">›</span></button><div class="side-nav-divider"></div><button class="navitem" data-tab="updates" type="button"><span class="navicon">◉</span><span>Updates</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="contacts" type="button"><span class="navicon">＋</span><span>Contacts</span><span class="nav-chevron">›</span></button><button class="navitem" data-tab="calls" type="button"><span class="navicon">☎</span><span>Calls</span><span class="nav-chevron">›</span></button></nav>
       
@@ -1263,7 +1550,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
         <p class="phonehint">Only the number you choose or enter is checked. Phone numbers are not shown to other users.</p>
       </div>
       <div id="searchResults" class="hidden"></div>
-      <div class="inbox-heading"><div><span class="inbox-kicker">YOUR SPACE</span><h2>Messages</h2><p>Your conversations, all in one place.</p></div><span class="inbox-live"><i></i> PRIVATE INBOX</span></div>
+      <div class="inbox-heading"><div><span class="inbox-kicker">YOUR SPACE</span><h2>Chats</h2><p>Your direct and group conversations.</p></div><span class="inbox-live"><i></i> PRIVATE INBOX</span></div>
       <div id="sidebarToolsHost" class="sidebar-tools-host"></div>
       <div class="chatlist-heading"><span>RECENT CONVERSATIONS</span><span id="chatCount">0</span></div>
       <div id="chatList" class="chatlist"><div class="empty">Your chats will appear here.</div></div>
@@ -2454,5 +2741,57 @@ $('arenaLeaveLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true
 document.querySelectorAll('[data-hub-mobile]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-mobile');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item===button)});if(target==='home'){showMenuHome();return}switchTab(target)})});
 document.querySelectorAll('[data-hub-tab]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-tab');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-hub-mobile')===target)});switchTab(target)})});
 </script>
+
+<script id="chatdun-lovable-shell-nav">
+(function(){
+  function markActive(route){
+    document.querySelectorAll('.cd-rail-item').forEach(function(item){
+      item.classList.toggle('active',item.getAttribute('data-cd-route')===route);
+    });
+    document.querySelectorAll('.hub-mobile-item').forEach(function(item){
+      item.classList.toggle('active',item.getAttribute('data-hub-mobile')===route);
+    });
+  }
+  document.querySelectorAll('[data-cd-route]').forEach(function(button){
+    button.addEventListener('click',function(event){
+      event.preventDefault();
+      var route=button.getAttribute('data-cd-route');
+      markActive(route);
+      if(route==='home'){
+        var home=document.querySelector('[data-hub-mobile="home"]');
+        if(home)home.click();
+      }else if(route==='profile'){
+        var profile=document.getElementById('profileBtn');
+        if(profile)profile.click();
+      }else{
+        var target=document.querySelector('.side-navigation [data-tab="'+route+'"]');
+        if(target)target.click();
+      }
+    });
+  });
+  document.addEventListener('click',function(event){
+    var control=event.target.closest('[data-hub-mobile],[data-hub-tab],[data-tab]');
+    if(!control)return;
+    var route=control.getAttribute('data-hub-mobile')||control.getAttribute('data-hub-tab')||control.getAttribute('data-tab');
+    if(!route)return;
+    window.setTimeout(function(){markActive(route);},0);
+  });
+  var brand=document.querySelector('.cd-mobile-brand');
+  if(brand)brand.addEventListener('click',function(event){
+    event.preventDefault();
+    var home=document.querySelector('[data-hub-mobile="home"]');
+    if(home)home.click();
+  });
+  var actions=document.querySelectorAll('[data-cd-mobile-action]');
+  actions.forEach(function(button){
+    button.addEventListener('click',function(){
+      var original=document.getElementById(button.getAttribute('data-cd-mobile-action'));
+      if(original)original.click();
+    });
+  });
+  markActive('home');
+})();
+</script>
+
 </body>
 </html>
