@@ -1321,6 +1321,58 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
  .hub-preview-quick button{font-size:8px}
 }
 </style>
+<style id="chatdun-three-pane-preview-layout">
+/* Desktop preview structure: navigation rail, inbox, and conversation/content pane. */
+#app.menu-home>.preview-nav-rail{display:none!important}
+#app:not(.menu-home) .preview-nav-rail{display:none}
+#app:not(.menu-home) .sidebar{background:#fffefa!important;color:#202536!important;border-right:1px solid #e8e3da!important;box-shadow:none!important}
+#app:not(.menu-home) .sidebar>.top{display:none!important}
+#app:not(.menu-home) .sidebar .inbox-heading{padding:22px 19px 14px}
+#app:not(.menu-home) .sidebar .inbox-heading h2{font-size:23px;letter-spacing:-.7px;color:#202536}
+#app:not(.menu-home) .sidebar .inbox-heading p{color:#7b8491;font-size:11px}
+#app:not(.menu-home) .sidebar .inbox-live{color:#438477;font-size:8px}
+#app:not(.menu-home) .sidebar .chatlist-heading{padding:12px 18px;color:#8a9097;font-size:9px;letter-spacing:1px}
+#app:not(.menu-home) .sidebar .chatrow{border-bottom:1px solid #f0ede6;padding:13px 14px}
+#app:not(.menu-home) .sidebar .chatrow:hover{background:#f6f5ef}
+#app:not(.menu-home) .sidebar .foot{margin-top:auto;background:#fffefa;border-top:1px solid #eee9df}
+#app:not(.menu-home) .main{background:#f6f4ee}
+#app:not(.menu-home) #welcome{border:1px solid #e7e2d8;border-radius:22px;background:#fffefa;color:#202536;box-shadow:0 10px 28px #2025360b}
+#app:not(.menu-home) #welcome h1{color:#202536}
+#app:not(.menu-home) #welcome p{color:#737b87}
+@media(min-width:901px){
+ #app:not(.menu-home){display:grid!important;grid-template-columns:250px minmax(290px,350px) minmax(0,1fr)!important;min-height:100dvh;overflow:hidden}
+ #app:not(.menu-home)>.preview-nav-rail{display:flex;grid-column:1;grid-row:1;position:relative;z-index:2;width:250px;min-width:250px;height:100dvh;flex-direction:column;overflow:auto;background:#202536;color:#f8f7f2;padding:18px 15px}
+ #app:not(.menu-home)>.preview-nav-rail>.top{display:flex!important;flex:none;height:66px;min-height:66px;background:transparent;border-bottom:1px solid #ffffff1a;padding:0 5px 13px}
+ #app:not(.menu-home)>.preview-nav-rail>.side-navigation{display:flex!important;flex:1;flex-direction:column;gap:7px;padding:20px 4px}
+ #app:not(.menu-home)>.preview-nav-rail .side-nav-label{color:#9ea9b8}
+ #app:not(.menu-home)>.preview-nav-rail .navitem{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;padding:12px 13px;border-radius:13px;background:transparent;color:#c1cbd5;font-size:13px}
+ #app:not(.menu-home)>.preview-nav-rail .navitem.active{background:#9be2d5;color:#202536;font-weight:850}
+ #app:not(.menu-home)>.preview-nav-rail .navitem .navicon{width:22px;text-align:center}
+ #app:not(.menu-home)>.preview-nav-rail .navitem .nav-chevron{margin-left:auto}
+ #app:not(.menu-home)>.preview-nav-rail .side-nav-divider{height:1px;background:#ffffff20;margin:9px 5px}
+ #app:not(.menu-home)>.sidebar{grid-column:2;grid-row:1;display:flex!important;position:relative;width:auto;min-width:0;max-width:none;height:100dvh;overflow:auto;border-radius:0}
+ #app:not(.menu-home)>.main{grid-column:3;grid-row:1;display:flex!important;position:relative;min-width:0;height:100dvh;overflow:hidden}
+ #app:not(.menu-home):not([data-active-page="chats"])>.sidebar{display:none!important}
+ #app:not(.menu-home):not([data-active-page="chats"])>.main{display:none!important}
+ #app:not(.menu-home):not([data-active-page="chats"])>.preview-nav-rail{grid-column:1}
+ #app:not(.menu-home):not([data-active-page="chats"])>.tab-screen{inset:0 0 0 250px!important;border-radius:0!important}
+ #app:not(.menu-home)[data-active-page="chats"]>.tab-screen{display:none!important}
+ #app:not(.menu-home) .hub-mobile-nav{display:none!important}
+}
+@media(max-width:900px){
+ #app:not(.menu-home)>.preview-nav-rail{display:none!important}
+ #app:not(.menu-home)>.sidebar{background:#fffefa!important}
+ #app:not(.menu-home)[data-active-page="chats"]>.sidebar{top:58px;bottom:72px;left:0;right:0;width:auto;height:auto;display:flex!important}
+ #app:not(.menu-home)[data-active-page="chats"]>.main{display:none!important}
+ #app:not(.menu-home)[data-active-page="chats"].chat-open>.sidebar{display:none!important}
+ #app:not(.menu-home)[data-active-page="chats"].chat-open>.main{display:flex!important;position:absolute;left:0;right:0;top:0;bottom:72px;height:auto;z-index:4}
+ #app:not(.menu-home)[data-active-page="chats"].chat-open>.shared-app-header{display:none!important}
+ #app:not(.menu-home)[data-active-page="chats"] .sidebar .inbox-heading{padding:18px 17px 12px}
+ #app:not(.menu-home)[data-active-page="chats"] .sidebar .chatlist{margin:0 10px 12px}
+ #app:not(.menu-home):not([data-active-page="chats"])>.sidebar{display:none!important}
+ #app:not(.menu-home):not([data-active-page="chats"])>.main{display:none!important}
+}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -1419,6 +1471,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   </main>
 </section>
     <nav class="hub-mobile-nav" aria-label="CHATDUN navigation"><button type="button" class="hub-mobile-item active" data-hub-mobile="home"><span>⌂</span><small>Home</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="chats"><span>☏</span><small>Chats</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="ai"><span>✧</span><small>AI</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="arena"><span>◈</span><small>Arena</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="updates"><span>◉</span><small>Updates</small></button></nav>
+    <aside id="previewNavRail" class="preview-nav-rail" aria-label="Primary navigation"></aside>
     <header class="shared-app-header" aria-label="CHATDUN app header">
       <div class="shared-brand"><span class="shared-brand-mark">C.</span><span><b>CHATDUN</b><small>BY I D LABS</small></span></div>
       <div class="shared-header-actions"><button type="button" data-shared-action="notifications" aria-label="Notifications">♧</button><button type="button" data-shared-action="profile" aria-label="Profile">ID</button></div>
@@ -2642,6 +2695,18 @@ document.querySelectorAll('[data-shared-action]').forEach(function(button){
     if(action==='notifications')document.getElementById('notificationsBtn')?.click();
   });
 });
+</script>
+<script id="chatdun-preview-nav-rail-mount">
+(function(){
+  var app=document.getElementById('app');
+  var rail=document.getElementById('previewNavRail');
+  var sidebar=app&&app.querySelector(':scope > .sidebar');
+  if(!rail||!sidebar)return;
+  var top=sidebar.querySelector(':scope > .top');
+  var nav=sidebar.querySelector(':scope > .side-navigation');
+  if(top&&!rail.contains(top))rail.appendChild(top);
+  if(nav&&!rail.contains(nav))rail.appendChild(nav);
+})();
 </script>
 </body>
 </html>
