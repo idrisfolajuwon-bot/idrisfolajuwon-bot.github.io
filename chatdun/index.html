@@ -1256,6 +1256,71 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   #app:not(.menu-home) #callsPage .tab-empty{margin:20px auto}
 }
 </style>
+<style id="chatdun-preview-home-rebuild">
+#app.menu-home{background:#f6f4ee!important;color:#202536!important}
+#app.menu-home #homeHub{background:#f6f4ee!important;color:#202536!important}
+#app.menu-home #homeHub .hub-header{height:72px;padding:0 clamp(16px,4vw,42px);background:#fffefa;border-bottom:1px solid #e9e4da}
+#app.menu-home #homeHub .hub-logo{background:#202536;color:#9be2d5;border-radius:13px}
+#app.menu-home #homeHub .hub-brand b{color:#202536;font-size:15px;letter-spacing:1.4px}
+#app.menu-home #homeHub .hub-brand small{color:#858b93}
+#app.menu-home #homeHub .hub-icon-btn,#app.menu-home #homeHub .hub-profile{border:1px solid #e7e2d8;background:#fffefa;color:#283342}
+#app.menu-home #homeHub .hub-content.hub-preview-home{width:min(1020px,100%);padding:clamp(16px,3.5vw,34px);overflow:visible}
+.hub-preview-hero{position:relative;min-height:258px;overflow:hidden;display:flex;align-items:center;padding:29px 32px 78px;border-radius:25px;background:radial-gradient(circle at 84% 15%,#477d80 0,transparent 27%),linear-gradient(120deg,#202536,#34495a 58%,#1e5b60);color:#fff;box-shadow:0 16px 38px #20253620}
+.hub-preview-hero-copy{position:relative;z-index:2;max-width:630px}
+.hub-preview-eyebrow{font-size:9px;font-weight:900;letter-spacing:2px;color:#9be2d5}
+.hub-preview-hero h1{font-size:clamp(30px,5vw,45px);line-height:1.04;letter-spacing:-1.7px;margin:12px 0}
+.hub-preview-hero h1 em{font-style:normal;color:#9be2d5}
+.hub-preview-hero p{max-width:430px;color:#cbd4dc;font-size:13px;line-height:1.65;margin:0}
+.hub-preview-orbit{position:absolute;right:9%;top:28px;width:155px;height:155px;border:1px solid #9be2d55c;border-radius:50%;display:grid;place-items:center;color:#a8ebdd;font-size:48px;opacity:.9}
+.hub-preview-orbit:before,.hub-preview-orbit:after{content:"";position:absolute;inset:17px;border:1px solid #9be2d538;border-radius:50%}
+.hub-preview-orbit:after{inset:37px}
+.hub-preview-quick{position:absolute;left:30px;right:30px;bottom:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:530px}
+.hub-preview-quick button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:7px 10px;border:1px solid #ffffff20;border-radius:13px;background:#ffffff14;color:#fff;font-size:11px;font-weight:750}
+.hub-preview-quick button i{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:#9be2d5;color:#202536;font-size:15px;font-style:normal}
+.hub-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:19px}
+.hub-preview-card{position:relative;min-height:190px;padding:19px 20px;border:1px solid #e7e2d8;border-radius:20px;background:#fffefa;box-shadow:0 8px 24px #20253609;display:flex;flex-direction:column;align-items:flex-start}
+.hub-preview-card-head{width:100%;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hub-preview-card-head small{display:block;font-size:8px;letter-spacing:1.45px;font-weight:900;color:#848a93}
+.hub-preview-card h2{font-size:19px;letter-spacing:-.55px;margin:4px 0 0;color:#202536}
+.hub-preview-card-icon{flex:none;width:37px;height:37px;border-radius:12px;display:grid;place-items:center;background:#e8f7f2;color:#26766d;font-size:19px}
+.hub-preview-card p{font-size:12px;line-height:1.6;color:#737b87;margin:12px 0 15px;max-width:430px}
+.hub-preview-action{display:inline-flex;align-items:center;gap:12px;margin-top:auto;padding:8px 13px;border-radius:999px;background:#202536;color:#fff;font-size:10px;font-weight:850}
+.hub-preview-action span{color:#9be2d5;font-size:14px}
+.hub-preview-ai .hub-preview-card-icon{background:#edf0fb;color:#626fa4}
+.hub-preview-updates .hub-preview-card-icon{background:#fbefe9;color:#bb6e50}
+.hub-preview-arena{background:linear-gradient(135deg,#25364a,#244f57);border-color:#25364a}
+.hub-preview-arena h2{color:#fff}.hub-preview-arena .hub-preview-card-head small{color:#a9c2cb}
+.hub-preview-arena p{color:#cad5db}
+.hub-preview-arena .hub-preview-card-icon{background:#9be2d5;color:#202536}
+.hub-preview-arena .hub-preview-action{background:#9be2d5;color:#202536}
+.hub-preview-arena .hub-preview-action span{color:#202536}
+.hub-preview-tag{display:inline-flex;margin-top:7px;padding:3px 7px;border-radius:999px;background:#ffffff1a;color:#9be2d5;font-size:8px;font-weight:900;letter-spacing:1px}
+.hub-preview-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:19px;padding:6px 4px;color:#8d9298;font-size:8px;letter-spacing:1px;font-weight:800}
+.hub-preview-footer i{font-style:normal;color:#1e8a7c}
+.hub-preview-footer button{background:transparent;color:#727b84;font-size:9px;text-decoration:underline}
+@media(max-width:900px){
+ #app.menu-home #homeHub .hub-header{height:62px;min-height:62px;padding:0 15px}
+ #app.menu-home #homeHub .hub-content.hub-preview-home{padding:15px 13px 27px}
+ .hub-preview-hero{min-height:262px;padding:24px 19px 83px;border-radius:21px}
+ .hub-preview-hero h1{font-size:32px}
+ .hub-preview-hero p{max-width:320px;font-size:12px}
+ .hub-preview-orbit{width:112px;height:112px;right:-25px;top:68px;opacity:.55}
+ .hub-preview-quick{left:14px;right:14px;bottom:13px;gap:6px}
+ .hub-preview-quick button{flex-direction:column;gap:4px;min-height:59px;padding:6px 2px;font-size:9px}
+ .hub-preview-quick button i{width:26px;height:26px}
+ .hub-preview-grid{grid-template-columns:1fr;gap:10px;margin-top:13px}
+ .hub-preview-card{min-height:157px;padding:16px 17px}
+ .hub-preview-card h2{font-size:18px}
+ .hub-preview-card p{margin:9px 0 12px;font-size:11px}
+ .hub-preview-footer{margin-top:15px;flex-wrap:wrap}
+}
+@media(max-width:370px){
+ .hub-preview-hero{padding-left:16px;padding-right:16px}
+ .hub-preview-hero h1{font-size:29px}
+ .hub-preview-quick{left:10px;right:10px}
+ .hub-preview-quick button{font-size:8px}
+}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -1307,29 +1372,50 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     <div class="hub-brand"><span class="hub-logo">C.</span><div><b>CHATDUN</b><small>YOUR SPACE TO CONNECT</small></div></div>
     <div class="hub-header-actions"><button id="hubNotifications" class="hub-icon-btn" type="button" aria-label="Notifications">🔔</button><button id="hubProfile" class="hub-profile" type="button"><span id="hubAvatar">?</span><span>Profile</span></button></div>
   </header>
-  <main class="hub-content">
-    <section class="hub-welcome">
-      <div class="hub-welcome-copy"><span class="hub-eyebrow">WELCOME TO YOUR SPACE</span><h1>Good to have<br><em>you here.</em></h1><p>Your conversations, people and new experiences — all in one place.</p></div>
-      <div class="hub-orbit" aria-hidden="true"><span>✦</span><i></i><b></b></div>
-      <div class="hub-welcome-bottom"><span><i></i> YOUR CHATDUN SPACE</span><span>BY I D LABS</span></div>
-    </section>
-    <section class="hub-section">
-      <div class="hub-section-title"><div><small>YOUR EVERYDAY SPACE</small><h2>Stay connected</h2></div><span>01 / CONNECT</span></div>
-      <div class="hub-grid hub-grid-primary">
-        <button class="hub-card hub-chats" data-hub-tab="chats" type="button"><span class="hub-card-icon">☏</span><span class="hub-card-copy"><b>Chats</b><small>Your private and group conversations</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-people" data-hub-tab="contacts" type="button"><span class="hub-card-icon">⌕</span><span class="hub-card-copy"><b>People</b><small>Find and connect with people</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-updates" data-hub-tab="updates" type="button"><span class="hub-card-icon">◉</span><span class="hub-card-copy"><b>Updates</b><small>Share moments that disappear after 24 hours</small></span><span class="hub-arrow">↗</span></button>
-        <button class="hub-card hub-calls" data-hub-tab="calls" type="button"><span class="hub-card-icon">⌁</span><span class="hub-card-copy"><b>Calls</b><small>Keep your call space in one place</small></span><span class="hub-arrow">↗</span></button>
+  <main class="hub-content hub-preview-home">
+    <section class="hub-preview-hero">
+      <div class="hub-preview-hero-copy">
+        <span class="hub-preview-eyebrow">YOUR SPACE TO CONNECT</span>
+        <h1>Good conversations<br><em>deserve a home.</em></h1>
+        <p>Bring your people closer. Your messages, ideas and moments stay together in one thoughtful space.</p>
+      </div>
+      <div class="hub-preview-orbit" aria-hidden="true">✧</div>
+      <div class="hub-preview-quick">
+        <button type="button" data-hub-tab="chats"><i>☏</i>New chat</button>
+        <button type="button" data-hub-tab="updates"><i>◉</i>Post update</button>
+        <button type="button" data-hub-tab="ai"><i>✧</i>Ask AI</button>
+        <button type="button" data-hub-tab="arena"><i>◈</i>Arena</button>
       </div>
     </section>
-    <section class="hub-section hub-discover-section">
-      <div class="hub-section-title"><div><small>EXPLORE SOMETHING DIFFERENT</small><h2>Beyond messaging</h2></div><span>02 / EXPLORE</span></div>
-      <div class="hub-grid hub-grid-feature">
-        <button class="hub-feature hub-ai" data-hub-tab="ai" type="button"><span class="hub-feature-symbol">✧</span><span class="hub-feature-tag">AI PREVIEW</span><b>CHATDUN AI</b><p>A separate space for ideas, learning and creativity.</p><span class="hub-feature-link">Explore AI <i>↗</i></span></button>
-        <button class="hub-feature hub-arena" data-hub-tab="arena" type="button"><span class="hub-feature-symbol">◈</span><span class="hub-feature-tag">IN DEVELOPMENT</span><b>ARENA</b><p>Discover the next side of social experiences.</p><span class="hub-feature-link">Enter Arena <i>↗</i></span></button>
-      </div>
+
+    <section class="hub-preview-grid">
+      <article class="hub-preview-card hub-preview-recent">
+        <div class="hub-preview-card-head"><div><small>PICK UP WHERE YOU LEFT OFF</small><h2>Your conversations</h2></div><span class="hub-preview-card-icon">☏</span></div>
+        <p>Continue a private chat or catch up with your groups. Your real CHATDUN messages stay connected to your account.</p>
+        <button type="button" data-hub-tab="chats" class="hub-preview-action">Open Chats <span>↗</span></button>
+      </article>
+      <article class="hub-preview-card hub-preview-ai">
+        <div class="hub-preview-card-head"><div><small>YOUR THINKING PARTNER</small><h2>CHATDUN AI</h2></div><span class="hub-preview-card-icon">✧</span></div>
+        <p>Ask questions, learn something new or work through your next idea with CHATDUN AI.</p>
+        <button type="button" data-hub-tab="ai" class="hub-preview-action">Open AI <span>↗</span></button>
+      </article>
+      <article class="hub-preview-card hub-preview-updates">
+        <div class="hub-preview-card-head"><div><small>MOMENTS FROM YOUR CIRCLE</small><h2>Latest updates</h2></div><span class="hub-preview-card-icon">◉</span></div>
+        <p>Share a photo status with your CHATDUN contacts. Photo statuses are designed to stay active for 24 hours.</p>
+        <button type="button" data-hub-tab="updates" class="hub-preview-action">View Updates <span>↗</span></button>
+      </article>
+      <article class="hub-preview-card hub-preview-people">
+        <div class="hub-preview-card-head"><div><small>YOUR NETWORK</small><h2>People</h2></div><span class="hub-preview-card-icon">＋</span></div>
+        <p>Find people by CHATDUN username or phone number. Your phone number is kept private.</p>
+        <button type="button" data-hub-tab="contacts" class="hub-preview-action">Find people <span>↗</span></button>
+      </article>
+      <article class="hub-preview-card hub-preview-arena">
+        <div class="hub-preview-card-head"><div><small>PRIVATE LIVE VIDEO</small><h2>Arena</h2><span class="hub-preview-tag">INVITE ONLY</span></div><span class="hub-preview-card-icon">◈</span></div>
+        <p>Start a private live video with one person from an existing one-to-one CHATDUN conversation.</p>
+        <button type="button" data-hub-tab="arena" class="hub-preview-action">Enter Arena <span>↗</span></button>
+      </article>
     </section>
-    <footer class="hub-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>AN I D LABS PRODUCT</span></footer>
+    <footer class="hub-preview-footer"><span>CHATDUN <i>·</i> CONNECT. CHAT. SHARE.</span><button id="hubLogout" type="button">Sign out</button><span>AN I D LABS PRODUCT</span></footer>
   </main>
 </section>
     <nav class="hub-mobile-nav" aria-label="CHATDUN navigation"><button type="button" class="hub-mobile-item active" data-hub-mobile="home"><span>⌂</span><small>Home</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="chats"><span>☏</span><small>Chats</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="ai"><span>✧</span><small>AI</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="arena"><span>◈</span><small>Arena</small></button><button type="button" class="hub-mobile-item" data-hub-mobile="updates"><span>◉</span><small>Updates</small></button></nav>
