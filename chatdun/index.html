@@ -2976,6 +2976,32 @@ $('arenaStopLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,
 $('arenaLeaveLiveBtn').addEventListener('click',()=>arenaCleanupLiveSession(true,'You left the private live session.'));
 
 </script>
+<script id="chatdun-home-quick-action-repair">
+/* Route Home quick actions through the app's real navigation controls. */
+document.addEventListener('click',function(event){
+  const button=event.target.closest('.cd-home-quick-actions [data-hub-action],.cd-home-quick-actions [data-hub-tab]');
+  if(!button)return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  const action=button.getAttribute('data-hub-action');
+  const route=action==='new-chat'?'contacts':action==='post-update'?'updates':button.getAttribute('data-hub-tab');
+  const nav=document.querySelector('.side-navigation .navitem[data-tab="'+route+'"]');
+  if(!nav){console.error('CHATDUN Home action could not find navigation route:',route);return;}
+  nav.click();
+  if(action==='new-chat'){
+    requestAnimationFrame(function(){
+      const search=document.getElementById('peopleSearch');
+      if(search){search.placeholder='Type a username to find someone…';search.focus();}
+    });
+  }
+  if(action==='post-update'){
+    requestAnimationFrame(function(){
+      const composer=document.getElementById('newStatusBtn');
+      if(composer)composer.click();
+    });
+  }
+},true);
+</script>
 <script id="chatdun-phone-navigation">
 document.querySelectorAll('[data-hub-mobile]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-mobile');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item===button)});if(target==='home'){showMenuHome();return}switchTab(target)})});
 document.querySelectorAll('[data-hub-tab]').forEach(function(button){button.addEventListener('click',function(){var target=button.getAttribute('data-hub-tab');document.querySelectorAll('.hub-mobile-item').forEach(function(item){item.classList.toggle('active',item.getAttribute('data-hub-mobile')===target)});switchTab(target)})});
