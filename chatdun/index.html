@@ -1542,6 +1542,10 @@ html,body{background:var(--cd-ref-cream)!important}
   .cd-home-quick-action{min-height:96px;padding:9px 3px;border-radius:20px;font-size:10px;gap:9px}
   .cd-home-quick-icon{width:42px;height:42px}
   .hub-mobile-nav{height:64px!important;min-height:64px!important;padding-top:4px!important;padding-bottom:max(4px,env(safe-area-inset-bottom))!important}
+  #app:not(.menu-home) .tab-screen{inset:56px 0 64px 0!important}
+  #app:not(.menu-home) .sidebar{height:calc(100dvh - 120px)!important}
+  #app:not(.menu-home) .main{height:calc(100dvh - 120px)!important}
+  #app:not(.menu-home).chat-open .main{height:calc(100dvh - 120px)!important}
 }
 @media(max-width:390px){
   .cd-mobile-top{padding-left:10px!important;padding-right:10px!important}
